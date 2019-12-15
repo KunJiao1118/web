@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Signin Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="" th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
+    <link rel="stylesheet" href="" th:href="@{/asserts/css/main.css}">
+<head>
+    <meta charset="UTF-8">
+    <title>添加客户</title>
+</head>
+<body class="background2">
+
+<div class="mainDiv">
+    <div class="viceDiv_1">
+        <div>
+            <a th:href="@{/emp_me}">
+                <img src="" th:src="@{/asserts/img/tx.gif}" style="margin-top: 75px; margin-left: 20px" >
+            </a>
+        </div>
+        <div th:replace="commons/bar::leftbar"></div>
+    </div>
+    <div class="viceDiv_2">
+        <div style="margin-top: 15px;margin-left: 15px">用户添加</div>
+
+        <pr></pr>
+
+        <form th:action="@{/emp_cus}" method="post">
+            <div class="form-group">
+                <label for="id">id</label>
+                <input type="text" name="id" class="form-control" id="id" placeholder="1" th:value="${cus!=null}?${cus.id}">
+            </div>
+            <div class="form-group">
+                <label for="sname">客户简称</label>
+                <input type="text" name="sname" class="form-control" id="sname" placeholder="zhangsan" th:value="${cus!=null}?${cus.sname}">
+            </div>
+            <div class="form-group">
+                <label for="name">客户全称</label>
+                <input type="text" name="name" class="form-control" id="name" placeholder="张三" th:value="${cus!=null}?${cus.name}">
+            </div>
+
+
+
+
+
+
+            <button type="submit" class="btn btn-primary" th:text="${cus!=null}?'修改':'添加'">添加</button>
+        </form>
+
+
+
+
+</div>
+    <div class="viceDiv_3">
+        <div th:replace="main::imgbar"></div>
+        <div th:replace="main::gao"></div>
+    </div>
+</div>
+
+
+</body>
+</html>
