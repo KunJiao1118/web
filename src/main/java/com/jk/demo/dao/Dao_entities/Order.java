@@ -2,28 +2,39 @@ package com.jk.demo.dao.Dao_entities;
 
 public class Order {
     private String oid; //用户订单唯一id，一个用户订单只有一个id
-    private String opid; //用户订单唯一id，后跟物品id，每个order只有一个opid
     private String ordertime;
+
+
+
     private String pid;
     private  String panme;
     private int number;
-
+    private float price;
+    private String state;
+    public Order(String oid, String ordertime, String pid, String panme, int number, float price, String state) {
+        this.oid = oid;
+        this.ordertime = ordertime;
+        this.pid = pid;
+        this.panme = panme;
+        this.number = number;
+        this.price = price;
+        this.state = state;
+    }
+    public Order() {
+        this.oid = null;
+        this.ordertime = null;
+        this.pid = null;
+        this.panme = null;
+        this.number = -1;
+        this.price = -1;
+        this.state = null;
+    }
     public String getPanme() {
         return panme;
     }
 
     public void setPanme(String panme) {
         this.panme = panme;
-    }
-
-    private int totalnumber;
-    private String state;
-    public String getOpid() {
-        return opid;
-    }
-
-    public void setOpid(String opid) {
-        this.opid = opid;
     }
 
     public String getOid() {
@@ -59,8 +70,8 @@ public class Order {
     }
 
 
-    public int getTotalnumber() {
-        return totalnumber;
+    public float getPrice() {
+        return price;
     }
 
     public String getState() {
@@ -71,8 +82,8 @@ public class Order {
         this.state = state;
     }
 
-    public void setTotalnumber(int totalnumber) {
-        this.totalnumber = totalnumber;
+    public void setPrice(float price) {
+        this.price = price;
     }
 
 

@@ -9,20 +9,20 @@ public class Userorder {
         return ordertime;
     }
 
-    public void setOrdertime(String ordertime) {
-        this.ordertime = ordertime;
-    }
-
-
     public  Userorder(){
         this.oid=null;
         this.username=null;
         this.state=null;
+        this.ordertime=null;
     }
-    public  Userorder(String oid,String username,String state){
+    public  Userorder(String oid,String username,String state,String ordertime){
         this.oid=oid;
         this.username=username;
         this.state=state;
+        this.ordertime=ordertime;
+    }
+    public void setOrdertime(String ordertime) {
+        this.ordertime = ordertime;
     }
     public String getOid() {
         return oid;
