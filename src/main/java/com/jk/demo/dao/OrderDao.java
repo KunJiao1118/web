@@ -1,8 +1,11 @@
 package com.jk.demo.dao;
 
+import com.jk.demo.dao.Dao_entities.Book;
 import com.jk.demo.dao.Dao_entities.Order;
 import com.jk.demo.dao.Dao_entities.Userorder;
 import com.jk.demo.dao.dataHelper.jdbc.Builder;
+import com.jk.demo.sto.OrderSTO;
+import com.sun.org.apache.xpath.internal.operations.Or;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -88,21 +91,38 @@ public class OrderDao {
      * @param username
      * @return
      */
-    public ArrayList<Userorder> findAllsUserorders(String username){
+    public ArrayList<OrderSTO> findAllsUserorders(String username){
         try {
-            String select = "select * from `userorder` where `username`=? ;";
-            ArrayList<Userorder> resultlist=new ArrayList<Userorder>();
+            String select = "select * from `userorder`,`order`,`book` where `username`=? " +
+                    "and userorder.oid=order.oid and order.pid=book.pid;";
+            ArrayList<OrderSTO> resultlist=new ArrayList<OrderSTO>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
             ps.setString(1, username);
             rs = ps.executeQuery();
             while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
-                Userorder userorder=new Userorder();
-                userorder.setOid(rs.getString(1));
-                userorder.setUsername(rs.getString(2));
-                userorder.setOrdertime(rs.getString(3));
-                userorder.setState(rs.getString(4));
-                resultlist.add(userorder);
+                OrderSTO orderSTO=new OrderSTO();
+                Book book=new Book();
+                orderSTO.setOid(rs.getString(1));
+                orderSTO.setUsername(rs.getString(2));
+                orderSTO.setOrdertime(rs.getString(3));
+                orderSTO.setState(rs.getString(4));
+                orderSTO.setNumber(rs.getString(9));
+                orderSTO.setPrice(rs.getString(10));
+                orderSTO.setSid(rs.getString(12));
+                orderSTO.setSname(rs.getString(13));
+                book.setPid(rs.getString(14));
+                book.setName(rs.getString(15));
+                book.setImage(rs.getString(16));
+                book.setWriter(rs.getString(17));
+                book.setPress(rs.getString(18));
+                book.setTime(rs.getString(19));
+                book.setISBN(rs.getString(20));
+                book.setPage(rs.getString(21));
+                book.setCategory(rs.getString(22));
+                book.setIntro(rs.getString(23));
+                orderSTO.setBook(book);
+                resultlist.add(orderSTO);
             }
             return resultlist;
         } catch (SQLException e) {

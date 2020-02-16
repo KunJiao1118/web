@@ -6,6 +6,13 @@ import java.util.ArrayList;
 
 public class test {
     public  static  void main(String args[]){
+        Comment comment=new Comment();
+        comment.setSid("1");
+        comment.setOid("1");
+        comment.setComment("hhh");
+        ShopDao instance = ShopDao.getInstance();
+        instance.addShopComment(comment);
+        /**
         UserDao ud= UserDao.getInstance();
         BookDao bd=BookDao.getInstance();
         OrderDao od=OrderDao.getInstance();
@@ -20,6 +27,8 @@ public class test {
 
 //        bd.addBookToShop("0001089","1",price,express,"上品",8);
         System.out.println(od.findDetailOrder("123133").get(0).getPanme());
-    }
+    */
+
+         }
 
 }

@@ -3,11 +3,11 @@ package com.jk.demo.dao.Dao_entities;
 public class Book {
     private String pid;
     private String name;
-    private String iamge;
+    private String image;
     public Book() {
         this.pid = null;
         this.name = null;
-        this.iamge = null;
+        this.image = null;
         this.writer = null;
         this.press = null;
         this.time = null;
@@ -16,10 +16,10 @@ public class Book {
         this.category = null;
         this.intro = null;
     }
-    public Book(String pid, String name, String iamge, String writer, String press, String time, String ISBN, String page, String category, String intro) {
+    public Book(String pid, String name, String image, String writer, String press, String time, String ISBN, String page, String category, String intro) {
         this.pid = pid;
         this.name = name;
-        this.iamge = iamge;
+        this.image = image;
         this.writer = writer;
         this.press = press;
         this.time = time;
@@ -53,12 +53,12 @@ public class Book {
         this.name = name;
     }
 
-    public String getIamge() {
-        return iamge;
+    public String getImage() {
+        return image;
     }
 
-    public void setIamge(String iamge) {
-        this.iamge = iamge;
+    public void setImage(String iamge) {
+        this.image = iamge;
     }
 
     public String getWriter() {

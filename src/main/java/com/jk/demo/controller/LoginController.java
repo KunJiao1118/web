@@ -1,53 +1,96 @@
 package com.jk.demo.controller;
 
-import com.jk.demo.entities.Me;
-import com.jk.demo.service.MeService;
+import com.jk.demo.bean.ResultBean;
+import com.jk.demo.dao.Dao_entities.Book;
+import com.jk.demo.entities.Order;
+import com.jk.demo.entities.Token;
+import com.jk.demo.entities.Type;
+import com.jk.demo.entities.User;
+import com.jk.demo.service.BookService;
+import com.jk.demo.service.UserService;
+import com.jk.demo.sto.OrderSTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.thymeleaf.util.StringUtils;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
+import java.util.List;
+import java.util.UUID;
 
 @Controller
+@ResponseBody
 public class LoginController {
 
     @Autowired
-    MeService meService;
-    /*
-    @PostMapping(value = "/user/login")
-    public String login(@RequestParam("username") String username,
-                        @RequestParam("password") String password,
-                        Map<String,Object> map, HttpSession session){
-        if(!StringUtils.isEmpty(username) && "1".equals(password)){
-            session.setAttribute("loginUser",username);
-            return "redirect:/users";
+    UserService userService;
+
+    @Autowired
+    BookService bookService;
+
+    @PostMapping("/user/order")
+    public ResultBean<List<OrderSTO>> order(String userId, String token,HttpServletRequest request){//order list
+        ResultBean<List<OrderSTO>> re = new ResultBean<>();
+        HttpSession session = request.getSession();
+        if(token.equals(session.getAttribute("token").toString())){//登录用户才可查看订单
+            List<OrderSTO> userOrder = userService.getUserOrder(userId);
+            re.setData(userOrder);
         }else{
-         //   model.addAttribute("msg","用户名或者密码错误");
-            map.put("msg","用户名或者密码错误");
-            return "redirect:/index";
+            re.setCode(400);
         }
+
+        return  re;
     }
-    */
-    @PostMapping("/user/login")
-    public String login(Me me){
-        System.out.println("保存的角色信息"+me.toString());
-       /* if(meService.getByName(me.getUsername()) == null){
-            meService.save(me);
-            return "redirect:/users";
+
+    @PostMapping("/user/logout")
+    public ResultBean logout(String userId, String token,HttpServletRequest request){
+        ResultBean re=new ResultBean<>();
+        HttpSession session = request.getSession();
+        if(token.equals(session.getAttribute("token").toString())){
+            session.removeAttribute("token");
+
+        }else{
+            re.setCode(500);
         }
+        return re;//返回json串
+    }
 
-        else {
-            //meService.update(me);
-            if(meService.getByName(me.getUsername()).getPassword().equals(me.getPassword())){
-                return "redirect:/users";
-            }
-            else return "redirect:/indexnot";
-        }*/
-       return "main";
+    @PostMapping("/user/login")
+    public ResultBean<Token> login(String userId, String password, HttpServletRequest request){
+        ResultBean<Token> resultBean=new ResultBean<>();
+        //boolean b = userService.doLogin(userId, password);
+        HttpSession session = request.getSession();
+        if(session.getAttribute("token")!=null){
+            Token token = new Token();
+            token.setToken(session.getAttribute("token").toString());
+            System.out.println("hhhhhhhhhhhhh----------");
+            resultBean.setData(token);
+        }
+        else if(userService.doLogin(userId, password)){
+            String uuid = UUID.randomUUID().toString();
+            Token token = new Token();
+            token.setToken(uuid);
+            resultBean.setData(token);
+            session.setAttribute("token",uuid);
+        }else{
+            resultBean.setCode(400);
+        }
+        return resultBean;
 
+    }
+
+    @PostMapping("/user/register")
+    public String register(User user, Model model){
+        ResultBean resultBean=new ResultBean();
+        if(userService.doRegister(user)){
+            model.addAttribute("result",resultBean);
+        }else {
+            //resultBean.setMsg("注册失败");
+            model.addAttribute("result",resultBean);
+            return "register";
+        }
+        return "login";
     }
 }

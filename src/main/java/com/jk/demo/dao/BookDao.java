@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BookDao {
     private Connection conn = null;
@@ -23,6 +24,39 @@ public class BookDao {
             return bookDao;
         }
         return bookDao;
+    }
+
+    /**
+     * 返回推荐的所有书籍
+     * (暂时先随便推荐十本书)
+     */
+    public ArrayList<Book> findBookByRecommend(){
+        try {
+            String select = "select * from book limit 1,10 ;";
+            ArrayList<Book> resultlist=new ArrayList<Book>();
+            conn = builder.BuildConnection();
+            ps = conn.prepareStatement(select);
+            //ps.setString(1, category);
+            rs = ps.executeQuery();
+            while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
+                Book book=new Book();
+                book.setPid(rs.getString(1));
+                book.setName(rs.getString(2));
+                book.setImage(rs.getString(3));
+                book.setWriter(rs.getString(4));
+                book.setPress(rs.getString(5));
+                book.setTime(rs.getString(6));
+                book.setISBN(rs.getString(7));
+                book.setPage(rs.getString(8));
+                book.setCategory(rs.getString(9));
+                book.setIntro(rs.getString(10));
+                resultlist.add(book);
+            }
+            return resultlist;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
@@ -42,7 +76,7 @@ public class BookDao {
                 Book book=new Book();
                 book.setPid(rs.getString(1));
                 book.setName(rs.getString(2));
-                book.setIamge(rs.getString(3));
+                book.setImage(rs.getString(3));
                 book.setWriter(rs.getString(4));
                 book.setPress(rs.getString(5));
                 book.setTime(rs.getString(6));
@@ -59,23 +93,26 @@ public class BookDao {
         }
     }
 
+
     /**
-     * 返回指定pid的书籍信息
+     * 返回指定sid,pid的书籍信息
      * @param pid
      * @return
      */
-    public Book findBookById(String pid) {
+    public Book findBookById(String pid,String sid) {
         try {
-            String select = "select * from `book` where `pid`=?;";
+            String select = "select b.pid,b.name,b.image,b.writer,b.press,b.time,b.ISBN,b.page,b.category,b.intro" +
+                    " from `book` as b ,`shopbook` as sb where sb.pid=b.pid and b.pid=? and sid=?;";
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
             ps.setString(1, pid);
+            ps.setString(2,sid);
             rs = ps.executeQuery();
             while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
                 Book book = new Book();
                 book.setPid(rs.getString(1));
                 book.setName(rs.getString(2));
-                book.setIamge(rs.getString(3));
+                book.setImage(rs.getString(3));
                 book.setWriter(rs.getString(4));
                 book.setPress(rs.getString(5));
                 book.setTime(rs.getString(6));
@@ -108,7 +145,7 @@ public class BookDao {
                 Book book = new Book();
                 book.setPid(rs.getString(1));
                 book.setName(rs.getString(2));
-                book.setIamge(rs.getString(3));
+                book.setImage(rs.getString(3));
                 book.setWriter(rs.getString(4));
                 book.setPress(rs.getString(5));
                 book.setTime(rs.getString(6));
@@ -160,6 +197,8 @@ public class BookDao {
 
     }
 
+
+
     /**
      * 把某本书籍的购买信息添加到店铺种
      * @param pid 书籍id
@@ -171,12 +210,12 @@ public class BookDao {
      * @return
      */
     public boolean addBookToShop(String pid,String sid,Float price,Float express,String quality,int remain){
-        Book book=this.findBookById(pid);
+        Book book=this.findBookById(pid,sid);
         ShopBook sbook=new ShopBook();
         sbook.setPid(book.getPid());
         sbook.setSid(sid);
         sbook.setPname(book.getName());
-        sbook.setImage(book.getIamge());
+        sbook.setImage(book.getImage());
         sbook.setCategory(book.getCategory());
         sbook.setPrice(price);
         sbook.setExpress(express);

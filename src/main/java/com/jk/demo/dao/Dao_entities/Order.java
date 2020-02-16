@@ -3,38 +3,56 @@ package com.jk.demo.dao.Dao_entities;
 public class Order {
     private String oid; //用户订单唯一id，一个用户订单只有一个id
     private String ordertime;
+    private String sid;
+    private String sname;
 
+    public String getSid() {
+        return sid;
+    }
 
+    public void setSid(String sid) {
+        this.sid = sid;
+    }
+
+    public String getSname() {
+        return sname;
+    }
+
+    public void setSname(String sname) {
+        this.sname = sname;
+    }
 
     private String pid;
-    private  String panme;
+    private  String pname;
     private int number;
     private float price;
     private String state;
-    public Order(String oid, String ordertime, String pid, String panme, int number, float price, String state) {
+    public Order(String oid, String ordertime, String pid, String pname,String sid,String sname ,int number, float price, String state) {
         this.oid = oid;
         this.ordertime = ordertime;
         this.pid = pid;
-        this.panme = panme;
+        this.pname = pname;
         this.number = number;
         this.price = price;
         this.state = state;
+        this.sid=sid;
+        this.sname=sname;
     }
     public Order() {
         this.oid = null;
         this.ordertime = null;
         this.pid = null;
-        this.panme = null;
+        this.pname = null;
         this.number = -1;
         this.price = -1;
         this.state = null;
     }
     public String getPanme() {
-        return panme;
+        return pname;
     }
 
     public void setPanme(String panme) {
-        this.panme = panme;
+        this.pname = panme;
     }
 
     public String getOid() {

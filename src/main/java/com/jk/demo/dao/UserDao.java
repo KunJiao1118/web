@@ -65,21 +65,19 @@ public class UserDao {
 	 * @return PersonPO
 	 * @author xiamutian
 	 */
-	public User findUser(String username) {
+	public User findUserByName(String username) {
 		User user = new User();
 		try {
-			String select = "select * from `user`;";
+			String select = "select * from `user` where name=?;";
 			conn = builder.BuildConnection();
 			ps = conn.prepareStatement(select);
+			ps.setString(1,username);
 			rs = ps.executeQuery();
 			while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
-				if (rs.getString(1).equals(username)) {
-					System.out.print("find it");
 					user.setUsername(rs.getString(1));
 					user.setPassword(rs.getString(2));
 					user.setEmail(rs.getString(3));
 					return user;
-				}
 			}
 			rs.close();
 			ps.close();
