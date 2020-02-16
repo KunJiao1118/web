@@ -63,11 +63,11 @@ public class BookServiceImpl implements BookService {
         //BookDao bookDao =BookDao.getInstance();
 
         List<ShopBook> list=new ArrayList<>();
-        if(type.equals("sid")){//
+        if(type.equals("店铺")){//
             list=shopDao.findShopBookBySid(content);
-        }else if(type.equals("pname")){
+        }else if(type.equals("图书")){
             list=shopDao.findShopBookByPname(content);
-        }else if(type.equals("category")){
+        }else if(type.equals("图书种类")){
             list=shopDao.findShopBookByCategory(content);
         }
 

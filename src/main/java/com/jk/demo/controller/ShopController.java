@@ -7,6 +7,7 @@ import com.jk.demo.dao.Dao_entities.Shop;
 import com.jk.demo.dao.Dao_entities.ShopBook;
 import com.jk.demo.service.BookService;
 import com.jk.demo.service.ShopService;
+import com.jk.demo.sto.CommentSTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,9 +51,9 @@ public class ShopController {
         return re;
     }
     @GetMapping("/shop/comment")
-    public ResultBean<List<Comment>> findShopComment(String shopId){
-        ResultBean<List<Comment>> re=new ResultBean<>();
-        List<Comment> shopComment = shopService.findShopComment(shopId);
+    public ResultBean<List<CommentSTO>> findShopComment(String shopId){
+        ResultBean<List<CommentSTO>> re=new ResultBean<>();
+        List<CommentSTO> shopComment = shopService.findShopComment(shopId);
         re.setData(shopComment);
         return re;
     }

@@ -130,14 +130,43 @@ public class OrderDao {
             return null;
         }
     }
-
     /**
-     * 改变一个订单的状态
+     * 改变一个订单的状态(改变userorder 表)
      * @param oid
      * @param state
      * @return
      */
     public boolean changeOrderState(String oid,String state){
+        try {
+            String select = "select * from `order` where `oid`=?;";
+            String update = "update order set `state`=? where oid=?;";
+            conn = builder.BuildConnection();
+            ps = conn.prepareStatement(select);
+            ps.setString(1,oid);
+            rs = ps.executeQuery();
+            while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
+                ps = conn.prepareStatement(update);
+                ps.setString(1, state);
+                ps.setString(2, oid);
+                ps.execute();
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * 改变一个订单的状态(改变userorder 表)
+     * @param oid
+     * @param state
+     * @return
+     */
+    public boolean changeUserOrderState(String oid,String state){
         try {
             String select = "select * from `userorder` where `oid`=?;";
             String update = "update userorder set `state`=? where oid=?;";

@@ -21,6 +21,14 @@ public class EpayServiceImpl implements EpayService {
     ShopDao shopDao=ShopDao.getInstance();
     BookDao bookDao=BookDao.getInstance();
     UserDao userDao=UserDao.getInstance();
+
+    @Override
+    public boolean paying(String oid) {
+        boolean flag = orderDao.changeOrderState(oid, "已支付");
+        boolean flag1=orderDao.changeUserOrderState(oid,"已支付");
+        return flag&&flag1;
+    }
+
     @Override
     public OrderSTO generateOrder(String uid, String sid, String pid) {
         //shopDao
@@ -47,6 +55,7 @@ public class EpayServiceImpl implements EpayService {
         order.setOrdertime(str);
         order.setPanme(book.getName());
         order.setPid(pid);
+        order.setState("未支付");
         order.setPrice(1);//------------------
 
         orderDao.addDetailOrder(order);
