@@ -16,7 +16,24 @@ import java.util.List;
 public class EpayController {
     @Autowired
     EpayService epayService;
-    
+    @PostMapping("/epay/paying")
+    public ResultBean paying(String userId, String token,
+                             String oid, HttpServletRequest request){
+        ResultBean re=new ResultBean<>();
+        HttpSession session = request.getSession();
+        if(token.equals(session.getAttribute("token"))){
+            boolean paying = epayService.paying(oid);
+            if(!paying){
+                re.setCode(404);
+            }
+
+        }else{
+            re.setCode(400);
+        }
+
+        return re;
+    }
+
     @PostMapping("/epay/generateOrder")
     public ResultBean<OrderSTO> generateOrder(String userId, String token,
                                                     String sid, String pid, HttpServletRequest request){
