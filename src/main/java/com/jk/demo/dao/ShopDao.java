@@ -2,6 +2,7 @@ package com.jk.demo.dao;
 
 import com.jk.demo.dao.Dao_entities.*;
 import com.jk.demo.dao.dataHelper.jdbc.Builder;
+import com.jk.demo.sto.CommentSTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -291,19 +292,22 @@ public class ShopDao {
      * @param sid
      * @return
      */
-    public ArrayList<Comment> findCommentByShop(String sid){
+    public ArrayList<CommentSTO> findCommentByShop(String sid){
         try {
-            String select = "select * from `comment` where `sid`=?;";
-            ArrayList<Comment> resultlist=new ArrayList<Comment>();
+            String select = "select comment.sid,comment.oid,comment.comment,order.pname,order.ordertime from `comment`,`order` where comment.sid=order.sid " +
+                    "and comment.oid=order.oid and comment.sid=?;";
+            ArrayList<CommentSTO> resultlist=new ArrayList<CommentSTO>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
             ps.setString(1, sid);
             rs = ps.executeQuery();
             while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
-                Comment comment=new Comment();
+                CommentSTO comment=new CommentSTO();
                 comment.setSid(rs.getString(1));
                 comment.setOid(rs.getString(2));
                 comment.setComment(rs.getString(3));
+                comment.setPname(rs.getString(4));
+                comment.setOrdertime(rs.getString(5));
                 resultlist.add(comment);
             }
             return resultlist;

@@ -5,6 +5,7 @@ import com.jk.demo.dao.Dao_entities.Comment;
 import com.jk.demo.dao.Dao_entities.Shop;
 import com.jk.demo.dao.ShopDao;
 import com.jk.demo.service.ShopService;
+import com.jk.demo.sto.CommentSTO;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,8 +14,8 @@ import java.util.List;
 @Service
 public class ShopServiceImpl implements ShopService {
     @Override
-    public List<Comment> findShopComment(String sid) {
-        ArrayList<Comment> commentByShop = shopDao.findCommentByShop(sid);
+    public List<CommentSTO> findShopComment(String sid) {
+        ArrayList<CommentSTO> commentByShop = shopDao.findCommentByShop(sid);
 
         return commentByShop;
     }

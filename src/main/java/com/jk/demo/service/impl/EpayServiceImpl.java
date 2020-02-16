@@ -47,6 +47,7 @@ public class EpayServiceImpl implements EpayService {
         order.setOrdertime(str);
         order.setPanme(book.getName());
         order.setPid(pid);
+        order.setState("未支付");
         order.setPrice(1);//------------------
 
         orderDao.addDetailOrder(order);
