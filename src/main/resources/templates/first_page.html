@@ -72,13 +72,13 @@
 					<input type="text" class="search-query span2" placeholder="Search">
 				</form>
 				<ul class="nav pull-right">
-					<li><a href="#">Link</a></li>
+					<li><a href="#">登录/注册</a></li>
 					<li class="divider-vertical"></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">个人中心<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
+							<li><a href="#">我的订单</a></li>
+							<li><a href="#">我的好友</a></li>
 							<li><a href="#">Something else here</a></li>
 							<li class="divider"></li>
 							<li><a href="#">Separated link</a></li>
@@ -147,88 +147,88 @@
 			<ul class="thumbnails">
 				<li class="span2">
 					<div class="thumbnail">
-						<img data-src="holder.js/100x120" alt="">
-						<h3>Thumbnail label</h3>
-						<p>Thumbnail caption...</p>
+						<img data-src="holder.js/100x120" alt="" th:src="${lists.data[0].image}">
+						<h5 th:text="${lists.data[0].pname}">Thumbnail label</h5>
+						<p th:text="${lists.data[0].price}+@{￥}">Thumbnail caption...</p>
 					</div>
 				</li>
 				<li class="span2">
 					<div class="thumbnail">
-						<img data-src="holder.js/100x120" alt="">
-						<h3>Thumbnail label</h3>
-						<p>Thumbnail caption...</p>
+						<img data-src="holder.js/100x120" alt="" th:src="${lists.data[1].image}">
+						<h5 th:text="${lists.data[1].pname}">Thumbnail label</h5>
+						<p th:text="${lists.data[1].price}+@{￥}">Thumbnail caption...</p>
 					</div>
 				</li>
 				<li class="span2">
 					<div class="thumbnail">
-						<img data-src="holder.js/100x120" alt="">
-						<h3>Thumbnail label</h3>
-						<p>Thumbnail caption...</p>
+						<img data-src="holder.js/100x120" alt="" th:src="${lists.data[2].image}">
+						<h5 th:text="${lists.data[2].pname}">Thumbnail label</h5>
+						<p th:text="${lists.data[2].price}+@{￥}">Thumbnail caption...</p>
 					</div>
 				</li>
 				<li class="span2">
 					<div class="thumbnail">
-						<img data-src="holder.js/100x120" alt="">
-						<h3>Thumbnail label</h3>
-						<p>Thumbnail caption...</p>
+						<img data-src="holder.js/100x120" alt="" th:src="${lists.data[3].image}">
+						<h5 th:text="${lists.data[3].pname}">Thumbnail label</h5>
+						<p th:text="${lists.data[3].price}+@{￥}">Thumbnail caption...</p>
 					</div>
 				</li>
 				<li class="span2">
 					<div class="thumbnail">
-						<img data-src="holder.js/100x120" alt="">
-						<h3>Thumbnail label</h3>
-						<p>Thumbnail caption...</p>
+						<img data-src="holder.js/100x120" alt="" th:src="${lists.data[4].image}">
+						<h5 th:text="${lists.data[4].pname}">Thumbnail label</h5>
+						<p th:text="${lists.data[4].price}+@{￥}">Thumbnail caption...</p>
 					</div>
 				</li>
 				<li class="span2">
 					<div class="thumbnail">
-						<img data-src="holder.js/100x120" alt="">
-						<h3>Thumbnail label</h3>
-						<p>Thumbnail caption...</p>
+						<img data-src="holder.js/100x120" alt="" th:src="${lists.data[5].image}">
+						<h5 th:text="${lists.data[5].pname}">Thumbnail label</h5>
+						<p th:text="${lists.data[5].price}+@{￥}">Thumbnail caption...</p>
 					</div>
 				</li>
 			</ul>
 			<ul class="thumbnails">
 				<li class="span2">
 					<div class="thumbnail">
-						<img data-src="holder.js/100x120" alt="">
-						<h3>Thumbnail label</h3>
-						<p>Thumbnail caption...</p>
+						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${lists.data[6].image}"></a>
+						<h5 th:text="${lists.data[6].pname}">Thumbnail label</h5>
+						<p th:text="${lists.data[6].price}+@{￥}">Thumbnail caption...</p>
 					</div>
 				</li>
 				<li class="span2">
 					<div class="thumbnail">
-						<img data-src="holder.js/100x120" alt="">
-						<h3>Thumbnail label</h3>
-						<p>Thumbnail caption...</p>
+						<img data-src="holder.js/100x120" alt="" th:src="${lists.data[7].image}">
+						<h5 th:text="${lists.data[7].pname}">Thumbnail label</h5>
+						<p th:text="${lists.data[7].price}+@{￥}">Thumbnail caption...</p>
 					</div>
 				</li>
 				<li class="span2">
 					<div class="thumbnail">
-						<img data-src="holder.js/100x120" alt="">
-						<h3>Thumbnail label</h3>
-						<p>Thumbnail caption...</p>
+						<img data-src="holder.js/100x120" alt="" th:src="${lists.data[8].image}">
+						<h5 th:text="${lists.data[8].pname}">Thumbnail label</h5>
+						<p th:text="${lists.data[8].price}+@{￥}">Thumbnail caption...</p>
 					</div>
 				</li>
 				<li class="span2">
 					<div class="thumbnail">
-						<img data-src="holder.js/100x120" alt="">
-						<h3>Thumbnail label</h3>
-						<p>Thumbnail caption...</p>
+						<img data-src="holder.js/100x120" alt="" th:src="${lists.data[9].image}">
+						<h5 th:text="${lists.data[9].pname}">Thumbnail label</h5>
+						<p th:text="${lists.data[9].price}+@{￥}">Thumbnail caption...</p>
 					</div>
 				</li>
 				<li class="span2">
 					<div class="thumbnail">
-						<img data-src="holder.js/100x120" alt="">
-						<h3>Thumbnail label</h3>
-						<p>Thumbnail caption...</p>
+						<img data-src="holder.js/100x120" alt="" th:src="${lists.data[10].image}">
+						<h5 th:text="${lists.data[10].pname}">Thumbnail label</h5>
+						<p th:text="${lists.data[10].price}+@{￥}">Thumbnail caption...</p>
 					</div>
 				</li>
 				<li class="span2">
 					<div class="thumbnail">
-						<img data-src="holder.js/100x120" alt="">
-						<h3>Thumbnail label</h3>
-						<p>Thumbnail caption...</p>
+						<img data-src="holder.js/100x120" alt="" th:src="${lists.data[11].image}">
+						<h5 th:text="${lists.data[11].pname}">Thumbnail label</h5>
+						<p th:text="${lists.data[11].price}+@{￥}">Thumbnail caption...</p>
 					</div>
 				</li>
 			</ul>
