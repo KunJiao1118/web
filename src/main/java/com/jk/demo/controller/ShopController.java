@@ -9,12 +9,14 @@ import com.jk.demo.service.BookService;
 import com.jk.demo.service.ShopService;
 import com.jk.demo.sto.CommentSTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class ShopController {
     @Autowired
     BookService bookService;
@@ -28,12 +30,13 @@ public class ShopController {
         return re;
     }
 
-    @GetMapping("/shop/recommendBooks")
-    public ResultBean<List<ShopBook>> recommendBooksInShop(String shopId){
+    @GetMapping("/recommendBooks")
+    public String recommendBooksInShop(String shopId, Model model){
         ResultBean<List<ShopBook>> re=new ResultBean<>();
         List<ShopBook> bookByRecommendInShop = bookService.getBookByRecommendInShop(shopId);
         re.setData(bookByRecommendInShop);
-        return re;
+        model.addAttribute("lists",re);
+        return "first_page";
     }
 
     @GetMapping("/shop/info")
