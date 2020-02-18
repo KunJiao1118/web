@@ -1,21 +1,21 @@
 .background{
-    background-image: url(/asserts/img/login.png);
+    background-image: url(../img/login.png);
 
 }
 .background1{
-    background-image: url(/asserts/img/1.png);
+    background-image: url(../img/1.png);
 
 }
 .background2{
-    background-image: url(/asserts/img/background.png);
+    background-image: url(../img/background.png);
 
 }
 .background3{
-    background-image: url(/asserts/img/tx.png);
+    background-image: url(../img/tx.png);
 
 }
 .background4{
-   background-image: url(/asserts/img/bin.png);
+   background-image: url(../img/bin.png);
 
 }
 .mainDiv {

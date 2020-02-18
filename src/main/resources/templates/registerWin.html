@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册弹窗</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/other/jquery.js"></script>
+</head>
+<body onload="iFrameResize()">
+    <div id="registerWin" class="overTip open">
+        <div class="overWin">
+            <div class="overWinCon">
+                <div class="clearfix">
+                    <h3 class="f_left">注册</h3>
+                    <a onclick="changeToLogin()" id="loginTo" class="f_right smallBt">快速登录</a>
+                </div>
+                <div class="overWinText confirmCon">
+                    <div class="font14 error_top"></div>
+                    <form id="register" method="post" style="position: relative;" novalidate="novalidate">
+                        <ul class="login_list m_t10">
+                            <li>
+                                <div class="bottom_line"></div>
+                                <div class="input_box">
+                                    <input name="username_register" id="username_register" type="text"
+                                           placeholder="用户名（昵称），注册后不可更改" autocomplete="off" tabindex="1"
+                                           aria-required="true" aria-invalid="true" class="error">
+                                </div>
+                                <div class="pos_info pos_info_username_register red">
+                                    <label id="username_register-error" class="error" for="username_register"></label>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="bottom_line"></div>
+                                <input style="display:none" type="text" name="username">
+                                <input style="display:none" type="password" name="password">
+                                <div class="input_box input_password_box">
+                                    <input name="passwordregister" type="password" id="password_register"
+                                           placeholder="设置密码" autocomplete="off" tabindex="5">
+                                    <input name="passwordregister" type="text" id="newPasswords" placeholder="设置密码"
+                                           autocomplete="off" tabindex="6">
+                                </div>
+                                <div class="pos_info pos_info_passwords red">
+                                    <label id="password_register-error" class="error" for="password_register"></label>
+                                </div>
+                                <a href="javascript:;" class="eyes_close" id="passwordChange"><span
+                                        class="iconfont icon-biyan"></span></a>
+                            </li>
+                        </ul>
+                        <div class=" m_t20 m_b10">
+                            <input type="submit" id="submit" class="btn_red_h40" value="注 册">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

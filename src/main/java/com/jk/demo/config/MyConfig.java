@@ -1,8 +1,6 @@
 package com.jk.demo.config;
 
-import com.jk.demo.component.LoginHandlerInterceptor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -11,10 +9,10 @@ public class MyConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/index").setViewName("index");
-        registry.addViewController("/dashboard").setViewName("dashboard");
         registry.addViewController("/main").setViewName("main");
-        registry.addViewController("/add_user").setViewName("add_user");
-        registry.addViewController("/indexnot").setViewName("indexnot");
+        registry.addViewController("/first_page").setViewName("first_page");
+        registry.addViewController("/loginWin").setViewName("loginWin");
+        registry.addViewController("/registerWin").setViewName("registerWin");
     }
 
     /**

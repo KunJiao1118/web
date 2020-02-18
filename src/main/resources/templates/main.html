@@ -8,20 +8,20 @@
     <title>Signin Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="" th:href="@{/asserts/css/bootstrap.min.css}" rel="stylesheet">
+    <link href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="" th:href="@{/asserts/css/signin.css}" rel="stylesheet">
-    <link rel="stylesheet" href="" th:href="@{/asserts/css/main.css}">
+    <link href="../static/css/signin.css" th:href="@{css/signin.css}" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/main.css" th:href="@{css/main.css}">
 <head>
     <meta charset="UTF-8">
     <title>主页面</title>
 </head>
-<body class="background2" style="background-image: url('/asserts/img/background3.png')">
+<body class="background2" style="background-image: url('../static/img/background3.png')">
 
 <div class="mainDiv">
     <div class="viceDiv_1">
         <div>
-            <a th:href="@{/emp_me}"><img src="" th:src="@{/asserts/img/tx.gif}" style="margin-top: 55px; margin-left: 30px" ></a>
+            <a th:href="@{/emp_me}"><img src="" th:src="@{img/tx.gif}" style="margin-top: 55px; margin-left: 30px" ></a>
         </div>
 
 
@@ -69,11 +69,11 @@
                     <td th:text="${user.email}" style="font-size: smaller"></td>
                     <td>
                         <div>
-                            <a th:href="@{/emp_user/}+${user.id}"><img src="asserts/img/pencil.png" width="20px" height="25px" style="float: left"></a>
+                            <a th:href="@{/emp_user/}+${user.id}"><img src="../static/img/pencil.png" width="20px" height="25px" style="float: left"></a>
                             <form th:action="@{/emp_user/}+${user.id}" method="post">
                                 <input type="hidden" name="_method" value="delete"/>
 
-                                <button type="submit" class="btn" style="background-image: url('asserts/img/bin6.png');background-color: transparent;width: 20px;height: 25px;float: left"></button>
+                                <button type="submit" class="btn" style="background-image: url('../static/img/bin6.png');background-color: transparent;width: 20px;height: 25px;float: left"></button>
 
                             </form>
 
@@ -90,26 +90,36 @@
     <div class="viceDiv_3">
         <div style="margin-left: 60px" th:fragment="imgbar">
             <div style="margin-left: 15px">
-                <img th:src="@{/asserts/img/app1.png}" src="asserts/img/app.png" style="width: 80px">
+                <img th:src="@{../static/img/app1.png}" src="../static/img/app.png" style="width: 80px">
             </div>
             <div style="margin-left: 25px;margin-top: 20px">
-                <a th:href="@{/cuss}"><img th:src="@{/asserts/img/khgl.png}" src="" style="width: 40px"></a>
-                <a th:href="@{/users}"><img th:src="@{/asserts/img/xmgl.png}" src="asserts/img/xmgl.png" style="width: 40px;margin-left: 10px"></a>
-                <a th:href="@{/users}"><img th:src="@{/asserts/img/yhgl.png}" src="asserts/img/yhgl.png" style="width: 40px;margin-left: 10px"></a>
-                <a th:href="@{/users}"><img th:src="@{/asserts/img/tdzb.png}" src="asserts/img/tdzb.png" style="width: 40px;margin-left: 10px"><br></a>
-                <a th:href="@{/users}"><img th:src="@{/asserts/img/gszb.png}" src="asserts/img/gszb.png" style="width: 40px"></a>
-                <a th:href="@{/users}"><img th:src="@{/asserts/img/tdxm.png}" src="asserts/img/tdxm.png" style="width: 40px;margin-left: 10px"></a>
-                <a th:href="@{/users}"><img th:src="@{/asserts/img/gsxm.png}" src="asserts/img/gsxm.png" style="width: 40px;margin-left: 10px"></a>
-                <a th:href="@{/users}"><img th:src="@{/asserts/img/tdcf.png}" src="asserts/img/tdcf.png" style="width: 40px;margin-left: 10px"><br></a>
-                <a th:href="@{/users}"><img th:src="@{/asserts/img/gscf.png}" src="asserts/img/gscf.png" style="width: 40px"></a>
-                <a th:href="@{/users}"><img th:src="@{/asserts/img/tj.png}" src="asserts/img/tj.png" style="width: 40px;margin-left: 10px"></a>
-                <a th:href="@{/users}"><img th:src="@{/asserts/img/txl.png}" src="asserts/img/txl.png" style="width: 40px;margin-left: 10px"><br></a>
+                <a th:href="@{/cuss}"><img th:src="@{../static/img/khgl.png}" src="" style="width: 40px"></a>
+                <a th:href="@{/users}"><img th:src="@{../static/img/xmgl.png}" src="../static/img/xmgl.png"
+                                            style="width: 40px;margin-left: 10px"></a>
+                <a th:href="@{/users}"><img th:src="@{../static/img/yhgl.png}" src="../static/img/yhgl.png"
+                                            style="width: 40px;margin-left: 10px"></a>
+                <a th:href="@{/users}"><img th:src="@{../static/img/tdzb.png}" src="../static/img/tdzb.png"
+                                            style="width: 40px;margin-left: 10px"><br></a>
+                <a th:href="@{/users}"><img th:src="@{../static/img/gszb.png}" src="../static/img/gszb.png"
+                                            style="width: 40px"></a>
+                <a th:href="@{/users}"><img th:src="@{../static/img/tdxm.png}" src="../static/img/tdxm.png"
+                                            style="width: 40px;margin-left: 10px"></a>
+                <a th:href="@{/users}"><img th:src="@{../static/img/gsxm.png}" src="../static/img/gsxm.png"
+                                            style="width: 40px;margin-left: 10px"></a>
+                <a th:href="@{/users}"><img th:src="@{../static/img/tdcf.png}" src="../static/img/tdcf.png"
+                                            style="width: 40px;margin-left: 10px"><br></a>
+                <a th:href="@{/users}"><img th:src="@{../static/img/gscf.png}" src="../static/img/gscf.png"
+                                            style="width: 40px"></a>
+                <a th:href="@{/users}"><img th:src="@{../static/img/tj.png}" src="../static/img/tj.png"
+                                            style="width: 40px;margin-left: 10px"></a>
+                <a th:href="@{/users}"><img th:src="@{../static/img/txl.png}" src="../static/img/txl.png"
+                                            style="width: 40px;margin-left: 10px"><br></a>
             </div>
         </div>
 
         <div>
             <div style="margin-top: 20px">
-                <img src="" th:src="@{/asserts/img/ld.png}" style="margin-left: 75px;width: 50px">
+                <img src="" th:src="@{../static/img/ld.png}" style="margin-left: 75px;width: 50px">
             </div>
             <div style="color: black"><pr></pr></div>
 
@@ -162,4 +172,6 @@
 
 
 </body>
+
+
 </html>

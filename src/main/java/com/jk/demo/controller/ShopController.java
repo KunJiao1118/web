@@ -2,7 +2,6 @@ package com.jk.demo.controller;
 
 import com.jk.demo.bean.ResultBean;
 import com.jk.demo.dao.Dao_entities.BookCategory;
-import com.jk.demo.dao.Dao_entities.Comment;
 import com.jk.demo.dao.Dao_entities.Shop;
 import com.jk.demo.dao.Dao_entities.ShopBook;
 import com.jk.demo.service.BookService;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -29,6 +27,7 @@ public class ShopController {
         re.setData(booksByShop);
         return re;
     }
+
 
     @GetMapping("/recommendBooks")
     public String recommendBooksInShop(String shopId, Model model){

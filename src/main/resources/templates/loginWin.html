@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>登录弹窗</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/other/jquery.js"></script>
+
+</head>
+<body onload="iFrameResize()">
+    <div id="loginWin" class="overTip open">
+        <div id="" class="overWin">
+            <div class="overWinCon pass_login_box">
+                <div class="clearfix">
+                    <h3 class="f_left">登录</h3>
+                </div>
+                <div class="overWinText confirmCon">
+                    <form id="login" action="#" th:action="@{/user/login}" method="post" target="hidden_frame"
+                             novalidate="novalidate">
+                        <ul class="login_list m_t10">
+                            <li class="usernameBox username_before">
+                                <div class="input_box">
+                                    <input type="text" name="userId" id="username" placeholder="用户名/手机号/邮箱"
+                                           tabindex="1" aria-required="true" class="valid" aria-invalid="false">
+                                </div>
+                            </li>
+                            <li class="passwordBox username_before">
+                                <div class="bottom_line"></div>
+                                <div class="input_box input_login_box">
+                                    <input type="password" name="password" id="password" placeholder="密码" tabindex="2"
+                                           aria-required="true" class="valid" aria-invalid="false">
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="m_t10  gray9 clearfix username_before">
+                            <div class="f_right forgetPass"><a target="_top" href="/Pc/resetPass/index">忘记密码</a></div>
+                        </div>
+                        <div class=" m_t20">
+                            <input type="submit" class="login_submit btn_red_h40" value=" 登 录">
+                        </div>
+                    </form>
+                    <iframe name='hidden_frame' id="hidden_frame" style='display: none'></iframe>
+                    <div class="clearfix share_box m_t20 username_before">
+                        <a onclick="changeToRegisterWin()" class="registerGo f_right orange">立即注册</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('#hidden_frame').load(function(){
+            var text=$(this).contents().find("body").text();
+            // 根据后台返回值处理结果
+            var j=$.parseJSON(text);
+            switch (j.code) {
+                case 'OK':
+                    top.location.href = "first_page";
+                    break;
+                case 'BAD_REQUEST':
+
+                    break;
+                case 'UNAUTHORIZED':
+
+                    break;
+                default:
+                    alert("未知错误\n" + text);
+            }
+        });
+    </script>
+</body>
+</html>
