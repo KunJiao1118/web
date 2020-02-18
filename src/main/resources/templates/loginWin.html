@@ -21,6 +21,7 @@
                         <ul class="login_list m_t10">
                             <li class="usernameBox username_before">
                                 <div class="input_box">
+                                    <div id="errorInfoBox" style="color:#d31414">  </div>
                                     <input type="text" name="userId" id="username" placeholder="用户名/手机号/邮箱"
                                            tabindex="1" aria-required="true" class="valid" aria-invalid="false">
                                 </div>
@@ -58,10 +59,10 @@
                     top.location.href = "first_page";
                     break;
                 case 'BAD_REQUEST':
-
+                    document.getElementById("errorInfoBox").innerText = "用户名及密码格式不正确";
                     break;
                 case 'UNAUTHORIZED':
-
+                    document.getElementById("errorInfoBox").innerText = "用户名及密码不匹配";
                     break;
                 default:
                     alert("未知错误\n" + text);

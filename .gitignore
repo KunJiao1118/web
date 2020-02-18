@@ -1,5 +1,3 @@
 *.class
-.idea/workspace.xml
-.idea/libraries
+.idea
 target
-*.iml

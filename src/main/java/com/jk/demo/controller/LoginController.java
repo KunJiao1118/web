@@ -114,15 +114,18 @@ public class LoginController {
     }
 
     @PostMapping("/user/register")
-    public String register(User user, Model model) {
+    public ResultBean register(String userId, String password,String email) {
         ResultBean resultBean = new ResultBean();
+        User user = new User();
+        user.setUsername(userId);
+        user.setPassword(password);
+        user.setEmail(email);
         if (userService.doRegister(user)) {
-            model.addAttribute("result", resultBean);
+            resultBean.setCode(HttpStatus.OK);
+            return resultBean;
         } else {
-            //resultBean.setMsg("注册失败");
-            model.addAttribute("result", resultBean);
-            return "register";
+            resultBean.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            return resultBean;
         }
-        return "login";
     }
 }
