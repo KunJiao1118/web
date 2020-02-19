@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>注册弹窗</title>
@@ -11,17 +11,29 @@
     <div id="registerWin" class="overTip open">
         <div class="overWin">
             <div class="overWinCon">
+                <span class="f_right close" onclick="closeModal()"></span>
                 <div class="clearfix">
                     <h3 class="f_left">注册</h3>
                     <a onclick="changeToLogin()" id="loginTo" class="f_right smallBt">快速登录</a>
                 </div>
                 <div class="overWinText confirmCon">
-                    <form id="register" method="post" style="position: relative;" novalidate="novalidate">
+                    <!-- 表单提交时验证函数执行顺序 https://blog.csdn.net/f45056231p/article/details/80955773 -->
+                    <form id="registerForm" action="#" th:action="@{/user/register}" method="post"
+                          target="hidden_frame" onsubmit="return checkRegInfo();"
+                          style="position: relative;" novalidate="novalidate">
+                        <div id="errorInfoBox" style="color:#d31414">  </div>
                         <ul class="login_list m_t10">
                             <li>
                                 <div>
-                                    <input name="userId" id="username_register" type="text"
+                                    <input name="userId" id="userId_register" type="text"
                                            placeholder="用户名（昵称）注册后不可更改" autocomplete="off" tabindex="1"
+                                           aria-required="true" aria-invalid="true" style="width: 200px;">
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <input name="email" id="email_register" type="text"
+                                           placeholder="邮箱" autocomplete="off" tabindex="2"
                                            aria-required="true" aria-invalid="true" style="width: 200px;">
                                 </div>
                             </li>
@@ -29,20 +41,68 @@
                             <li>
                                 <div class="input_box input_password_box">
                                     <input name="password" type="password" id="password_register"
-                                           placeholder="设置密码" autocomplete="off" tabindex="5" style="width: 200px;">
-                                    <input name="password" type="password" id="password_register_2"
-                                           placeholder="再输入一次密码" autocomplete="off" tabindex="6" style="width: 200px;">
+                                           placeholder="设置密码" autocomplete="off" tabindex="3" style="width: 200px;">
+                                    <input name="confirmPassword" type="password" id="password_register_2"
+                                           placeholder="再输入一次密码" autocomplete="off" tabindex="4" style="width: 200px;">
                                 </div>
                             </li>
                         </ul>
                         <div class=" m_t20 m_b10">
-                            <button type="submit" id="submit" class="btn_red_h40" value="注 册">
+                            <input type="submit" id="submit" value="注册"/>
                         </div>
+                        <iframe name='hidden_frame' id="hidden_frame" style='display: none'></iframe>
                     </form>
                 </div>
 
             </div>
         </div>
     </div>
+    <script>
+        //注册请求发送前的检查
+        function checkRegInfo(){
+            if (document.getElementById("userId_register").value === "")
+            {
+                document.getElementById("userId_register").focus();
+                document.getElementById("errorInfoBox").innerText = "用户名不能为空";
+                return false;
+            }
+            if (document.getElementById("email_register").value === "")
+            {
+                document.getElementById("email_register").focus();
+                document.getElementById("errorInfoBox").innerText = "邮箱不能为空";
+                return false;
+            }
+            if (document.getElementById("password_register").value === "" ||
+                document.getElementById("password_register_2").value === "")
+            {
+                document.getElementById("errorInfoBox").innerText = "新密码不能为空";
+                return false;
+            }
+            if (document.getElementById("password_register").value !==
+                document.getElementById("password_register_2").value )
+            {
+                document.getElementById("errorInfoBox").innerText = "两次输入的新密码不一致";
+                return false;
+            }
+            return true;
+        }
+
+        //注册请求返回的结果处理
+        $('#hidden_frame').load(function(){
+            var text=$(this).contents().find("body").text();
+            // 根据后台返回值处理结果
+            var j=$.parseJSON(text);
+            switch (j.code) {
+                case 'OK':
+                    document.getElementById("errorInfoBox").innerText = "注册成功， 请登录";
+                    break;
+                case 'INTERNAL_SERVER_ERROR':
+                    document.getElementById("errorInfoBox").innerText = "注册失败";
+                    break;
+                default:
+                    alert("未知错误\n" + text);
+            }
+        });
+    </script>
 </body>
 </html>

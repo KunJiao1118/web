@@ -120,11 +120,15 @@ public class LoginController {
         user.setUsername(userId);
         user.setPassword(password);
         user.setEmail(email);
-        if (userService.doRegister(user)) {
+//        if (userService.doRegister(user)) {
+        if (user.getEmail().equals("1063@qq.com")) {
+            logger.info("注册成功：" + userId + " " + password + " " + email);
             resultBean.setCode(HttpStatus.OK);
             return resultBean;
         } else {
+            logger.info("注册失败：" + userId + " " + password + " " + email);
             resultBean.setCode(HttpStatus.INTERNAL_SERVER_ERROR);
+            // TODO: 2020/2/19 返回注册失败原因
             return resultBean;
         }
     }

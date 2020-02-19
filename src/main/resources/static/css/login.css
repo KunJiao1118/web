@@ -82,6 +82,23 @@ a.login_box .register-btn {
 .overWin .closeBtn{position:absolute;z-index:1000003;right:0;top:10px;width:34px;height:35px;}
 .overWin .closeBtn a{display:block;width:18px;height:18px;background:url(/pc/images/login/login_ico.png) no-repeat 0 -418px;}
 .overWin .closeBtn a:hover{ background-position:0 -197px;}
+.f_right {float: right}
+
+.close {
+    display: inline-block;
+    width: 30px;
+    height: 4px;
+    background: #333;
+    transform: rotate(45deg);
+}
+.close::after {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 4px;
+    background: #333;
+    transform: rotate(-90deg);
+}
 
 .overWin h3{height:35px;line-height:35px;font-size:30px; color:#666; font-weight:500;overflow:hidden;}
 .overWin  .smallBt{ margin-top:15px; color:#999;}

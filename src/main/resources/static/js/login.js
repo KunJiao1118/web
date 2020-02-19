@@ -83,8 +83,8 @@ function showModal(innerHtml) {
  * 模拟关闭模态窗口DIV
  */
 function closeModal() {
-    $('.overlay').hide();
-    $('#modalDiv').hide();
+    $('.overlay' , parent.document).hide();
+    $('#modalDiv' , parent.document).hide();
 }
 
 
