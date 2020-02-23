@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册弹窗</title>
+    <link rel="stylesheet" href="css/login.css">
+    <script type="text/javascript" src="js/login.js"></script>
+    <script type="text/javascript" src="js/other/jquery.js"></script>
+</head>
+<body onload="iFrameResize()">
+    <div id="registerWin" class="overTip open">
+        <div class="overWin">
+            <div class="overWinCon">
+                <div class="clearfix">
+                    <h3 class="f_left">注册</h3>
+                    <a onclick="changeToLogin()" id="loginTo" class="f_right smallBt">快速登录</a>
+                </div>
+                <div class="overWinText confirmCon">
+                    <form id="register" method="post" style="position: relative;" novalidate="novalidate">
+                        <ul class="login_list m_t10">
+                            <li>
+                                <div>
+                                    <input name="userId" id="username_register" type="text"
+                                           placeholder="用户名（昵称）注册后不可更改" autocomplete="off" tabindex="1"
+                                           aria-required="true" aria-invalid="true" style="width: 200px;">
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="input_box input_password_box">
+                                    <input name="password" type="password" id="password_register"
+                                           placeholder="设置密码" autocomplete="off" tabindex="5" style="width: 200px;">
+                                    <input name="password" type="password" id="password_register_2"
+                                           placeholder="再输入一次密码" autocomplete="off" tabindex="6" style="width: 200px;">
+                                </div>
+                            </li>
+                        </ul>
+                        <div class=" m_t20 m_b10">
+                            <button type="submit" id="submit" class="btn_red_h40" value="注 册">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

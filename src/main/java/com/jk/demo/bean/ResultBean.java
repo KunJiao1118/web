@@ -1,6 +1,7 @@
 package com.jk.demo.bean;
 
 import lombok.Data;
+import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
 
@@ -19,7 +20,7 @@ public class ResultBean<T> implements Serializable {
 
    // private String msg = "success";
 
-    private int code = 200;
+    private HttpStatus code = HttpStatus.OK;
 
     private T data;
 
@@ -34,6 +35,6 @@ public class ResultBean<T> implements Serializable {
 
     public ResultBean(Throwable e) {
         super();
-        this.code = 500;
+        this.code = HttpStatus.INTERNAL_SERVER_ERROR;
     }
 }

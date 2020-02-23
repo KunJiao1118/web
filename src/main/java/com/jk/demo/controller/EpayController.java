@@ -5,6 +5,7 @@ import com.jk.demo.dao.Dao_entities.Order;
 import com.jk.demo.service.EpayService;
 import com.jk.demo.sto.OrderSTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,11 +25,11 @@ public class EpayController {
         if(token.equals(session.getAttribute("token"))){
             boolean paying = epayService.paying(oid);
             if(!paying){
-                re.setCode(404);
+                re.setCode(HttpStatus.NOT_FOUND);
             }
 
         }else{
-            re.setCode(400);
+            re.setCode(HttpStatus.BAD_REQUEST);
         }
 
         return re;
@@ -43,7 +44,7 @@ public class EpayController {
             OrderSTO orderSTO = epayService.generateOrder(userId, sid, pid);
             re.setData(orderSTO);
         }else{
-            re.setCode(400);
+            re.setCode(HttpStatus.BAD_REQUEST);
         }
 
         return re;

@@ -32,7 +32,7 @@ public class BookDao {
      */
     public ArrayList<Book> findBookByRecommend(){
         try {
-            String select = "select * from book limit 1,10 ;";
+            String select = "select * from book limit 1,12 ;";
             ArrayList<Book> resultlist=new ArrayList<Book>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);

@@ -6,12 +6,12 @@ import com.jk.demo.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@RestController
+@Controller
 public class BookController {
     @Autowired
     BookService bookService;
@@ -21,5 +21,19 @@ public class BookController {
         Book bookInfoById = bookService.getBookInfoById(shopId, bookId);
         re.setData(bookInfoById);
         return re;
+    }
+
+    @PostMapping("/book/detail")
+    @ResponseBody
+    public void bookDetail(HttpSession session,@RequestBody int id){
+        session.setAttribute("index",id);
+    }
+
+    /**
+     * 书籍详情页面
+     */
+    @GetMapping("/bookIndex")
+    public String bookIndex(){
+        return "book_detail";
     }
 }
