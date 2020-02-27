@@ -65,7 +65,7 @@ public class LoginController {
         if (token.equals(session.getAttribute("token").toString())) {
             session.removeAttribute("token");//判断用户是否登录的标志，用于网页模板生成
 
-//            session.invalidate();
+//            session.invalidate();//session里存了好书推荐的信息，不能设置无效？？
             Cookie[] cookies = request.getCookies();
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("token")) {

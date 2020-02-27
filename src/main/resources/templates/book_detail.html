@@ -27,14 +27,18 @@
 	<script type="text/javascript" src="asserts/js/holder/holder.js"></script>
 	<script type="text/javascript" src="asserts/js/google-code-prettify/prettify.js"></script>
 	<script type="text/javascript" src="asserts/js/other/application.js"></script>
+	<script type="text/javascript" src="asserts/js/login.js"></script>
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" th:href="@{/asserts/css/bootstrap.css}">
 	<link rel="stylesheet" th:href="@{/asserts/js/google-code-prettify/prettify.css}">
 	<!-- Custom styles for this template -->
 	<link href="" th:href="@{/asserts/css/bootstrap-responsive.css}" rel="stylesheet">
+	<link rel="stylesheet" href="css/login.css" th:href="@{/asserts/css/login.css}">
 	<!--<link rel="stylesheet" href="" th:href="@{/asserts/css/docs.css}">-->
 </head>
 <body>
+<div class="overlay" id="overlay"></div><!--遮罩层-->
+<iframe class="login-win" id="modalDiv" style="display: none"></iframe>
 <div class="navbar">
 	<div th:replace="header/header::header">
 	</div>
