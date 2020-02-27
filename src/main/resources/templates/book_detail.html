@@ -6,35 +6,35 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>Signin Template for Bootstrap</title>
-	<script type="text/javascript" src="asserts/js/other/jquery.js"></script>
-	<script type="text/javascript" src="asserts/js/other/bootstrap-tooltip.js"></script>
-	<!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>-->
-	<!--<script type="text/javascript" src="asserts/js/bootstrap.js"></script>-->
-
-	<script type="text/javascript" src="asserts/js/other/bootstrap-affix.js"></script>
-	<script type="text/javascript" src="asserts/js/other/bootstrap-alert.js"></script>
-	<script type="text/javascript" src="asserts/js/other/bootstrap-button.js"></script>
-	<script type="text/javascript" src="asserts/js/other/bootstrap-carousel.js"></script>
-	<script type="text/javascript" src="asserts/js/other/bootstrap-collapse.js"></script>
-	<script type="text/javascript" src="asserts/js/other/bootstrap-dropdown.js"></script>
-	<script type="text/javascript" src="asserts/js/other/bootstrap-modal.js"></script>
-	<script type="text/javascript" src="asserts/js/other/bootstrap-popover.js"></script>
-	<script type="text/javascript" src="asserts/js/other/bootstrap-scrollspy.js"></script>
-	<script type="text/javascript" src="asserts/js/other/bootstrap-tab.js"></script>
-	<script type="text/javascript" src="asserts/js/other/bootstrap-transition.js"></script>
-	<script type="text/javascript" src="asserts/js/other/bootstrap-typeahead.js"></script>
-	<script type="text/javascript" src="asserts/js/other/h.js"></script>
-	<script type="text/javascript" src="asserts/js/holder/holder.js"></script>
-	<script type="text/javascript" src="asserts/js/google-code-prettify/prettify.js"></script>
-	<script type="text/javascript" src="asserts/js/other/application.js"></script>
+	<script type="text/javascript" src="js/other/jquery.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-tooltip.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-affix.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-alert.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-button.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-carousel.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-collapse.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-dropdown.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-popover.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-scrollspy.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-tab.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-transition.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-typeahead.js"></script>
+	<script type="text/javascript" src="js/other/h.js"></script>
+	<script type="text/javascript" src="js/holder/holder.js"></script>
+	<script type="text/javascript" src="js/google-code-prettify/prettify.js"></script>
+	<script type="text/javascript" src="js/other/application.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
 	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" th:href="@{/asserts/css/bootstrap.css}">
-	<link rel="stylesheet" th:href="@{/asserts/js/google-code-prettify/prettify.css}">
+	<link rel="stylesheet" th:href="@{css/bootstrap.css}">
+	<link rel="stylesheet" th:href="@{js/google-code-prettify/prettify.css}">
 	<!-- Custom styles for this template -->
-	<link href="" th:href="@{/asserts/css/bootstrap-responsive.css}" rel="stylesheet">
-	<!--<link rel="stylesheet" href="" th:href="@{/asserts/css/docs.css}">-->
+	<link  rel="stylesheet" href="" th:href="@{css/bootstrap-responsive.css}">
+	<link rel="stylesheet" href="css/login.css" th:href="@{css/login.css}">
 </head>
 <body>
+<div class="overlay" id="overlay"></div><!--遮罩层-->
+<iframe class="login-win" id="modalDiv" style="display: none"></iframe>
 <div class="navbar">
 	<div th:replace="header/header::header">
 	</div>

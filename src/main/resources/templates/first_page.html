@@ -1,255 +1,251 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Signin Template for Bootstrap</title>
-    <script type="text/javascript" src="js/other/jquery.js"></script>
-    <script type="text/javascript" src="js/other/bootstrap-tooltip.js"></script>
-    <script type="text/javascript" src="js/other/bootstrap-affix.js"></script>
-    <script type="text/javascript" src="js/other/bootstrap-alert.js"></script>
-    <script type="text/javascript" src="js/other/bootstrap-button.js"></script>
-    <script type="text/javascript" src="js/other/bootstrap-carousel.js"></script>
-    <script type="text/javascript" src="js/other/bootstrap-collapse.js"></script>
-    <script type="text/javascript" src="js/other/bootstrap-dropdown.js"></script>
-    <script type="text/javascript" src="js/other/bootstrap-modal.js"></script>
-    <script type="text/javascript" src="js/other/bootstrap-popover.js"></script>
-    <script type="text/javascript" src="js/other/bootstrap-scrollspy.js"></script>
-    <script type="text/javascript" src="js/other/bootstrap-tab.js"></script>
-    <script type="text/javascript" src="js/other/bootstrap-transition.js"></script>
-    <script type="text/javascript" src="js/other/bootstrap-typeahead.js"></script>
-    <script type="text/javascript" src="js/other/h.js"></script>
-    <script type="text/javascript" src="js/holder/holder.js"></script>
-    <script type="text/javascript" src="js/google-code-prettify/prettify.js"></script>
-    <script type="text/javascript" src="js/other/application.js"></script>
-
-    <script type="text/javascript" src="js/login.js" th:href="@{js/login.js}"></script>
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{css/bootstrap.css}">
-    <link rel="stylesheet" href="js/google-code-prettify/prettify.css"
-          th:href="@{js/google-code-prettify/prettify.css}">
-    <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="css/bootstrap-responsive.css" th:href="@{css/bootstrap-responsive.css}">
-    <link rel="stylesheet" href="css/login.css" th:href="@{css/login.css}">
-
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Signin Template for Bootstrap</title>
+	<script type="text/javascript" src="js/other/bootstrap-affix.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-alert.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-button.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-carousel.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-collapse.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-dropdown.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-popover.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-scrollspy.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-tab.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-tooltip.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-transition.js"></script>
+	<script type="text/javascript" src="js/other/bootstrap-typeahead.js"></script>
+	<script type="text/javascript" src="js/other/h.js"></script>
+	<script type="text/javascript" src="js/other/jquery.js"></script>
+	<script type="text/javascript" src="js/other/application.js"></script>
+	<script type="text/javascript" src="js/holder/holder.js"></script>
+	<script type="text/javascript" src="js/google-code-prettify/prettify.js"></script>
+	<script type="text/javascript" src="js/login.js" th:href="@{js/login.js}"></script>
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" th:href="@{css/bootstrap.css}">
+	<link rel="stylesheet" th:href="@{js/google-code-prettify/prettify.css}">
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" href="css/bootstrap-responsive.css" th:href="@{css/bootstrap-responsive.css}">
+	<link rel="stylesheet" href="css/login.css" th:href="@{css/login.css}">
 </head>
-
 <body>
-    <div class="overlay" id="overlay"></div><!--遮罩层-->
-    <iframe class="login-win" id="modalDiv" style="display: none"></iframe>
+<div class="overlay" id="overlay"></div><!--遮罩层-->
+<iframe class="login-win" id="modalDiv" style="display: none"></iframe>
+<div class="navbar">
+	<div th:replace="header/header::header">
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2 offset1">
+			<!--Sidebar content-->
+			<div class="well sidebar-nav">
+				<ul class="nav nav-list">
+					<li class="nav-header">图书</li>
+					<li class="active"><a href="#">线装古籍 / 民国旧书</a></li>
+					<li><a href="#">期刊 / 报纸 / 外文原版</a></li>
+					<li><a href="#">国学古籍 / 收藏鉴赏</a></li>
+					<li><a href="#">小说 / 文学 / 语言文字</a></li>
+					<li><a href="#">历史 / 地理 / 艺术</a></li>
+					<li><a href="#">政治 / 法律 / 军事</a></li>
+					<li><a href="#">哲学 / 心理 / 宗教</a></li>
+					<li><a href="#">经济 / 社科 / 综合</a></li>
+					<li><a href="#">童书 / 生活 / 体育</a></li>
+					<li><a href="#">工程技术 / 互联网</a></li>
+					<li class="nav-header">艺术品收藏</li>
+					<li><a href="#">名人墨迹 / 名人字画</a></li>
+					<li><a href="#">古旧地图 / 照片影像</a></li>
+					<li><a href="#">连环画 / 版画宣传画</a></li>
+					<li><a href="#">邮票税票 / 钱币</a></li>
+					<li><a href="#">碑帖印谱 / 文房雅玩</a></li>
+					<li><a href="#">玉石金银木器 / 漆器</a></li>
+					<li><a href="#">陶器瓷器 / 工艺品</a></li>
+					<li><a href="#">红色收藏 / 收藏杂项</a></li>
+					<li class="nav-header">文创与周边</li>
+					<li><a href="#">笔墨 / 纸本 / 卡片</a></li>
+					<li><a href="#">日历 / 包袋 / 壳套</a></li>
+					<li><a href="#">器皿 / 摆件挂画</a></li>
+					<li><a href="#">动漫影视周边</a></li>
+				</ul>
+			</div><!--/.well -->
+		</div>
+		<div class="span8">
+			<!--Body content-->
+			<!--轮播-->
+			<div id="myCarousel" class="carousel slide">
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+				</ol>
+				<!-- Carousel items -->
+				<div class="carousel-inner">
+					<div class="active item"><img src="img/image1.jpg"></div>
+					<div class="item"><img src="img/image2.jpg"></div>
+					<div class="item"><img src="img/image3.jpg"></div>
+				</div>
+				<!-- Carousel nav -->
+				<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+				<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+			</div>
+			<!--好书推荐-->
+			<p><span style="font-size: 25px"><b>好书推荐</b></span> <i> / </i> <a href="#">更多</a></p>
 
-    <div class="navbar">
-        <div class="navbar-inner">
-            <div class="container">
-
-                <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-
-                <!-- Be sure to leave the brand out there if you want it shown -->
-                <a class="brand" href="#">Project name</a>
-
-                <!-- Everything you want hidden at 940px or less, place within here -->
-                <div class="nav-collapse collapse navbar-responsive-collapse">
-                    <ul class="nav">
-                        <li class="active"><a href="#">首页</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b
-                                    class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li class="nav-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="navbar-search pull-left" action="">
-                        <input type="text" class="search-query span2" placeholder="Search">
-                    </form>
-                    <ul class="nav pull-right" th:with="username = ''">
-                        <li th:switch="${session.token}">
-                            <a onclick="loginWin()" th:case="null" th:text="'登录/注册'">登录/注册</a>
-                            <a th:href="@{'/user/' + ${session.userId}}" th:case="*" th:text="${session.userId}">用户名</a>
-                        </li>
-
-                        <li class="divider-vertical"></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">个人中心<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">我的订单</a></li>
-                                <li><a href="#">我的好友</a></li>
-                                <li th:if=${session.token!=null}><a onclick="logout()" >退出</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div><!-- /.nav-collapse -->
-
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row-fluid">
-            <div class="span2 offset1">
-                <!--Sidebar content-->
-                <div class="well sidebar-nav">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">图书</li>
-                        <li class="active"><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li class="nav-header">艺术品收藏</li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li class="nav-header">文创与周边</li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                        <li><a href="#">Link</a></li>
-                    </ul>
-                </div><!--/.well -->
-            </div>
-            <div class="span8">
-                <!--Body content-->
-                <!--轮播-->
-                <div id="myCarousel" class="carousel slide">
-                    <ol class="carousel-indicators">
-                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                        <li data-target="#myCarousel" data-slide-to="2"></li>
-                    </ol>
-                    <!-- Carousel items -->
-                    <div class="carousel-inner">
-                        <div class="active item"><img src="asserts/img/image1.jpg"></div>
-                        <div class="item"><img src="asserts/img/image2.jpg"></div>
-                        <div class="item"><img src="asserts/img/image3.jpg"></div>
-                    </div>
-                    <!-- Carousel nav -->
-                    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-                    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-                </div>
-                <!--好书推荐-->
-                <p><span style="font-size: 25px"><b>好书推荐</b></span> <i> / </i> <a href="#">更多</a></p>
-
-                <!--缩略图-->
-                <ul class="thumbnails">
-                    <li class="span2">
-                        <div class="thumbnail">
-                            <img data-src="holder.js/100x120" alt="" th:src="${lists.data[0].image}">
-                            <h5 th:text="${lists.data[0].pname}">Thumbnail label</h5>
-                            <p th:text="${lists.data[0].price}+@{￥}">Thumbnail caption...</p>
-                        </div>
-                    </li>
-                    <li class="span2">
-                        <div class="thumbnail">
-                            <img data-src="holder.js/100x120" alt="" th:src="${lists.data[1].image}">
-                            <h5 th:text="${lists.data[1].pname}">Thumbnail label</h5>
-                            <p th:text="${lists.data[1].price}+@{￥}">Thumbnail caption...</p>
-                        </div>
-                    </li>
-                    <li class="span2">
-                        <div class="thumbnail">
-                            <img data-src="holder.js/100x120" alt="" th:src="${lists.data[2].image}">
-                            <h5 th:text="${lists.data[2].pname}">Thumbnail label</h5>
-                            <p th:text="${lists.data[2].price}+@{￥}">Thumbnail caption...</p>
-                        </div>
-                    </li>
-                    <li class="span2">
-                        <div class="thumbnail">
-                            <img data-src="holder.js/100x120" alt="" th:src="${lists.data[3].image}">
-                            <h5 th:text="${lists.data[3].pname}">Thumbnail label</h5>
-                            <p th:text="${lists.data[3].price}+@{￥}">Thumbnail caption...</p>
-                        </div>
-                    </li>
-                    <li class="span2">
-                        <div class="thumbnail">
-                            <img data-src="holder.js/100x120" alt="" th:src="${lists.data[4].image}">
-                            <h5 th:text="${lists.data[4].pname}">Thumbnail label</h5>
-                            <p th:text="${lists.data[4].price}+@{￥}">Thumbnail caption...</p>
-                        </div>
-                    </li>
-                    <li class="span2">
-                        <div class="thumbnail">
-                            <img data-src="holder.js/100x120" alt="" th:src="${lists.data[5].image}">
-                            <h5 th:text="${lists.data[5].pname}">Thumbnail label</h5>
-                            <p th:text="${lists.data[5].price}+@{￥}">Thumbnail caption...</p>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="thumbnails">
-                    <li class="span2">
-                        <div class="thumbnail">
-                            <a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${lists.data[6].image}"></a>
-                            <h5 th:text="${lists.data[6].pname}">Thumbnail label</h5>
-                            <p th:text="${lists.data[6].price}+@{￥}">Thumbnail caption...</p>
-                        </div>
-                    </li>
-                    <li class="span2">
-                        <div class="thumbnail">
-                            <img data-src="holder.js/100x120" alt="" th:src="${lists.data[7].image}">
-                            <h5 th:text="${lists.data[7].pname}">Thumbnail label</h5>
-                            <p th:text="${lists.data[7].price}+@{￥}">Thumbnail caption...</p>
-                        </div>
-                    </li>
-                    <li class="span2">
-                        <div class="thumbnail">
-                            <img data-src="holder.js/100x120" alt="" th:src="${lists.data[8].image}">
-                            <h5 th:text="${lists.data[8].pname}">Thumbnail label</h5>
-                            <p th:text="${lists.data[8].price}+@{￥}">Thumbnail caption...</p>
-                        </div>
-                    </li>
-                    <li class="span2">
-                        <div class="thumbnail">
-                            <img data-src="holder.js/100x120" alt="" th:src="${lists.data[9].image}">
-                            <h5 th:text="${lists.data[9].pname}">Thumbnail label</h5>
-                            <p th:text="${lists.data[9].price}+@{￥}">Thumbnail caption...</p>
-                        </div>
-                    </li>
-                    <li class="span2">
-                        <div class="thumbnail">
-                            <img data-src="holder.js/100x120" alt="" th:src="${lists.data[10].image}">
-                            <h5 th:text="${lists.data[10].pname}">Thumbnail label</h5>
-                            <p th:text="${lists.data[10].price}+@{￥}">Thumbnail caption...</p>
-                        </div>
-                    </li>
-                    <li class="span2">
-                        <div class="thumbnail">
-                            <img data-src="holder.js/100x120" alt="" th:src="${lists.data[11].image}">
-                            <h5 th:text="${lists.data[11].pname}">Thumbnail label</h5>
-                            <p th:text="${lists.data[11].price}+@{￥}">Thumbnail caption...</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+			<!--缩略图-->
+			<ul class="thumbnails" id="ul-first">
+				<li class="span2">
+					<div class="thumbnail">
+						<!--<form th:action="@{/book/detail}" method="post" >
+							<input name="id" value="0" type="hidden"></input>
+							<a><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[0].image}"></a>
+							<a href="#">hhh</a>
+						</form>-->
+						<a href="#"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[0].image}"></a>
+						<h5 th:text="${session.lists}!=null?${session.lists.data[0].name}">Thumbnail label</h5>
+						<p th:text="${session.lists}!=null?${session.lists.data[0].writer}"></p>
+						<!--<p th:text="${session.lists}!=null?${session.lists.data[2].price}+@{￥}">Thumbnail caption...</p>-->
+					</div>
+				</li>
+				<li class="span2">
+					<div class="thumbnail">
+						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[1].image}"></a>
+						<h5 th:text="${session.lists}!=null?${session.lists.data[1].name}">Thumbnail label</h5>
+						<p th:text="${session.lists}!=null?${session.lists.data[1].writer}"></p>
+					</div>
+				</li>
+				<li class="span2">
+					<div class="thumbnail">
+						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[2].image}"></a>
+						<h5 th:text="${session.lists}!=null?${session.lists.data[2].name}">Thumbnail label</h5>
+						<p th:text="${session.lists}!=null?${session.lists.data[2].writer}"></p>
+					</div>
+				</li>
+				<li class="span2">
+					<div class="thumbnail">
+						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[3].image}"></a>
+						<h5 th:text="${session.lists}!=null?${session.lists.data[3].name}">Thumbnail label</h5>
+						<p th:text="${session.lists}!=null?${session.lists.data[3].writer}"></p>
+						<!--<p th:text="${session.lists}!=null?${session.lists.data[3].price}+@{￥}">Thumbnail caption...</p>-->
+					</div>
+				</li>
+				<li class="span2">
+					<div class="thumbnail">
+						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[4].image}"></a>
+						<h5 th:text="${session.lists}!=null?${session.lists.data[4].name}">Thumbnail label</h5>
+						<p th:text="${session.lists}!=null?${session.lists.data[4].writer}"></p>
+						<!--<p th:text="${session.lists}!=null?${session.lists.data[4].price}+@{￥}">Thumbnail caption...</p>-->
+					</div>
+				</li>
+				<li class="span2">
+					<div class="thumbnail">
+						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[5].image}"></a>
+						<h5 th:text="${session.lists}!=null?${session.lists.data[5].name}">Thumbnail label</h5>
+						<p th:text="${session.lists}!=null?${session.lists.data[5].writer}"></p>
+						<!--<p th:text="${session.lists}!=null?${session.lists.data[5].price}+@{￥}">Thumbnail caption...</p>-->
+					</div>
+				</li>
+			</ul>
+			<ul class="thumbnails" id="ul-second">
+				<li class="span2">
+					<div class="thumbnail">
+						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[6].image}"></a>
+						<h5 th:text="${session.lists}!=null?${session.lists.data[6].name}">Thumbnail label</h5>
+						<p th:text="${session.lists}!=null?${session.lists.data[6].writer}"></p>
+						<!--<p th:text="${session.lists}!=null?${session.lists.data[6].price}+@{￥}">Thumbnail caption...</p>-->
+					</div>
+				</li>
+				<li class="span2">
+					<div class="thumbnail">
+						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[7].image}"></a>
+						<h5 th:text="${session.lists}!=null?${session.lists.data[7].name}">Thumbnail label</h5>
+						<p th:text="${session.lists}!=null?${session.lists.data[7].writer}"></p>
+						<!--<p th:text="${session.lists}!=null?${session.lists.data[6].price}+@{￥}">Thumbnail caption...</p>-->
+					</div>
+				</li>
+				<li class="span2">
+					<div class="thumbnail">
+						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[8].image}"></a>
+						<h5 th:text="${session.lists}!=null?${session.lists.data[8].name}">Thumbnail label</h5>
+						<p th:text="${session.lists}!=null?${session.lists.data[8].writer}"></p>
+						<!--<p th:text="${session.lists}!=null?${session.lists.data[6].price}+@{￥}">Thumbnail caption...</p>-->
+					</div>
+				</li>
+				<li class="span2">
+					<div class="thumbnail">
+						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[9].image}"></a>
+						<h5 th:text="${session.lists}!=null?${session.lists.data[9].name}">Thumbnail label</h5>
+						<p th:text="${session.lists}!=null?${session.lists.data[9].writer}"></p>
+						<!--<p th:text="${session.lists}!=null?${session.lists.data[6].price}+@{￥}">Thumbnail caption...</p>-->
+					</div>
+				</li>
+				<li class="span2">
+					<div class="thumbnail">
+						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[10].image}"></a>
+						<h5 th:text="${session.lists}!=null?${session.lists.data[10].name}">Thumbnail label</h5>
+						<p th:text="${session.lists}!=null?${session.lists.data[10].writer}"></p>
+						<!--<p th:text="${session.lists}!=null?${session.lists.data[6].price}+@{￥}">Thumbnail caption...</p>-->
+					</div>
+				</li>
+				<li class="span2">
+					<div class="thumbnail">
+						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[11].image}"></a>
+						<h5 th:text="${session.lists}!=null?${session.lists.data[11].name}">Thumbnail label</h5>
+						<p th:text="${session.lists}!=null?${session.lists.data[11].writer}"></p>
+						<!--<p th:text="${session.lists}!=null?${session.lists.data[11].price}+@{￥}">Thumbnail caption...</p>-->
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
 
 </body>
+<script type="text/javascript">
+	$(function () {
+		$("#ul-first > li").click(function () {
+			var $index = $("#ul-first>li").index(this);
+			var id = JSON.stringify($index);
+			$.ajax({
+				url:'book/detail',
+				type:"post",
+				data:id,
+				contentType:'application/json',
+				success:function () {
+					// window.location.href='bookIndex'
+					window.open("bookIndex");
+					// alert("hhh");
+				}
+			});
+			return false;
+		});
+		$("#ul-second > li").click(function () {
+			var $index = $("#ul-second>li").index(this)+6;
+			var id = JSON.stringify($index);
+			$.ajax({
+				url:'book/detail',
+				type:"post",
+				data:id,
+				contentType:'application/json',
+				success:function () {
+					// window.location.href='bookIndex'
+					window.open("/bookIndex");
+				}
+			});
+			return false;
+		});
+	});
+</script>
 <style>
-    .nav-header {
-        font-size: 15px;
-    }
+	.nav-header{
+		font-size: 15px;
+	}
+	.thumbnail > a >img {
+		width: 100px;
+		height: 120px;
+	}
 </style>
 </html>

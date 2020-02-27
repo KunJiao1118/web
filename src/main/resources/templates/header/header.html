@@ -43,7 +43,8 @@
                 <ul class="nav pull-right" th:with="username = ''">
                     <li th:switch="${session.token}!=null?${session.token}">
                         <a onclick="loginWin()" th:case="null" th:text="'登录/注册'">登录/注册</a>
-                        <a th:href="@{'/user/' + ${session.userId}!=null?${session.userId}}" th:case="*" th:text="${session.userId}!=null?${session.userId}">用户名</a>
+                        <a th:href="@{'/user/' + ${session.userId}!=null?${session.userId}}"
+                           th:case="*" th:text="${session.userId}!=null?${session.userId}">用户名</a>
                     </li>
 
                     <li class="divider-vertical"></li>
