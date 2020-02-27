@@ -7,13 +7,15 @@ import com.jk.demo.service.BookService;
 import com.jk.demo.sto.BookSTO;
 import com.jk.demo.sto.RecommendSTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@RestController
+@Controller
 public class HomeController {
     @Autowired
     BookService bookService;
@@ -28,14 +30,31 @@ public class HomeController {
         return re;
     }
     /**
-    好书推荐，暂时随便推荐10本书，暂时未确定好书标准
+    好书推荐，暂时随便推荐12本书，暂时未确定好书标准
      */
     @GetMapping("/home/recommendBooks")
-    public ResultBean<List<Book>> recommendBooks(){
-
+    public String recommendBooks(HttpSession session){
         ResultBean<List<Book>> re=new ResultBean<>();
         List<Book> bookByRecommend = bookService.getBookByRecommend();
         re.setData(bookByRecommend);
-        return re;
+        session.setAttribute("lists",re);
+        return "redirect:/index";
     }
+
+    /**
+     * 首页页面
+     */
+    @GetMapping("/index")
+    public String index(){
+        return "first_page";
+    }
+
+    /**
+     * 入口
+     */
+    @GetMapping("/home")
+    public String home(){
+        return "redirect:/home/recommendBooks";
+    }
+
 }

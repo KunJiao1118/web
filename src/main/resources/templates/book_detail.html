@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Signin Template for Bootstrap</title>
+	<script type="text/javascript" src="asserts/js/other/jquery.js"></script>
+	<script type="text/javascript" src="asserts/js/other/bootstrap-tooltip.js"></script>
+	<!--<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>-->
+	<!--<script type="text/javascript" src="asserts/js/bootstrap.js"></script>-->
+
+	<script type="text/javascript" src="asserts/js/other/bootstrap-affix.js"></script>
+	<script type="text/javascript" src="asserts/js/other/bootstrap-alert.js"></script>
+	<script type="text/javascript" src="asserts/js/other/bootstrap-button.js"></script>
+	<script type="text/javascript" src="asserts/js/other/bootstrap-carousel.js"></script>
+	<script type="text/javascript" src="asserts/js/other/bootstrap-collapse.js"></script>
+	<script type="text/javascript" src="asserts/js/other/bootstrap-dropdown.js"></script>
+	<script type="text/javascript" src="asserts/js/other/bootstrap-modal.js"></script>
+	<script type="text/javascript" src="asserts/js/other/bootstrap-popover.js"></script>
+	<script type="text/javascript" src="asserts/js/other/bootstrap-scrollspy.js"></script>
+	<script type="text/javascript" src="asserts/js/other/bootstrap-tab.js"></script>
+	<script type="text/javascript" src="asserts/js/other/bootstrap-transition.js"></script>
+	<script type="text/javascript" src="asserts/js/other/bootstrap-typeahead.js"></script>
+	<script type="text/javascript" src="asserts/js/other/h.js"></script>
+	<script type="text/javascript" src="asserts/js/holder/holder.js"></script>
+	<script type="text/javascript" src="asserts/js/google-code-prettify/prettify.js"></script>
+	<script type="text/javascript" src="asserts/js/other/application.js"></script>
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" th:href="@{/asserts/css/bootstrap.css}">
+	<link rel="stylesheet" th:href="@{/asserts/js/google-code-prettify/prettify.css}">
+	<!-- Custom styles for this template -->
+	<link href="" th:href="@{/asserts/css/bootstrap-responsive.css}" rel="stylesheet">
+	<!--<link rel="stylesheet" href="" th:href="@{/asserts/css/docs.css}">-->
+</head>
+<body>
+<div class="navbar">
+	<div th:replace="header/header::header">
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span6 offset2">
+			<!--书名-->
+			<div class="row-fluid">
+				<div class="span3">
+					<!--缩略图-->
+					<ul class="thumbnails">
+						<li>
+							<div class="thumbnail">
+								<img data-src="holder.js/100x120" th:src="${session.index}!=null?${session.lists.data[session.index].image}" alt="">
+								<h5 th:text="${session.index}!=null?${session.lists.data[session.index].name}">Thumbnail label</h5>
+								<p th:text="${session.index}!=null?${session.lists.data[session.index].writer}">Thumbnail caption...</p>
+							</div>
+						</li>
+
+					</ul>
+				</div>
+				<div class="span9">
+					<div class="clearfix detail-con-right-top">
+						<div class="info-con-box info-con-box-left">
+							<div class="item zuozhe">
+								<span  class="text-key gray6">作者: </span>
+								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists.data[session.index].writer}">
+                                                                                                                                                                                                                                    <a itemprop="author" href="http://search.kongfz.com/item_result/?status=0&select=2&author=hk82e5k6cfdkb7k8428k62c9k9a6ck6208" target="_blank">若泽·萨拉马戈</a>
+                                                                                                                                                                                                                                                                                                                                                            </span>
+							</div>
+							<div class="item">
+								<span itemprop=session.lists.data[session.index]Format class="text-key gray6">出版社: </span>
+								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists.data[session.index].press}">南海出版公司</span>
+							</div>
+							<div class="item">
+								<span itemprop=datePublished class="text-key gray6">出版时间: </span>
+								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists.data[session.index].time}">2018-01</span>
+							</div>
+							<!--<div class="item">
+								<span itemprop=session.lists.data[session.index]Edition class="text-key gray6">版次: </span>
+								<span class="text-value gray3">2</span>
+							</div>-->
+							<div class="item">
+								<span itemprop=isbn class="text-key gray6">ISBN: </span>
+								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists.data[session.index].ISBN}">9787544263207</span>
+							</div>
+							<div class="item">
+								<span itemprop=price class="text-key gray6">定价: </span>
+								<span class="text-value gray3">暂无</span>
+							</div>
+							<!--<div class="item">
+								<span  class="text-key gray6">装帧: </span>
+								<span class="text-value gray3">精装</span>
+							</div>-->
+						</div>
+						<div class="info-con-box">
+							<!--<div class="item">
+								<span  class="text-key gray6">开本: </span>
+								<span class="text-value gray3">32开</span>
+							</div>
+							<div class="item">
+								<span  class="text-key gray6">纸张: </span>
+								<span class="text-value gray3">胶版纸</span>
+							</div>-->
+							<div class="item">
+								<span itemprop=numberofpages class="text-key gray6">页数: </span>
+								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists.data[session.index].page}">333页</span>
+							</div>
+							<!--<div class="item">
+								<span  class="text-key gray6">字数: </span>
+								<span class="text-value gray3">195千字</span>
+							</div>-->
+							<div class="item">
+								<span  class="text-key gray6">分类: </span>
+								<a href=""><span class="text-value" th:text="${session.index}!=null?${session.lists.data[session.index].category}">文学</span></a>
+							</div>
+							<div class="item">
+								<a href="">
+									<span class="iconfont icon-xiangce icon-tupians"></span>
+									<span class="atlas-num">2</span>
+									<span class="atlas-text">张插图图片</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix detail-con-right-bottom">
+						<ul class="gray3 text">
+							<li class="jianjie-top" style="word-wrap:break-word;line-height: 20px;" th:text="${session.index}!=null?${session.lists.data[session.index].intro}">
+								《失明症漫记》内容简介：繁忙的路口，绿灯亮了，中间车道的头一辆汽车却停止不前，司机在挡风玻璃后面挥舞着手臂，围观的人打开车门之后，才知道他在喊：我瞎了！没有人会相信，他的眼睛清晰明亮，巩膜像瓷器一样洁白致密，然而他却一再绝望地喊着：我瞎了！我瞎了！<br />&nbsp;&nbsp;一位路人送他回家，却被传染上失明的怪疾。眼科医生成了第三个牺牲品。白色瘟疫使城市人心惶惶，失明者被强制隔离在一家废弃的精神病院里，然而，失明症仍无可遏制地蔓延开来……                                    若泽·萨拉马戈（JoséSaramago，1922?C2010）<br /><br />葡萄牙作家。1922年生，高中时因家境贫困辍学，先后从事技工、文员、记者、编辑等职业。1982年出版的《修道院纪事》为他赢得国际声誉。代表作有《里斯本之围》《失明症漫记》《复明症漫记》等。1998年获诺贝尔文学奖，是葡萄牙语世界第一位获此殊荣的作家。2010年在西班牙兰萨罗特岛去世。
+							</li>
+							<li class="jianjie-d" style="height: 0;margin: 0;padding: 0;"></li>
+							<!--<li class="jianjie">-->
+								<!--<h5 itemprop="reviewBody">内容简介: </h5>-->
+								<!--《失明症漫记》内容简介：繁忙的路口，绿灯亮了，中间车道的头一辆汽车却停止不前，司机在挡风玻璃后面挥舞着手臂，围观的人打开车门之后，才知道他在喊：我瞎了！没有人会相信，他的眼睛清晰明亮，巩膜像瓷器一样洁白致密，然而他却一再绝望地喊着：我瞎了！我瞎了！<br />&nbsp;&nbsp;一位路人送他回家，却被传染上失明的怪疾。眼科医生成了第三个牺牲品。白色瘟疫使城市人心惶惶，失明者被强制隔离在一家废弃的精神病院里，然而，失明症仍无可遏制地蔓延开来……                                    </li>-->
+							<!--<li class="jianjie">-->
+								<!--<h5>作者简介: </h5>-->
+								<!--若泽·萨拉马戈（JoséSaramago，1922?C2010）<br /><br />葡萄牙作家。1922年生，高中时因家境贫困辍学，先后从事技工、文员、记者、编辑等职业。1982年出版的《修道院纪事》为他赢得国际声誉。代表作有《里斯本之围》《失明症漫记》《复明症漫记》等。1998年获诺贝尔文学奖，是葡萄牙语世界第一位获此殊荣的作家。2010年在西班牙兰萨罗特岛去世。-->
+							<!--</li>-->
+						</ul>
+						<a href="javascript:;" class="read-more-btn" data-attr="true"><span class="iconfont icon-xiangxiazhankai"></span> 查看详情</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="span2">
+			<!--Body content-->
+
+			<!--缩略图-->
+			<!--<ul class="thumbnails">
+				<li>
+					<div class="thumbnail">
+						<img data-src="holder.js/100x120" alt="">
+						<h3>Thumbnail label</h3>
+						<p>Thumbnail caption...</p>
+					</div>
+				</li>
+
+			</ul>-->
+		</div>
+	</div>
+</div>
+
+</body>
+<style>
+	.nav-header{
+		font-size: 15px;
+	}
+	.info-con-box {
+		float: left;
+		width: 50%;
+		overflow: hidden;
+		font-size: 12px;
+	}
+	.detail-con-right-top {
+		padding-top: 3px;
+		overflow: hidden;
+		padding-bottom: 14px;
+		font-size: 12px;
+	}
+	.detail-con-right-bottom {
+		font-size: 12px;
+	}
+	ul{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+</style>
+</html>
