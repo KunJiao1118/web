@@ -1,251 +1,162 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<title>Signin Template for Bootstrap</title>
-	<script type="text/javascript" src="js/other/bootstrap-affix.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-alert.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-button.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-carousel.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-collapse.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-dropdown.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-modal.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-popover.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-scrollspy.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-tab.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-tooltip.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-transition.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-typeahead.js"></script>
-	<script type="text/javascript" src="js/other/h.js"></script>
-	<script type="text/javascript" src="js/other/jquery.js"></script>
-	<script type="text/javascript" src="js/other/application.js"></script>
-	<script type="text/javascript" src="js/holder/holder.js"></script>
-	<script type="text/javascript" src="js/google-code-prettify/prettify.js"></script>
-	<script type="text/javascript" src="js/login.js" th:href="@{js/login.js}"></script>
-	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" th:href="@{css/bootstrap.css}">
-	<link rel="stylesheet" th:href="@{js/google-code-prettify/prettify.css}">
-	<!-- Custom styles for this template -->
-	<link rel="stylesheet" href="css/bootstrap-responsive.css" th:href="@{css/bootstrap-responsive.css}">
-	<link rel="stylesheet" href="css/login.css" th:href="@{css/login.css}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Signin Template for Bootstrap</title>
+
+    <script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-4.4.1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/other/h.js}"></script>
+    <script type="text/javascript" th:src="@{/js/holder/holder.js}"></script>
+    <script type="text/javascript" th:src="@{/js/google-code-prettify/prettify.js}"></script>
+    <script type="text/javascript" th:src="@{/js/other/application.js}"></script>
+    <script type="text/javascript" th:src="@{/js/login.js}"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap-4.4.1.css}">
+    <link rel="stylesheet" th:href="@{/js/google-code-prettify/prettify.css}">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+
 </head>
 <body>
-<div class="overlay" id="overlay"></div><!--遮罩层-->
-<iframe class="login-win" id="modalDiv" style="display: none"></iframe>
-<div class="navbar">
-	<div th:replace="header/header::header">
-	</div>
-</div>
-<div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span2 offset1">
-			<!--Sidebar content-->
-			<div class="well sidebar-nav">
-				<ul class="nav nav-list">
-					<li class="nav-header">图书</li>
-					<li class="active"><a href="#">线装古籍 / 民国旧书</a></li>
-					<li><a href="#">期刊 / 报纸 / 外文原版</a></li>
-					<li><a href="#">国学古籍 / 收藏鉴赏</a></li>
-					<li><a href="#">小说 / 文学 / 语言文字</a></li>
-					<li><a href="#">历史 / 地理 / 艺术</a></li>
-					<li><a href="#">政治 / 法律 / 军事</a></li>
-					<li><a href="#">哲学 / 心理 / 宗教</a></li>
-					<li><a href="#">经济 / 社科 / 综合</a></li>
-					<li><a href="#">童书 / 生活 / 体育</a></li>
-					<li><a href="#">工程技术 / 互联网</a></li>
-					<li class="nav-header">艺术品收藏</li>
-					<li><a href="#">名人墨迹 / 名人字画</a></li>
-					<li><a href="#">古旧地图 / 照片影像</a></li>
-					<li><a href="#">连环画 / 版画宣传画</a></li>
-					<li><a href="#">邮票税票 / 钱币</a></li>
-					<li><a href="#">碑帖印谱 / 文房雅玩</a></li>
-					<li><a href="#">玉石金银木器 / 漆器</a></li>
-					<li><a href="#">陶器瓷器 / 工艺品</a></li>
-					<li><a href="#">红色收藏 / 收藏杂项</a></li>
-					<li class="nav-header">文创与周边</li>
-					<li><a href="#">笔墨 / 纸本 / 卡片</a></li>
-					<li><a href="#">日历 / 包袋 / 壳套</a></li>
-					<li><a href="#">器皿 / 摆件挂画</a></li>
-					<li><a href="#">动漫影视周边</a></li>
-				</ul>
-			</div><!--/.well -->
-		</div>
-		<div class="span8">
-			<!--Body content-->
-			<!--轮播-->
-			<div id="myCarousel" class="carousel slide">
-				<ol class="carousel-indicators">
-					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>
-				</ol>
-				<!-- Carousel items -->
-				<div class="carousel-inner">
-					<div class="active item"><img src="img/image1.jpg"></div>
-					<div class="item"><img src="img/image2.jpg"></div>
-					<div class="item"><img src="img/image3.jpg"></div>
-				</div>
-				<!-- Carousel nav -->
-				<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-				<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-			</div>
-			<!--好书推荐-->
-			<p><span style="font-size: 25px"><b>好书推荐</b></span> <i> / </i> <a href="#">更多</a></p>
+    <div id="overlay" class="overlay"></div><!--遮罩层-->
+    <iframe id="modalDiv" class="login-win" style="display: none"></iframe><!--登录注册窗口-->
+    <!-- TODO 用bootstrap的model组件重写-->
 
-			<!--缩略图-->
-			<ul class="thumbnails" id="ul-first">
-				<li class="span2">
-					<div class="thumbnail">
-						<!--<form th:action="@{/book/detail}" method="post" >
-							<input name="id" value="0" type="hidden"></input>
-							<a><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[0].image}"></a>
-							<a href="#">hhh</a>
-						</form>-->
-						<a href="#"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[0].image}"></a>
-						<h5 th:text="${session.lists}!=null?${session.lists.data[0].name}">Thumbnail label</h5>
-						<p th:text="${session.lists}!=null?${session.lists.data[0].writer}"></p>
-						<!--<p th:text="${session.lists}!=null?${session.lists.data[2].price}+@{￥}">Thumbnail caption...</p>-->
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[1].image}"></a>
-						<h5 th:text="${session.lists}!=null?${session.lists.data[1].name}">Thumbnail label</h5>
-						<p th:text="${session.lists}!=null?${session.lists.data[1].writer}"></p>
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[2].image}"></a>
-						<h5 th:text="${session.lists}!=null?${session.lists.data[2].name}">Thumbnail label</h5>
-						<p th:text="${session.lists}!=null?${session.lists.data[2].writer}"></p>
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[3].image}"></a>
-						<h5 th:text="${session.lists}!=null?${session.lists.data[3].name}">Thumbnail label</h5>
-						<p th:text="${session.lists}!=null?${session.lists.data[3].writer}"></p>
-						<!--<p th:text="${session.lists}!=null?${session.lists.data[3].price}+@{￥}">Thumbnail caption...</p>-->
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[4].image}"></a>
-						<h5 th:text="${session.lists}!=null?${session.lists.data[4].name}">Thumbnail label</h5>
-						<p th:text="${session.lists}!=null?${session.lists.data[4].writer}"></p>
-						<!--<p th:text="${session.lists}!=null?${session.lists.data[4].price}+@{￥}">Thumbnail caption...</p>-->
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[5].image}"></a>
-						<h5 th:text="${session.lists}!=null?${session.lists.data[5].name}">Thumbnail label</h5>
-						<p th:text="${session.lists}!=null?${session.lists.data[5].writer}"></p>
-						<!--<p th:text="${session.lists}!=null?${session.lists.data[5].price}+@{￥}">Thumbnail caption...</p>-->
-					</div>
-				</li>
-			</ul>
-			<ul class="thumbnails" id="ul-second">
-				<li class="span2">
-					<div class="thumbnail">
-						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[6].image}"></a>
-						<h5 th:text="${session.lists}!=null?${session.lists.data[6].name}">Thumbnail label</h5>
-						<p th:text="${session.lists}!=null?${session.lists.data[6].writer}"></p>
-						<!--<p th:text="${session.lists}!=null?${session.lists.data[6].price}+@{￥}">Thumbnail caption...</p>-->
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[7].image}"></a>
-						<h5 th:text="${session.lists}!=null?${session.lists.data[7].name}">Thumbnail label</h5>
-						<p th:text="${session.lists}!=null?${session.lists.data[7].writer}"></p>
-						<!--<p th:text="${session.lists}!=null?${session.lists.data[6].price}+@{￥}">Thumbnail caption...</p>-->
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[8].image}"></a>
-						<h5 th:text="${session.lists}!=null?${session.lists.data[8].name}">Thumbnail label</h5>
-						<p th:text="${session.lists}!=null?${session.lists.data[8].writer}"></p>
-						<!--<p th:text="${session.lists}!=null?${session.lists.data[6].price}+@{￥}">Thumbnail caption...</p>-->
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[9].image}"></a>
-						<h5 th:text="${session.lists}!=null?${session.lists.data[9].name}">Thumbnail label</h5>
-						<p th:text="${session.lists}!=null?${session.lists.data[9].writer}"></p>
-						<!--<p th:text="${session.lists}!=null?${session.lists.data[6].price}+@{￥}">Thumbnail caption...</p>-->
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[10].image}"></a>
-						<h5 th:text="${session.lists}!=null?${session.lists.data[10].name}">Thumbnail label</h5>
-						<p th:text="${session.lists}!=null?${session.lists.data[10].writer}"></p>
-						<!--<p th:text="${session.lists}!=null?${session.lists.data[6].price}+@{￥}">Thumbnail caption...</p>-->
-					</div>
-				</li>
-				<li class="span2">
-					<div class="thumbnail">
-						<a th:href="@{#}"><img data-src="holder.js/100x120" alt="" th:src="${session.lists}!=null?${session.lists.data[11].image}"></a>
-						<h5 th:text="${session.lists}!=null?${session.lists.data[11].name}">Thumbnail label</h5>
-						<p th:text="${session.lists}!=null?${session.lists.data[11].writer}"></p>
-						<!--<p th:text="${session.lists}!=null?${session.lists.data[11].price}+@{￥}">Thumbnail caption...</p>-->
-					</div>
-				</li>
-			</ul>
-		</div>
-	</div>
-</div>
+    <div th:replace="header/header::header"></div>
+
+    <main role="main" class="container-fluid">
+        <div class="row">
+            <div class="col-2">
+                <ul class="list-group">
+                    <li class="list-group-item navItemPadding active">图书</li>
+                    <li class="list-group-item navItemPadding"><a href="#">线装古籍 / 民国旧书</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">期刊 / 报纸 / 外文原版</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">国学古籍 / 收藏鉴赏</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">小说 / 文学 / 语言文字</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">历史 / 地理 / 艺术</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">政治 / 法律 / 军事</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">哲学 / 心理 / 宗教</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">经济 / 社科 / 综合</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">童书 / 生活 / 体育</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">工程技术 / 互联网</a></li>
+                    <li class="list-group-item navItemPadding active">艺术品收藏</li>
+                    <li class="list-group-item navItemPadding"><a href="#">名人墨迹 / 名人字画</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">古旧地图 / 照片影像</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">连环画 / 版画宣传画</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">邮票税票 / 钱币</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">碑帖印谱 / 文房雅玩</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">玉石金银木器 / 漆器</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">陶器瓷器 / 工艺品</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">红色收藏 / 收藏杂项</a></li>
+                    <li class="list-group-item navItemPadding active">文创与周边</li>
+                    <li class="list-group-item navItemPadding"><a href="#">笔墨 / 纸本 / 卡片</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">日历 / 包袋 / 壳套</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">器皿 / 摆件挂画</a></li>
+                    <li class="list-group-item navItemPadding"><a href="#">动漫影视周边</a></li>
+                </ul>
+            </div>
+
+            <div class="col-10">
+                <!--轮播-->
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-bottom: 10px">
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active"><img src="/img/image1.jpg" class="d-block w-100"></div>
+                        <div class="carousel-item"><img src="/img/image2.jpg" class="d-block w-100"></div>
+                        <div class="carousel-item"><img src="/img/image3.jpg" class="d-block w-100"></div>
+                    </div>
+                    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <!--好书推荐-->
+                <p><span style="font-size: 25px"><b>好书推荐</b></span> <i> / </i> <a href="#">更多</a></p>
+                <hr>
+                <div class="row row-cols-1 row-cols-md-6">
+                    <div class="col mb-4"  th:each="data : ${lists}">
+                        <div class="card h-100">
+                            <a href="#">
+                            <img  class="card-img-top img-thumbnail gallery-book-list-img" alt="柏青哥"
+                                 th:src="${data}!=null?${data.image}">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title " th:text="${data}!=null?${data.name}">
+                                    柏青哥</h5>
+                                <p class="card-text" th:text="${data}!=null?${data.writer}">
+                                    [美]李敏金 著</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
 </body>
 <script type="text/javascript">
-	$(function () {
-		$("#ul-first > li").click(function () {
-			var $index = $("#ul-first>li").index(this);
-			var id = JSON.stringify($index);
-			$.ajax({
-				url:'book/detail',
-				type:"post",
-				data:id,
-				contentType:'application/json',
-				success:function () {
-					// window.location.href='bookIndex'
-					window.open("bookIndex");
-					// alert("hhh");
-				}
-			});
-			return false;
-		});
-		$("#ul-second > li").click(function () {
-			var $index = $("#ul-second>li").index(this)+6;
-			var id = JSON.stringify($index);
-			$.ajax({
-				url:'book/detail',
-				type:"post",
-				data:id,
-				contentType:'application/json',
-				success:function () {
-					// window.location.href='bookIndex'
-					window.open("/bookIndex");
-				}
-			});
-			return false;
-		});
-	});
+    $(function () {
+        $("#ul-first > li").click(function () {
+            var $index = $("#ul-first>li").index(this);
+            var id = JSON.stringify($index);
+            $.ajax({
+                url: 'book/detail',
+                type: "post",
+                data: id,
+                contentType: 'application/json',
+                success: function () {
+                    // window.location.href='bookIndex'
+                    window.open("bookIndex");
+                    // alert("hhh");
+                }
+            });
+            return false;
+        });
+        $("#ul-second > li").click(function () {
+            var $index = $("#ul-second>li").index(this) + 6;
+            var id = JSON.stringify($index);
+            $.ajax({
+                url: 'book/detail',
+                type: "post",
+                data: id,
+                contentType: 'application/json',
+                success: function () {
+                    window.open("/bookIndex");
+                }
+            });
+            return false;
+        });
+    });
 </script>
 <style>
-	.nav-header{
-		font-size: 15px;
-	}
-	.thumbnail > a >img {
-		width: 100px;
-		height: 120px;
-	}
+    /*    nav {
+            height:36px;
+            font-size: 15px;
+        }
+        nav a {
+            line-height:36px;
+        } 修改导航栏高度 */
+    .nav-header {
+        font-size: 15px;
+    }
+
+    .thumbnail > a > img {
+        width: 100px;
+        height: 120px;
+    }
 </style>
 </html>

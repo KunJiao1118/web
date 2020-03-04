@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 public class BookController {
     @Autowired
     BookService bookService;
+
     @GetMapping("/book/info")
     public ResultBean<Book> findBookInfoById(String shopId,String bookId){
         ResultBean<Book> re=new ResultBean<>();

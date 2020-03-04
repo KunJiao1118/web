@@ -1,57 +1,26 @@
-.background{
-    background-image: url(../img/login.png);
-
+/* 网站统一背景色 */
+.myWebPurple{
+    background-color: #63065f;
 }
-.background1{
-    background-image: url(../img/1.png);
 
+.navItemPadding{
+    padding: 0.1rem 1.25rem 0.1rem 1.25rem;
 }
-.background2{
-    background-image: url(../img/background.png);
 
+/* 缩略图 书籍封面图片样式 */
+.gallery-book-list-img{
+    text-align: center;
+    display: block;
+    width: 140px;
+    height: 140px;
+    margin-bottom: 4px;
 }
-.background3{
-    background-image: url(../img/tx.png);
-
-}
-.background4{
-   background-image: url(../img/bin.png);
-
-}
-.mainDiv {
-    float: left;
-    width: 100%;
-    margin-top: 2%;
-    height: 100%;
 
 
-}
-.viceDiv_1{
-    float: left;
-    margin-top: 2% ;
-    margin-left: 1%;
-    color: yellow;
-    width: 15%;
-    height: 100%;
-}
-.viceDiv_2{
-      float: left;
-
-
-      margin-top: 2% ;
-      margin-left: 3%;
-      width: 55%;
-      height: 100%;
- }
-.viceDiv_3{
-    float: left;
-
-
-    margin-top: 2% ;
-    margin-left: 1%;
-    width: 25%;
-    height: 100%;
-}
-.hightlight{
-    color: red;
+.search-box {
+    margin: auto;
+    padding: 30px 0 0 30px;
+    display: block;
+    width: 1000px;
+    height: 100px;
 }

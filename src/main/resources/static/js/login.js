@@ -5,7 +5,7 @@ function Overlay() {
 
 function Modal() {
     // 调用父窗口方法模拟弹出模态窗口
-    window.top.showModal("loginWin");
+    window.top.showModal("/loginWin");
 }
 
 function loginWin() {
@@ -97,14 +97,14 @@ function iFrameResize(){
 
 function changeToRegisterWin() {
     var obj = parent.document.getElementById("modalDiv");
-    $(obj).attr('src', 'registerWin');
+    $(obj).attr('src', '/registerWin');
     $(obj).height(this.document.body.scrollHeight);
     $(obj).width(this.document.body.scrollWidth);
 }
 
 function changeToLogin() {
     var obj = parent.document.getElementById("modalDiv");
-    $(obj).attr('src', 'loginWin');
+    $(obj).attr('src', '/loginWin');
     $(obj).height(this.document.body.scrollHeight);
     $(obj).width(this.document.body.scrollWidth);
 }

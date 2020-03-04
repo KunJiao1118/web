@@ -53,9 +53,9 @@
     </div>
     <script>
         $('#hidden_frame').load(function(){
-            var text=$(this).contents().find("body").text();
+            var retJsonText = $(this).contents().find("body").text();
             // 根据后台返回值处理结果
-            var j=$.parseJSON(text);
+            var j=$.parseJSON(retJsonText);
             switch (j.code) {
                 case 'OK':
                     top.location.href = "first_page";
@@ -67,7 +67,7 @@
                     document.getElementById("errorInfoBox").innerText = "用户名及密码不匹配";
                     break;
                 default:
-                    alert("未知错误\n" + text);
+                    alert("未知错误\n" + retJsonText);
             }
         });
     </script>

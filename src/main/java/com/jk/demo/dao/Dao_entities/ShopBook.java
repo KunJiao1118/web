@@ -109,5 +109,18 @@ public class ShopBook {
         this.remain = remain;
     }
 
-
+    @Override
+    public String toString() {
+        return "ShopBook{" +
+                "pid='" + pid + '\'' +
+                ", sid='" + sid + '\'' +
+                ", pname='" + pname + '\'' +
+                ", image='" + image + '\'' +
+                ", category='" + category + '\'' +
+                ", price=" + price +
+                ", express=" + express +
+                ", quality='" + quality + '\'' +
+                ", remain=" + remain +
+                '}';
+    }
 }

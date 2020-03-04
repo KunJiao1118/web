@@ -117,5 +117,19 @@ public class Book {
         this.intro = intro;
     }
 
-
+    @Override
+    public String toString() {
+        return "Book{" +
+                "pid='" + pid + '\'' +
+                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", writer='" + writer + '\'' +
+                ", press='" + press + '\'' +
+                ", time='" + time + '\'' +
+                ", ISBN='" + ISBN + '\'' +
+                ", page='" + page + '\'' +
+                ", category='" + category + '\'' +
+                ", intro='" + intro + '\'' +
+                '}';
+    }
 }

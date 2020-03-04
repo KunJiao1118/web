@@ -6,7 +6,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark myWebPurple" style="margin-bottom: 20px;"
-         th:fragment="header">
+         th:fragment="searchHeader">
         <a class="navbar-brand" href="#">旧书网</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
                 aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,11 +21,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li>
-                <form class="form-inline" th:action="@{/home/search}" method="get">
-                    <input name="content" class="form-control-sm mr-sm-2" type="text" placeholder="书籍名"
-                           aria-label="Search">
-                    <button class="btn btn-sm btn-primary" type="submit">全站搜索</button>
-                </form>
             </ul>
 
             <ul class="navbar-nav">
