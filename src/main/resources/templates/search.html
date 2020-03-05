@@ -70,14 +70,14 @@
         </ul>
 
 
-        <div class="row">
+        <div class="row mb-3">
             <!-- 分类筛选nav -->
             <div class="col-2 border">
                 <div class="mt-3 mb-1 font-weight-bold">分类筛选</div>
             </div>
 
-            <!-- 搜索结果list  -->
             <div class="col-10">
+                <!-- 搜索结果list  -->
                 <ul id="resultBox" class="list-group">
                     <li class="list-group-item" th:each="book : ${bookList}">
                         <div class="row">
@@ -133,11 +133,22 @@
                             </div>
                         </div>
                     </li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
                 </ul>
+                <!-- 分页 -->
+                <nav class="mt-4">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item" th:classappend="${currentPage == 1}? 'disabled' : ''">
+                            <a class="page-link" href="#">上一页</a></li>
+
+                        <li class="page-item" th:each="page : ${#numbers.sequence(1,pageCnt)}"
+                            th:classappend="${currentPage == page}? 'active' : ''">
+                            <a class="page-link" href="#" th:text="${page}">1</a></li>
+                        <!-- todo 解决页面过多溢出问题 -->
+
+                        <li class="page-item" th:classappend="${currentPage == pageCnt}? 'disabled' : ''">
+                            <a class="page-link" href="#">下一页</a></li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </main>
