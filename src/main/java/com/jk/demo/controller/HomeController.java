@@ -61,9 +61,10 @@ public class HomeController {
     好书推荐，暂时随便推荐12本书，暂时未确定好书标准
      */
     @GetMapping("/home/recommendBooks")
-    public String recommendBooks(Model model){
+    public String recommendBooks(Model model,HttpSession session){
         List<Book> bookByRecommend = bookService.getBookByRecommend();
         logger.info(bookByRecommend.toString());
+        session.setAttribute("lists",bookByRecommend);
         model.addAttribute("lists",bookByRecommend);
         return "first_page";
     }

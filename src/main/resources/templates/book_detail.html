@@ -6,81 +6,69 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<title>Signin Template for Bootstrap</title>
-	<script type="text/javascript" src="js/other/jquery.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-tooltip.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-affix.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-alert.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-button.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-carousel.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-collapse.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-dropdown.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-modal.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-popover.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-scrollspy.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-tab.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-transition.js"></script>
-	<script type="text/javascript" src="js/other/bootstrap-typeahead.js"></script>
-	<script type="text/javascript" src="js/other/h.js"></script>
-	<script type="text/javascript" src="js/holder/holder.js"></script>
-	<script type="text/javascript" src="js/google-code-prettify/prettify.js"></script>
-	<script type="text/javascript" src="js/other/application.js"></script>
-	<script type="text/javascript" src="js/login.js"></script>
+
+	<!--<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}"></script>-->
+	<script type="text/javascript" th:src="@{/js/other/jquery.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap-4.4.1.js}"></script>
+	<script type="text/javascript" th:src="@{/js/other/h.js}"></script>
+	<script type="text/javascript" th:src="@{/js/holder/holder.js}"></script>
+	<script type="text/javascript" th:src="@{/js/google-code-prettify/prettify.js}"></script>
+	<script type="text/javascript" th:src="@{/js/other/application.js}"></script>
+	<script type="text/javascript" th:src="@{/js/login.js}"></script>
+
 	<!-- Bootstrap core CSS -->
-	<link rel="stylesheet" th:href="@{css/bootstrap.css}">
-	<link rel="stylesheet" th:href="@{js/google-code-prettify/prettify.css}">
+	<link rel="stylesheet" th:href="@{/css/bootstrap-4.4.1.css}">
+	<link rel="stylesheet" th:href="@{/js/google-code-prettify/prettify.css}">
 	<!-- Custom styles for this template -->
-	<link  rel="stylesheet" href="" th:href="@{css/bootstrap-responsive.css}">
-	<link rel="stylesheet" href="css/login.css" th:href="@{css/login.css}">
+	<link rel="stylesheet" th:href="@{/css/login.css}">
+	<link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
 <div class="overlay" id="overlay"></div><!--遮罩层-->
 <iframe class="login-win" id="modalDiv" style="display: none"></iframe>
-<div class="navbar">
-	<div th:replace="header/header::header">
-	</div>
-</div>
+<div th:replace="header/header::header"></div>
 <div class="container-fluid">
-	<div class="row-fluid">
-		<div class="span6 offset2">
+	<div class="row">
+		<div class="col-6 offset-2">
 			<!--书名-->
-			<div class="row-fluid">
-				<div class="span3">
+			<div class="row">
+				<div class="col-3">
 					<!--缩略图-->
 					<ul class="thumbnails">
 						<li>
 							<div class="thumbnail">
-								<img data-src="holder.js/100x120" th:src="${session.index}!=null?${session.lists.data[session.index].image}" alt="">
-								<h5 th:text="${session.index}!=null?${session.lists.data[session.index].name}">Thumbnail label</h5>
-								<p th:text="${session.index}!=null?${session.lists.data[session.index].writer}">Thumbnail caption...</p>
+								<img data-src="holder.js/100x120" style="width: 100px;height: 120px" th:src="${session.index}!=null?${session.lists[session.index].image}" alt="">
+								<h6 th:text="${session.index}!=null?${session.lists[session.index].name}">Thumbnail label</h6>
+								<p th:text="${session.index}!=null?${session.lists[session.index].writer}">Thumbnail caption...</p>
 							</div>
 						</li>
 
 					</ul>
 				</div>
-				<div class="span9">
+				<div class="col-9">
 					<div class="clearfix detail-con-right-top">
 						<div class="info-con-box info-con-box-left">
 							<div class="item zuozhe">
 								<span  class="text-key gray6">作者: </span>
-								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists.data[session.index].writer}">
+								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists[session.index].writer}">
                                                                                                                                                                                                                                     <a itemprop="author" href="http://search.kongfz.com/item_result/?status=0&select=2&author=hk82e5k6cfdkb7k8428k62c9k9a6ck6208" target="_blank">若泽·萨拉马戈</a>
                                                                                                                                                                                                                                                                                                                                                             </span>
 							</div>
 							<div class="item">
-								<span itemprop=session.lists.data[session.index]Format class="text-key gray6">出版社: </span>
-								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists.data[session.index].press}">南海出版公司</span>
+								<span itemprop=session.lists[session.index]Format class="text-key gray6">出版社: </span>
+								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists[session.index].press}">南海出版公司</span>
 							</div>
 							<div class="item">
 								<span itemprop=datePublished class="text-key gray6">出版时间: </span>
-								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists.data[session.index].time}">2018-01</span>
+								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists[session.index].time}">2018-01</span>
 							</div>
 							<!--<div class="item">
-								<span itemprop=session.lists.data[session.index]Edition class="text-key gray6">版次: </span>
+								<span itemprop=session.lists[session.index]Edition class="text-key gray6">版次: </span>
 								<span class="text-value gray3">2</span>
 							</div>-->
 							<div class="item">
 								<span itemprop=isbn class="text-key gray6">ISBN: </span>
-								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists.data[session.index].ISBN}">9787544263207</span>
+								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists[session.index].ISBN}">9787544263207</span>
 							</div>
 							<div class="item">
 								<span itemprop=price class="text-key gray6">定价: </span>
@@ -102,7 +90,7 @@
 							</div>-->
 							<div class="item">
 								<span itemprop=numberofpages class="text-key gray6">页数: </span>
-								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists.data[session.index].page}">333页</span>
+								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists[session.index].page}">333页</span>
 							</div>
 							<!--<div class="item">
 								<span  class="text-key gray6">字数: </span>
@@ -110,7 +98,7 @@
 							</div>-->
 							<div class="item">
 								<span  class="text-key gray6">分类: </span>
-								<a href=""><span class="text-value" th:text="${session.index}!=null?${session.lists.data[session.index].category}">文学</span></a>
+								<a href=""><span class="text-value" th:text="${session.index}!=null?${session.lists[session.index].category}">文学</span></a>
 							</div>
 							<div class="item">
 								<a href="">
@@ -123,16 +111,16 @@
 					</div>
 					<div class="clearfix detail-con-right-bottom">
 						<ul class="gray3 text">
-							<li class="jianjie-top" style="word-wrap:break-word;line-height: 20px;" th:text="${session.index}!=null?${session.lists.data[session.index].intro}">
+							<li class="jianjie-top" style="word-wrap:break-word;line-height: 20px;" th:text="${session.index}!=null?${session.lists[session.index].intro}">
 								《失明症漫记》内容简介：繁忙的路口，绿灯亮了，中间车道的头一辆汽车却停止不前，司机在挡风玻璃后面挥舞着手臂，围观的人打开车门之后，才知道他在喊：我瞎了！没有人会相信，他的眼睛清晰明亮，巩膜像瓷器一样洁白致密，然而他却一再绝望地喊着：我瞎了！我瞎了！<br />&nbsp;&nbsp;一位路人送他回家，却被传染上失明的怪疾。眼科医生成了第三个牺牲品。白色瘟疫使城市人心惶惶，失明者被强制隔离在一家废弃的精神病院里，然而，失明症仍无可遏制地蔓延开来……                                    若泽·萨拉马戈（JoséSaramago，1922?C2010）<br /><br />葡萄牙作家。1922年生，高中时因家境贫困辍学，先后从事技工、文员、记者、编辑等职业。1982年出版的《修道院纪事》为他赢得国际声誉。代表作有《里斯本之围》《失明症漫记》《复明症漫记》等。1998年获诺贝尔文学奖，是葡萄牙语世界第一位获此殊荣的作家。2010年在西班牙兰萨罗特岛去世。
 							</li>
 							<li class="jianjie-d" style="height: 0;margin: 0;padding: 0;"></li>
 							<!--<li class="jianjie">-->
-								<!--<h5 itemprop="reviewBody">内容简介: </h5>-->
-								<!--《失明症漫记》内容简介：繁忙的路口，绿灯亮了，中间车道的头一辆汽车却停止不前，司机在挡风玻璃后面挥舞着手臂，围观的人打开车门之后，才知道他在喊：我瞎了！没有人会相信，他的眼睛清晰明亮，巩膜像瓷器一样洁白致密，然而他却一再绝望地喊着：我瞎了！我瞎了！<br />&nbsp;&nbsp;一位路人送他回家，却被传染上失明的怪疾。眼科医生成了第三个牺牲品。白色瘟疫使城市人心惶惶，失明者被强制隔离在一家废弃的精神病院里，然而，失明症仍无可遏制地蔓延开来……                                    </li>-->
+							<!--<h5 itemprop="reviewBody">内容简介: </h5>-->
+							<!--《失明症漫记》内容简介：繁忙的路口，绿灯亮了，中间车道的头一辆汽车却停止不前，司机在挡风玻璃后面挥舞着手臂，围观的人打开车门之后，才知道他在喊：我瞎了！没有人会相信，他的眼睛清晰明亮，巩膜像瓷器一样洁白致密，然而他却一再绝望地喊着：我瞎了！我瞎了！<br />&nbsp;&nbsp;一位路人送他回家，却被传染上失明的怪疾。眼科医生成了第三个牺牲品。白色瘟疫使城市人心惶惶，失明者被强制隔离在一家废弃的精神病院里，然而，失明症仍无可遏制地蔓延开来……                                    </li>-->
 							<!--<li class="jianjie">-->
-								<!--<h5>作者简介: </h5>-->
-								<!--若泽·萨拉马戈（JoséSaramago，1922?C2010）<br /><br />葡萄牙作家。1922年生，高中时因家境贫困辍学，先后从事技工、文员、记者、编辑等职业。1982年出版的《修道院纪事》为他赢得国际声誉。代表作有《里斯本之围》《失明症漫记》《复明症漫记》等。1998年获诺贝尔文学奖，是葡萄牙语世界第一位获此殊荣的作家。2010年在西班牙兰萨罗特岛去世。-->
+							<!--<h5>作者简介: </h5>-->
+							<!--若泽·萨拉马戈（JoséSaramago，1922?C2010）<br /><br />葡萄牙作家。1922年生，高中时因家境贫困辍学，先后从事技工、文员、记者、编辑等职业。1982年出版的《修道院纪事》为他赢得国际声誉。代表作有《里斯本之围》《失明症漫记》《复明症漫记》等。1998年获诺贝尔文学奖，是葡萄牙语世界第一位获此殊荣的作家。2010年在西班牙兰萨罗特岛去世。-->
 							<!--</li>-->
 						</ul>
 						<a href="javascript:;" class="read-more-btn" data-attr="true"><span class="iconfont icon-xiangxiazhankai"></span> 查看详情</a>
@@ -140,26 +128,105 @@
 				</div>
 			</div>
 		</div>
-		<div class="span2">
-			<!--Body content-->
-
-			<!--缩略图-->
-			<!--<ul class="thumbnails">
-				<li>
-					<div class="thumbnail">
-						<img data-src="holder.js/100x120" alt="">
-						<h3>Thumbnail label</h3>
-						<p>Thumbnail caption...</p>
-					</div>
-				</li>
-
-			</ul>-->
+		<div class="col-2">
+			<p>相关分类</p>
+			<hr></hr>
+			<table class="categary">
+				<tbody>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">中国现代小说</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">中国现代小说</a></span></td>
+				</tr>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">中国古典小说</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">四大名著</a></span></td>
+				</tr>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">世界名著</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">外国小说</a></span></td>
+				</tr>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">侦探/悬疑/推理</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">科幻</a></span></td>
+				</tr>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">情感/家庭/婚姻</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">穿越/重生</a></span></td>
+				</tr>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">武侠</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">惊悚/恐怖</a></span></td>
+				</tr>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">魔幻/奇幻/玄幻</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">青春/影视</a></span></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-8 offset-2">
+			<div class="detail-list">
+				<div class="detail-list-nav">
+					<ul class="breadcrumb">
+						<li>7条</li>
+						<li style="padding: 0 6px;">|</li>
+						<li><a href="javascript:;">综合排序</a></li>
+						<li><a href="#">最新上架</a></li>
+						<li><a href="#">店铺</a></li>
+						<li><a href="#">含运费从低到高</a></li>
+						<li><a href="#">品相</a></li>
+						<li><a href="#"><i>只看全新</i></a></li>
+					</ul>
+				</div>
+				<!--列表开始-->
+				<table class="breadcrumb1">
+					<tbody>
+					<tr>
+						<td>
+							<div class="thumbnail">
+								<img style="width: 100px;height: 120px" data-src="holder.js/100x120" th:src="${session.index}!=null?${session.lists[session.index].image}" alt="">
+							</div>
+						</td>
+						<td>
+							<h5 th:text="${session.index}!=null?${session.lists[session.index].name}">Thumbnail label</h5>
+							<p th:text="${session.index}!=null?${session.lists[session.index].writer}">Thumbnail caption...</p>
+						</td>
+						<td>
+							<p>2019-07 印刷</p>
+							<p>印次: 1</p>
+						</td>
+						<td>
+							<p>九五品</p>
+						</td>
+						<td>
+							<p>诚信是金书店
+								四川省成都市</p>
+						</td>
+						<td>
+							<span style="font-weight: bold;color: #8c222c;font-size: 16px">￥55.00</span>
+							<br/>
+							<span>快递: ￥ 10.00</span>
+						</td>
+						<td>
+							<div class="btn btn-danger">加入购物车</div>
+							<br/>
+							<div class="btn btn-success" style="margin: 10px 3px;padding-left: 30px;padding-right: 30px">收藏</div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>
 
 </body>
 <style>
+	body{
+		margin: 0;
+	}
 	.nav-header{
 		font-size: 15px;
 	}
@@ -182,6 +249,29 @@
 		list-style: none;
 		margin: 0;
 		padding: 0;
+	}
+	hr {
+		margin: 10px 0;
+		border: 0;
+		border-top: 1px solid #ddd8d8;
+		border-bottom: 1px solid #ffffff;
+	}
+	.categary>tbody>tr>td:nth-child(2){
+		padding-left: 30px;
+	}
+	table{
+		font-size: 12px;
+		line-height: 25px;
+	}
+	.breadcrumb>li{
+		padding-left: 20px;
+		font-size: 12px;
+	}
+	.breadcrumb1>tbody>tr>td:not(:nth-child(1)){
+		padding-left: 40px;
+	}
+	.breadcrumb1>tbody>tr>td>h5{
+		width: 200px;
 	}
 </style>
 </html>
