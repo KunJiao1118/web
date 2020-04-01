@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Signin Template for Bootstrap</title>
+    <title>旧书网</title>
 
     <!--<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}"></script>-->
     <script type="text/javascript" th:src="@{/js/other/jquery.js}"></script>
@@ -91,7 +91,7 @@
                 <div class="row row-cols-1 row-cols-md-6">
                     <div id="ul-list" class="col mb-4"  th:each="data : ${lists}">
                         <div class="card h-100">
-                            <a href="#">
+                            <a th:href="@{/book/detail(pid=${data.pid})}">
                             <img  class="card-img-top img-thumbnail gallery-book-list-img" alt="柏青哥"
                                  th:src="${data}!=null?${data.image}">
                             </a>
@@ -110,25 +110,25 @@
 
 </body>
 <script type="text/javascript">
-    $(function () {
-        $("#ul-list > div").click(function () {
-            var $index = $("#ul-list > div").index(this);
-            console.log($index);
-            var id = JSON.stringify($index);
-            $.ajax({
-                url: '/book/detail',
-                type: "post",
-                data: id,
-                contentType: 'application/json',
-                success: function () {
-                    // window.location.href='bookIndex'
-                    window.open("/bookIndex");
-                    // alert("hhh");
-                }
-            });
-            return false;
-        });
-    });
+    // $(function () {
+    //     $("#ul-list > div").click(function () {
+    //         var $index = $("#ul-list > div").index(this);
+    //         console.log($index);
+    //         var pid = JSON.stringify($index);
+    //         $.ajax({
+    //             url: '/book/detail',
+    //             type: "get",
+    //             data: pid,
+    //             contentType: 'application/json',
+    //             success: function () {
+    //                 // window.location.href='bookIndex'
+    //                 window.open("/bookIndex");
+    //                 // alert("hhh");
+    //             }
+    //         });
+    //         return false;
+    //     });
+    // });
 </script>
 <style>
     /*    nav {
