@@ -2,6 +2,7 @@ package com.jk.demo.controller;
 
 import com.jk.demo.bean.QualityEnum;
 import com.jk.demo.bean.ResultBean;
+import com.jk.demo.bean.TypeEnum;
 import com.jk.demo.dao.Dao_entities.Book;
 import com.jk.demo.dao.Dao_entities.ShopBook;
 import com.jk.demo.service.BookService;
@@ -29,16 +30,16 @@ public class HomeController {
      *
      * @param content 搜索内容
      * @param pageId  搜索结果后端进行分页，根据pageId返回 第pageId页 ; 每页最多50个结果
-     * @param type    搜索种类
-     * @param quality 品相  （可为空）
+     * @param type    搜索种类；可能值参见{@link TypeEnum}
+     * @param quality 品相  （可为空） 参见{@link QualityEnum}
      * @param model   前端使用的数据包
      */
     @GetMapping("/home/search")
-    public String search(String content, Integer pageId, String type, QualityEnum quality,
+    public String search(String content, Integer pageId, String type, String quality,
                          Model model) {
-        logger.info("[" + content + " " + pageId + " " + type + " " + quality + "]");
-        if (pageId == null) pageId = 1;
-        if (type == null) type = "图书";
+        logger.info("[content:" + content + ",pageId:" + pageId + ",type:" + type + ",quality:" + quality + "]");
+        if (pageId == null) pageId = 1; //若没有传，默认为1
+        if (type == null) type = TypeEnum.ITEM.getType();//若没有传，默认为"商品"种类；
 
         ///////////////////////////////////////  TODO 完成全站搜索逻辑
         ResultBean<BookSTO> re = new ResultBean<>();
@@ -49,32 +50,27 @@ public class HomeController {
 
         ///////////////////////////////////////
         //根据model数据生成网页
-        model.addAttribute("bookList",books);
+        model.addAttribute("bookList",books);//搜索结果列表
         logger.info(books);
+        model.addAttribute("content",content);
         model.addAttribute("currentPage", pageId);
+        model.addAttribute("type",type);
         model.addAttribute("totalRecordCnt", books.size());//总共的结果数
         model.addAttribute("pageCnt", books.size()/20+1);//总共的页数
         return "search";
     }
 
     /**
-    好书推荐，暂时随便推荐12本书，暂时未确定好书标准
+     * 首页页面
+     *  好书推荐，暂时随便推荐12本书，暂时未确定好书标准
      */
-    @GetMapping("/home/recommendBooks")
-    public String recommendBooks(Model model,HttpSession session){
+    @GetMapping("")
+    public String mainPage(Model model, HttpSession session){
         List<Book> bookByRecommend = bookService.getBookByRecommend();
         logger.info(bookByRecommend.toString());
         session.setAttribute("lists",bookByRecommend);
         model.addAttribute("lists",bookByRecommend);
         return "first_page";
-    }
-
-    /**
-     * 首页页面
-     */
-    @GetMapping("")
-    public String index(){
-        return "redirect:/home/recommendBooks";
     }
 
 }

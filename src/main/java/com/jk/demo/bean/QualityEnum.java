@@ -3,6 +3,7 @@ package com.jk.demo.bean;
 /**
  * @author billxkk
  * @date 2020/2/20 15:48
+ * 品相种类
  */
 public enum QualityEnum {
     NEW("全新"),

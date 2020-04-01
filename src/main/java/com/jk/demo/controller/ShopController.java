@@ -11,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.jws.WebParam;
 import java.util.List;
 
 @Controller
@@ -20,13 +22,42 @@ public class ShopController {
     BookService bookService;
     @Autowired
     ShopService shopService;
-    @GetMapping("/shop/search")
-    public ResultBean<List<ShopBook>> searchInShop(String content,String shopId){
-        ResultBean<List<ShopBook>> re=new ResultBean<>();
-        List<ShopBook> booksByShop = bookService.getBooksByShop(content, shopId);
-        re.setData(booksByShop);
-        return re;
+
+    /**
+     * 商店页面
+     * @param sid  店铺id
+     * @return
+     */
+    @GetMapping("/shop")
+    public String shopPage(Model model, int sid){
+
+
+        model.addAttribute("shopInfo", null);//商店信息
+        model.addAttribute("category", null);//商店书籍分类信息
+        model.addAttribute("recommendBooks",null);//本商店推荐书籍信息
+        return "shop";
     }
+
+    /**
+     * 商店搜索结果页面
+     * @param content  搜索内容
+     * @param shopId  商店id
+     */
+    @GetMapping("/shop/search")
+    public String searchInShop(Model model, String content,String shopId){
+        List<ShopBook> booksByShop = bookService.getBooksByShop(content, shopId);
+
+
+        model.addAttribute("shopInfo", null);//商店信息
+        model.addAttribute("bookList",null);//搜索结果信息
+        return "shop";
+    }
+
+
+
+
+
+
 
 
     @GetMapping("/recommendBooks")
@@ -59,4 +90,5 @@ public class ShopController {
         re.setData(shopComment);
         return re;
     }
+
 }

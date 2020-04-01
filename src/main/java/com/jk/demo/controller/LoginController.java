@@ -30,8 +30,16 @@ public class LoginController {
     @Autowired
     BookService bookService;
 
+    /**
+     * 用户个人订单页面
+     * @param userId
+     * @param token
+     * @param request
+     * @return
+     */
     @PostMapping("/user/order")
-    public ResultBean<List<OrderSTO>> order(String userId, String token, HttpServletRequest request) {//order list
+    public String order(String userId, String token,
+                        HttpServletRequest request) {//order list
         ResultBean<List<OrderSTO>> re = new ResultBean<>();
         HttpSession session = request.getSession();
         if (token.equals(session.getAttribute("token").toString())) {//登录用户才可查看订单
@@ -40,8 +48,13 @@ public class LoginController {
         } else {
             re.setCode(HttpStatus.BAD_REQUEST);
         }
-        return re;
+
+        return "order_list";
     }
+
+
+
+
 
     @PostMapping("/user/logout")
     public ResultBean logout(String userId, String token, HttpServletRequest request,

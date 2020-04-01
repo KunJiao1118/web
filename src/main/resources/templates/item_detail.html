@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title th:value="${bookName}">商品名称</title>
+
+    <!--<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}"></script>-->
+    <script type="text/javascript" th:src="@{/js/other/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-4.4.1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/other/h.js}"></script>
+    <script type="text/javascript" th:src="@{/js/holder/holder.js}"></script>
+    <script type="text/javascript" th:src="@{/js/google-code-prettify/prettify.js}"></script>
+    <script type="text/javascript" th:src="@{/js/other/application.js}"></script>
+    <script type="text/javascript" th:src="@{/js/login.js}"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap-4.4.1.css}">
+    <link rel="stylesheet" th:href="@{/js/google-code-prettify/prettify.css}">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <div class="overlay" id="overlay"></div><!--遮罩层-->
+    <iframe class="login-win" id="modalDiv" style="display: none"></iframe>
+    <div th:replace="header/header::header"></div>
+
+</body>
+</html>

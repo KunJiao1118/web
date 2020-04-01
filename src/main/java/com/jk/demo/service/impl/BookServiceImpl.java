@@ -1,5 +1,6 @@
 package com.jk.demo.service.impl;
 
+import com.jk.demo.bean.TypeEnum;
 import com.jk.demo.dao.BookDao;
 import com.jk.demo.dao.Dao_entities.Book;
 import com.jk.demo.dao.Dao_entities.ShopBook;
@@ -63,11 +64,11 @@ public class BookServiceImpl implements BookService {
         //BookDao bookDao =BookDao.getInstance();
 
         List<ShopBook> list=new ArrayList<>();
-        if(type.equals("店铺")){//
+        if(type.equals(TypeEnum.SHOP.getType())){//
             list=shopDao.findShopBookBySid(content);
-        }else if(type.equals("图书")){
+        }else if(type.equals(TypeEnum.ITEM.getType())){
             list=shopDao.findShopBookByPname(content);
-        }else if(type.equals("图书种类")){
+        }else if(type.equals(TypeEnum.BOOK.getType())){
             list=shopDao.findShopBookByCategory(content);
         }
 
