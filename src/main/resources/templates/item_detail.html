@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title th:value="${bookName}">商品名称</title>
+    <title th:text="${book.name}+'_'+${book.writer}">商品名称</title>
 
-    <!--<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}"></script>-->
     <script type="text/javascript" th:src="@{/js/other/jquery.js}"></script>
     <script type="text/javascript" th:src="@{/js/bootstrap-4.4.1.js}"></script>
     <script type="text/javascript" th:src="@{/js/other/h.js}"></script>
@@ -15,18 +14,470 @@
     <script type="text/javascript" th:src="@{/js/google-code-prettify/prettify.js}"></script>
     <script type="text/javascript" th:src="@{/js/other/application.js}"></script>
     <script type="text/javascript" th:src="@{/js/login.js}"></script>
+    <script type="text/javascript" th:src="@{/js/city-picker.data.js}"></script>
+    <script type="text/javascript" th:src="@{/js/city-picker.js}"></script>
 
-    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" th:href="@{/css/bootstrap-4.4.1.css}">
     <link rel="stylesheet" th:href="@{/js/google-code-prettify/prettify.css}">
-    <!-- Custom styles for this template -->
     <link rel="stylesheet" th:href="@{/css/login.css}">
     <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/city-picker.css}">
 </head>
 <body>
     <div class="overlay" id="overlay"></div><!--遮罩层-->
     <iframe class="login-win" id="modalDiv" style="display: none"></iframe>
     <div th:replace="header/header::header"></div>
 
+    <div class="shop_title">
+        <div>报文书店</div>
+    </div>
+
+    <div class="main_content">
+        <div class="row item_info_box">
+            <div class="col-3">  <!--图片展示-->
+                <a class="item_img border">
+                    <img src="//www.kfzimg.com/sw/kfzimg/213/26aca316b15f0ffc_n.jpg" style="display: inline-block;">
+                </a>
+            </div>
+            <div class="col-6 ">   <!--商品信息-->
+                <!--基本信息 从图书条目object中获取数据-->
+                <div class="base-info">
+                    <div class="title-box">
+                        <h1 class="title">女心理师全集</h1>
+                    </div>
+                    <div class="info_box">
+                        <ul>
+                            <li>
+                                <span>作者:&nbsp;</span>
+                                <span>&nbsp;毕淑敏</span>
+                            </li>
+                            <li>
+                                <span>出版社:&nbsp;</span>
+                                <span>&nbsp;重庆出版集团</span>
+                            </li>
+                            <li>
+                                <span>ISBN:&nbsp;</span>
+                                <span>&nbsp;9787520710909</span>
+                            </li>
+                            <li>
+                                <span>出版时间:&nbsp;</span>
+                                <span>&nbsp;2019-10</span>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <span>版次:&nbsp;</span>
+                                <span>&nbsp;1</span>
+                            </li>
+                            <li>
+                                <span>装帧:&nbsp;</span>
+                                <span>&nbsp;精装</span>
+                            </li>
+                            <li>
+                                <span>开本:&nbsp;</span>
+                                <span>&nbsp;32开</span>
+                            </li>
+                            <li>
+                                <span>页数:&nbsp;</span>
+                                <span>&nbsp;344页</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!--价格信息-->
+                <div class="price-group">
+                    <div class="now-price">
+                        <span class="title">售价</span>
+                        <span price="10.00">
+                                    <i>￥</i>
+                                    <i>10.00</i>
+                        </span>
+                    </div>
+                    <div class="quality">
+                        <span class="title">品相</span>
+                        <span><i>九品</i></span>
+                    </div>
+                </div>
+
+                <!--运费信息-->
+                <div class="carry" style="display: block;">
+                    <div class="carry-title"><span>运费</span></div>
+                    <div class="carry-cont">
+                        <span class="send-from">上海市普陀区&nbsp;&nbsp;&nbsp;&nbsp;至</span>
+                        <div class="city-picker">
+                            <input data-toggle="city-picker"/>
+                        </div>
+                        <span class="express-wrapper">快递 ￥10.00</span>
+                    </div>
+                </div>
+
+                <!--上书时间-->
+                <!--                <p class="up-book-date-onsale"><span class="up-book-date-title">上书时间</span><span-->
+                <!--                        class="up-book-date-time">2019-08-16</span></p>-->
+
+                <!--库存-->
+                <div class="count-check">
+                    <div>数量</div>
+                    <div class="gt-one">
+                        <!--<span class="sub lock"><i class="icon-jian iconfont"></i></span>-->
+                        <input name="count" value="1">
+                        <!--<span class="add"><i class="icon-jia iconfont"></i></span>-->
+                    </div>
+                    <div class="count-state">库存<i class="store-count">17</i>件
+                    </div>
+                </div>
+
+                <!-- 购买 , 购物车 , 收藏 -->
+                <div class="buy-group">
+                    <div class="on-sell">
+                        <a class="go-buy">立即购买</a>
+                        <a class="add-cart">加入购物车</a>  <!--TODO -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2 py-2 border storeIns">  <!--书店信息-->
+                <div>
+                    <a href="http://shop.kongfz.com/308586/" target="_blank">
+                        <span class="storeIns_name">报文书店</span></a>
+                    <hr>
+                    <div>
+                        <div class="key">店铺等级</div>
+                        <a style="display: inline;"
+                           target="_blank"
+                           href="http://xinyu.kongfz.com/seller/9909286/">5</a>
+                    </div>
+                    <!--<div class="storeIns_top">
+                        <div class="grey-text">资质认证</div>
+                        <div class="storeIns_content_right confirm"><i class="iconfont icon-shimingrenzheng"
+                                                                       title="实名认证"></i>
+                        </div>
+                    </div>-->
+                </div>
+                <hr>
+                <div style="display: block;">
+                    <div class="storeIns_content score">
+                        <div>
+                            <div class="key">90天平均</div>
+                        </div>
+                        <div>
+                            <div class="black key">成功完成</div>
+                            <a href="http://xinyu.kongfz.com/seller/9909286/" target="_blank"
+                            > <span
+                                    class="storeIns_content_reputation">94.79%</span> <span
+                                    class="sale-count">(192笔)</span>
+                            </a>
+                        </div>
+                        <div>
+                            <div class="black key">好评率</div>
+                            <a href="http://xinyu.kongfz.com/seller/9909286/" target="_blank"
+                               class="storeIns_content_right"> <span
+                                    class=" storeIns_content_reputation">99.81%</span> </a>
+                        </div>
+                        <div>
+                            <div class="black key">发货时间</div>
+                            <a href="http://xinyu.kongfz.com/seller/9909286/" target="_blank"
+                               class="storeIns_content_right">
+                                <div class="storeIns_content_reputation">13.97小时</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="shop_owner_info storeIns_content">
+                    <div class="clearfix">
+                        <span class="key">店主</span>
+                        <a href="http://user.kongfz.com/9909286/" target="_blank"><span>书友_494090</span>
+                        </a>
+                    </div>
+                    <div class="chat-box">
+                        <span class="key">联系</span>
+                        <span class="storeIns_content_right">
+                            <a type="talk" userid="9909286" sendreferer="1"
+                               infourl="http://book.kongfz.com/308586/1448709932/"
+                               class="imNotice-message chat off-line pull-left">
+                            <span class="on">在线交谈</span> <span class="off">离线留言</span> </a></span>
+                    </div>
+                    <div>
+                        <span class="key">地址</span>
+                        <span> 上海市普陀区</span>
+                    </div>
+                    <div>
+                        <span class="key">电话</span>
+                        <span> 17755662233</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="storeIns_content storeIns_btn_box" style="border: 0">
+                    <a href="http://shop.kongfz.com/308586/" rel="nofollow" target="_blank"
+                       class="storeIns_content_btn go-shop">进店逛逛</a>
+                    <a class="storeIns_content_btn" id="store_collect_btn" collectstatus="0">收藏店铺</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mx-5">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="detail-tab" data-toggle="tab" href="#detail" role="tab"
+                   aria-controls="detail" aria-selected="true">商品详情</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="comment-tab" data-toggle="tab" href="#comment" role="tab"
+                   aria-controls="comment" aria-selected="false">店铺评价</a>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+                <div class="m-2">
+                    <div class="book-cat">
+                        <dl class="book-quality-desc">
+                            <dt>商品分类：</dt>
+                            <dd>
+                                <a href="http://book.kongfz.com/Cwenxue/" target="_blank">文学</a>
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="book-itemSn">
+                        <dl class="book-itemSn-desc">
+                            <dt>货号：</dt>
+                            <dd>
+                                <span>752071090</span>
+                            </dd>
+                        </dl>
+                    </div>
+                    <ul class="figure-info-box" id="figure-info-box">
+                        <li>
+                            <a href="//www.kfzimg.com/sw/kfzimg/334/418776ca785a58f3_b.jpg" data-loaded="1"
+                               onclick="openBigImg(event);return false;" data-index="1">
+                                <img src="//www.kfzimg.com/sw/kfzimg/334/418776ca785a58f3_b.jpg" title="点击查看原图" type=""
+                                     itemprop="image" error="0" onerror="this.src='/img/pc/error.jpg'" content=""
+                                     alt="珍珠.松香.夜莺序列-西方音乐中的德奥">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="comment" role="tabpanel" aria-labelledby="comment-tab">
+                <div class="m-2">
+                    <ul id="resultBox" class="list-group">
+                        <li class="list-group-item"><!--th:each="book : ${bookList}">-->
+                            <div class="row">
+                                <div class="col-3 p-2">
+                                    <div class="goods-intro"><i class="title">商品:&nbsp;</i>
+                                        <span>饮膳正要</span></div>
+                                </div>
+                                <div class="col-6">
+                                    <ul class="review-text">
+                                        <li class="review-buyer"> 发货及时，包装完好，谢谢！</li>
+                                        <li class="review-time">2020.04.03</li>
+                                    </ul>
+                                </div>
+                                <div class="col-3">
+                                    <ul class="review-marker">
+                                        <li class="marker-user"> 瑞***蔡</li>
+                                        <li class="marker-rank rank-style-5">五颗星</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- 分页 -->
+                    <nav class="mt-4">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link" href="#">上一页</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">1</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">下一页</a></li>
+
+                            <!--<li class="page-item" th:classappend="${currentPage == 1}? 'disabled' : ''">
+                                <a class="page-link" href="#">上一页</a></li>
+
+                            <li class="page-item" th:each="page : ${#numbers.sequence(1,pageCnt)}"
+                                th:classappend="${currentPage == page}? 'active' : ''">
+                                <a class="page-link" href="#" th:text="${page}">1</a></li>
+                            &lt;!&ndash; todo 解决页面过多溢出问题 &ndash;&gt;
+
+                            <li class="page-item" th:classappend="${currentPage == pageCnt}? 'disabled' : ''">
+                                <a class="page-link" href="#">下一页</a></li>-->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 100px"></div>
 </body>
+<style>
+    .black {
+        color: #000;
+    !important
+    }
+
+    hr {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .main_content {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .item_info_box {
+        margin-top: 30px;
+        padding-bottom: 15px;
+    }
+
+    .item_info_box .item_img {
+        width: 300px;
+        height: 300px;
+    }
+
+    .item_info_box .item_img img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .item_info_box .base-info .title-box .title {
+        font-weight: bolder;
+        color: #333;
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .item_info_box .base-info .info_box {
+        overflow: hidden;
+        margin-top: 6px;
+        padding: 6px 0 6px 9px;
+        font-size: 14px;
+        border: 1px solid #e5e5e5;
+    }
+
+    .item_info_box .base-info .info_box ul {
+        float: left;
+        list-style: none;
+        margin-bottom: 0;
+    }
+
+    .item_info_box .price-group {
+        padding: 7px 0;
+        background: #f3f0e9;
+        margin-top: 12px;
+    }
+
+    .item_info_box .price-group div {
+        line-height: 29px;
+    }
+
+    .item_info_box .price-group div .title {
+        float: left;
+        text-align: left;
+        font-size: 14px;
+        margin: 0 19px 0 10px;
+        color: #999;
+    }
+
+    .item_info_box .price-group i {
+        font-style: normal;
+        font-size: 18px;
+        color: #632756;
+        font-weight: bolder;
+    }
+
+    .item_info_box .carry {
+        margin-top: 8px;
+        padding-bottom: 2px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .item_info_box .carry .carry-title {
+        display: table-cell;
+        white-space: nowrap;
+        text-align: left;
+        font-size: 14px;
+        padding: 0 19px 0 10px;
+        color: #999;
+    }
+
+    .item_info_box .carry .carry-cont {
+        display: table-cell;
+        max-height: 44px;
+        font-size: 14px;
+    }
+
+    .item_info_box .carry .carry-cont .city-picker {
+        position: relative;
+        display: inline;
+        width: 100px;
+        cursor: pointer;
+    }
+
+    .item_info_box .carry .carry-cont .city-picker .city-picker-span { /*覆盖掉插件内部设置的display属性*/
+        display: inline;
+    }
+
+    .item_info_box .count-check {
+        margin-top: 10px;
+    }
+
+    .item_info_box .count-check div {
+        display: inline;
+        font-size: 14px;
+        color: #999;
+    }
+
+    .item_info_box .count-check input {
+        width: 40px;
+    }
+
+    .item_info_box .buy-group {
+        margin-top: 14px;
+        height: 50px;
+    }
+
+    .item_info_box .buy-group .on-sell .go-buy {
+        overflow: hidden;
+        float: left;
+        width: 152px;
+        height: 40px;
+        text-align: center;
+        line-height: 38px;
+        border-radius: 2px;
+        background-color: #f8f7f3;
+        color: #632756;
+        cursor: pointer;
+        border: 1px solid #632756;
+        margin-right: 18px;
+    }
+
+    .item_info_box .buy-group .on-sell .add-cart {
+        overflow: hidden;
+        float: left;
+        width: 160px;
+        height: 40px;
+        text-align: center;
+        line-height: 38px;
+        border-radius: 2px;
+        color: #fff;
+        cursor: pointer;
+        background-color: #632756;
+    }
+
+    .storeIns .storeIns_name {
+        font-weight: bolder;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .storeIns .key {
+        text-align: left;
+        font-size: 14px;
+        color: #999;
+    }
+</style>
 </html>

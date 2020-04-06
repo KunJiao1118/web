@@ -1,7 +1,9 @@
 package com.jk.demo.controller;
 
 import com.jk.demo.dao.Dao_entities.Book;
+import com.jk.demo.dao.Dao_entities.Shop;
 import com.jk.demo.service.BookService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class BookController {
+    private final static Logger logger = Logger.getLogger(BookController.class);
+
     @Autowired
     BookService bookService;
 
@@ -21,9 +25,9 @@ public class BookController {
     @GetMapping("/book/info")
     public String findBookInfoById(Model model, String shopId, String bookId){
         Book bookInfoById = bookService.getBookInfoById(shopId, bookId);
-        model.addAttribute("book",bookId);
 
         /////////////////////////////////
+        logger.info(bookInfoById.toString());
         model.addAttribute("book",bookInfoById);//该书在shop表中的数据；
         model.addAttribute("shopInfo",null);//该商店的信息
         model.addAttribute("shopBook",null);//该书在shopbook表中的信息
