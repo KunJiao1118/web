@@ -37,9 +37,9 @@
 					<ul class="thumbnails">
 						<li>
 							<div class="thumbnail">
-								<img data-src="holder.js/100x120" style="width: 100px;height: 120px" th:src="${session.index}!=null?${session.lists[session.index].image}" alt="">
-								<h6 th:text="${session.index}!=null?${session.lists[session.index].name}">Thumbnail label</h6>
-								<p th:text="${session.index}!=null?${session.lists[session.index].writer}">Thumbnail caption...</p>
+								<img data-src="holder.js/100x120" style="width: 100px;height: 120px" th:src="${book.image}" alt="">
+								<h6 th:text="${book.name}">Thumbnail label</h6>
+								<p th:text="${book.writer}">Thumbnail caption...</p>
 							</div>
 						</li>
 
@@ -50,17 +50,17 @@
 						<div class="info-con-box info-con-box-left">
 							<div class="item zuozhe">
 								<span  class="text-key gray6">作者: </span>
-								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists[session.index].writer}">
+								<span class="text-value gray3" th:text="${book.writer}">
                                                                                                                                                                                                                                     <a itemprop="author" href="http://search.kongfz.com/item_result/?status=0&select=2&author=hk82e5k6cfdkb7k8428k62c9k9a6ck6208" target="_blank">若泽·萨拉马戈</a>
                                                                                                                                                                                                                                                                                                                                                             </span>
 							</div>
 							<div class="item">
 								<span itemprop=session.lists[session.index]Format class="text-key gray6">出版社: </span>
-								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists[session.index].press}">南海出版公司</span>
+								<span class="text-value gray3" th:text="${book.press}">南海出版公司</span>
 							</div>
 							<div class="item">
 								<span itemprop=datePublished class="text-key gray6">出版时间: </span>
-								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists[session.index].time}">2018-01</span>
+								<span class="text-value gray3" th:text="${book.time}">2018-01</span>
 							</div>
 							<!--<div class="item">
 								<span itemprop=session.lists[session.index]Edition class="text-key gray6">版次: </span>
@@ -68,7 +68,7 @@
 							</div>-->
 							<div class="item">
 								<span itemprop=isbn class="text-key gray6">ISBN: </span>
-								<span class="text-value gray3" th:text="${session.index}!=null?${session.lists[session.index].ISBN}">9787544263207</span>
+								<span class="text-value gray3" th:text="${book.ISBN}">9787544263207</span>
 							</div>
 							<div class="item">
 								<span itemprop=price class="text-key gray6">定价: </span>

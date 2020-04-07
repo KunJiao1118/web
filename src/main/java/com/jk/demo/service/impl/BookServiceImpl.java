@@ -18,8 +18,21 @@ public class BookServiceImpl implements BookService {
     ShopDao shopDao = ShopDao.getInstance();
 
     @Override
-    public Book getBookInfoById(String sid, String pid) {
-        Book bookById = bookDao.findBookById(pid, sid);
+    public ShopBook getShopBookInfoById(String sid, String pid) {
+        ShopBook shopBookById = bookDao.findShopBookById(sid, pid);
+        return shopBookById;
+    }
+
+    @Override
+    public List<ShopBook> getAllShopBooks(String bookId) {
+        Book bookById = bookDao.findBookById(bookId);
+        ArrayList<ShopBook> allShopBooks = bookDao.findAllShopBooks(bookById.getName());
+        return allShopBooks;
+    }
+
+    @Override
+    public Book getBookInfoById(String pid) {
+        Book bookById = bookDao.findBookById(pid);
         return bookById;
     }
 

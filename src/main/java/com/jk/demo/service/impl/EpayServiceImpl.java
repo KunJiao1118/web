@@ -33,7 +33,7 @@ public class EpayServiceImpl implements EpayService {
     public OrderSTO generateOrder(String uid, String sid, String pid) {
         //shopDao
         Shop shop = shopDao.findShopInfo(sid);
-        Book book = bookDao.findBookById(pid, sid);
+        Book book = bookDao.findBookById(pid);
         User user = userDao.findUserByName(uid);
         OrderSTO orderSTO=new OrderSTO();
         String uuid= UUID.randomUUID().toString();

@@ -56,11 +56,11 @@ public class ShopDao {
     }
     /**
      * 返回某个店铺的相关推荐
-     * 暂定返回店铺的前十本书
+     * 返回店铺中品质为上品的十个种类各一本书
      */
     public List<ShopBook> findBookByRecommendInShop(String sid){
         try {
-            String select = "select * from `shopbook` where `sid`=? limit 10;";
+            String select = "select * from `shopbook` where `sid`=? and `quality`='上品' group by category limit 10;";
             List<ShopBook> resultlist = new ArrayList<ShopBook>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
@@ -80,6 +80,15 @@ public class ShopDao {
                 shopBook.setQuality(rs.getString(8));
                 shopBook.setRemain(rs.getInt(9));
                 resultlist.add(shopBook);
+            }
+            //如果书籍不足10本，则以缺货图片展示。
+            if(resultlist.size()<10){
+                ShopBook sb=new ShopBook();
+                sb.setSid(sid);
+                sb.setImage("static/img/timg.jpg");
+                while(resultlist.size()<10){
+                    resultlist.add(sb);
+                }
             }
             return resultlist;
         } catch (SQLException e) {

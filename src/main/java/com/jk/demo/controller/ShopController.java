@@ -25,16 +25,18 @@ public class ShopController {
 
     /**
      * 商店页面
-     * @param sid  店铺id
+     * @param shopId  店铺id
      * @return
      */
     @GetMapping("/shop")
-    public String shopPage(Model model, int sid){
+    public String shopPage(Model model, String shopId){
+        Shop shopInfo = shopService.findShopInfo(shopId);
+        List<BookCategory> shopBookCategory = shopService.findShopBookCategory(shopId);
+        List<ShopBook> bookByRecommendInShop = bookService.getBookByRecommendInShop(shopId);
 
-
-        model.addAttribute("shopInfo", null);//商店信息
-        model.addAttribute("category", null);//商店书籍分类信息
-        model.addAttribute("recommendBooks",null);//本商店推荐书籍信息
+        model.addAttribute("shopInfo", shopInfo);//商店信息
+        model.addAttribute("category", shopBookCategory);//商店书籍分类信息
+        model.addAttribute("recommendBooks",bookByRecommendInShop);//本商店推荐书籍信息
         return "shop";
     }
 
@@ -46,10 +48,10 @@ public class ShopController {
     @GetMapping("/shop/search")
     public String searchInShop(Model model, String content,String shopId){
         List<ShopBook> booksByShop = bookService.getBooksByShop(content, shopId);
+        Shop shopInfo = shopService.findShopInfo(shopId);
 
-
-        model.addAttribute("shopInfo", null);//商店信息
-        model.addAttribute("bookList",null);//搜索结果信息
+        model.addAttribute("shopInfo", shopInfo);//商店信息
+        model.addAttribute("bookList",booksByShop);//搜索结果信息
         return "shop";
     }
 
