@@ -58,7 +58,7 @@
             var j=$.parseJSON(retJsonText);
             switch (j.code) {
                 case 'OK':
-                    top.location.href = "first_page";
+                    top.location.href = "/";
                     break;
                 case 'BAD_REQUEST':
                     document.getElementById("errorInfoBox").innerText = "用户名及密码格式不正确";

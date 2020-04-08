@@ -29,6 +29,12 @@ public class EpayServiceImpl implements EpayService {
         return flag&&flag1;
     }
 
+    public boolean delOrder(String oid) {
+        boolean f1 = orderDao.delDetailOrder(oid);
+        boolean f2 = orderDao.delUserOrder(oid);
+        return f1 && f2;
+    }
+
     @Override
     public OrderSTO generateOrder(String uid, String sid, String pid) {
         //shopDao

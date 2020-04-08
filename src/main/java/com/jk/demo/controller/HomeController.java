@@ -68,7 +68,6 @@ public class HomeController {
     public String mainPage(Model model, HttpSession session){
         List<Book> bookByRecommend = bookService.getBookByRecommend();
         logger.info(bookByRecommend.toString());
-        session.setAttribute("lists",bookByRecommend);
         model.addAttribute("lists",bookByRecommend);
         return "first_page";
     }

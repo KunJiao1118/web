@@ -125,7 +125,7 @@ function logout() {
 
     $.ajax(settings).done(function (response) {
         console.log(response);
-        top.location.href = "first_page";
+        top.location.href = "/";
     });
 
 }

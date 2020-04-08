@@ -4,6 +4,7 @@ import com.jk.demo.dao.Dao_entities.Book;
 import com.jk.demo.dao.Dao_entities.Shop;
 import com.jk.demo.dao.Dao_entities.ShopBook;
 import com.jk.demo.service.BookService;
+import com.jk.demo.service.EpayService;
 import com.jk.demo.service.ShopService;
 import com.jk.demo.sto.CommentSTO;
 import org.apache.log4j.Logger;
@@ -11,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -23,6 +26,9 @@ public class BookController {
 
     @Autowired
     ShopService shopService;
+
+    @Autowired
+    EpayService epayService;
 
     /**
      * 该方法查询某商店的某本书的信息，对应具体某个商品的页面
@@ -52,14 +58,28 @@ public class BookController {
      * 根据pid，查询该图书条目的信息， 以及所有在shopbook表中存在的信息
      * @param bookId  图书条目的id
      */
-    @GetMapping("/book/detail")
-    public String bookDetail(Model model, String bookId){
+    @GetMapping("/book/detail/{bookId}")
+    public String bookDetail(Model model,@PathVariable String bookId){
         Book bookInfoById = bookService.getBookInfoById(bookId);
         List<ShopBook> allShopBooks = bookService.getAllShopBooks(bookId);
 
         model.addAttribute("book",bookInfoById);//pid对应的图书条目的信息
         model.addAttribute("itemList",allShopBooks);//所有该图书对应商品的列表
         return "book_detail";
+    }
+
+    /**
+     * 加入购物车
+     * @param pid
+     * @param model
+     * @param session
+     * @return
+     */
+    @GetMapping("/addToShopCast/{pid}")
+    public String addToShopCast(@PathVariable String pid, Model model, HttpSession session) {
+        String userId = session.getAttribute("userId").toString();
+        epayService.generateOrder(userId,"1",pid);
+        return "redirect:/book/detail/"+pid;
     }
 
 //    /**

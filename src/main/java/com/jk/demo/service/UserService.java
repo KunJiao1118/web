@@ -12,4 +12,6 @@ public interface UserService {
      boolean doRegister(User user);
      boolean doLogin(String userId,String password);
      List<OrderSTO> getUserOrder(String userId);
+     List<OrderSTO> getUserOrderByState(String userId,String state);
+     List<OrderSTO> getUserOrder(String userId,String start,String count);
 }

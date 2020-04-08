@@ -57,6 +57,27 @@ public class OrderDao {
     }
 
     /**
+     * 删除一个订单
+     * @param oid
+     * @return
+     */
+    public boolean delUserOrder(String oid) {
+        try {
+            String delete = "delete from `userorder` where `oid`=?;";
+            conn = builder.BuildConnection();
+            ps = conn.prepareStatement(delete);
+            ps.setString(1, oid);
+            ps.execute();
+            ps.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+
+    }
+    /**
      * 返回符合订单状态状态的订单
      * @param username
      * @param state
@@ -95,6 +116,97 @@ public class OrderDao {
         try {
             String select = "select * from `userorder`,`order`,`book` where `username`=? " +
                     "and userorder.oid=order.oid and order.pid=book.pid;";
+            ArrayList<OrderSTO> resultlist=new ArrayList<OrderSTO>();
+            conn = builder.BuildConnection();
+            ps = conn.prepareStatement(select);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
+                OrderSTO orderSTO=new OrderSTO();
+                Book book=new Book();
+                orderSTO.setOid(rs.getString(1));
+                orderSTO.setUsername(rs.getString(2));
+                orderSTO.setOrdertime(rs.getString(3));
+                orderSTO.setState(rs.getString(4));
+                orderSTO.setNumber(rs.getString(9));
+                orderSTO.setPrice(rs.getString(10));
+                orderSTO.setSid(rs.getString(12));
+                orderSTO.setSname(rs.getString(13));
+                book.setPid(rs.getString(14));
+                book.setName(rs.getString(15));
+                book.setImage(rs.getString(16));
+                book.setWriter(rs.getString(17));
+                book.setPress(rs.getString(18));
+                book.setTime(rs.getString(19));
+                book.setISBN(rs.getString(20));
+                book.setPage(rs.getString(21));
+                book.setCategory(rs.getString(22));
+                book.setIntro(rs.getString(23));
+                orderSTO.setBook(book);
+                resultlist.add(orderSTO);
+            }
+            return resultlist;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 返回符合要求的用户的所有订单
+     * @param username
+     * @return
+     */
+    public ArrayList<OrderSTO> findUserOrdersByState(String username,String state){
+        try {
+            String select = "select * from `userorder`,`order`,`book` where `username`=? and userorder.state=? " +
+                    "and userorder.oid=order.oid and order.pid=book.pid ;";
+            ArrayList<OrderSTO> resultlist=new ArrayList<OrderSTO>();
+            conn = builder.BuildConnection();
+            ps = conn.prepareStatement(select);
+            ps.setString(1, username);
+            ps.setString(2, state);
+            rs = ps.executeQuery();
+            while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
+                OrderSTO orderSTO=new OrderSTO();
+                Book book=new Book();
+                orderSTO.setOid(rs.getString(1));
+                orderSTO.setUsername(rs.getString(2));
+                orderSTO.setOrdertime(rs.getString(3));
+                orderSTO.setState(rs.getString(4));
+                orderSTO.setNumber(rs.getString(9));
+                orderSTO.setPrice(rs.getString(10));
+                orderSTO.setSid(rs.getString(12));
+                orderSTO.setSname(rs.getString(13));
+                book.setPid(rs.getString(14));
+                book.setName(rs.getString(15));
+                book.setImage(rs.getString(16));
+                book.setWriter(rs.getString(17));
+                book.setPress(rs.getString(18));
+                book.setTime(rs.getString(19));
+                book.setISBN(rs.getString(20));
+                book.setPage(rs.getString(21));
+                book.setCategory(rs.getString(22));
+                book.setIntro(rs.getString(23));
+                orderSTO.setBook(book);
+                resultlist.add(orderSTO);
+            }
+            return resultlist;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 返回用户的所有订单
+     * @param username
+     * @return
+     */
+    public ArrayList<OrderSTO> findAllsUserorders(String username,String start,String count){
+        try {
+            String select = "select * from `userorder`,`order`,`book` where `username`=? " +
+                    "and userorder.oid=order.oid and order.pid=book.pid limit "+start+","+count+";";
             ArrayList<OrderSTO> resultlist=new ArrayList<OrderSTO>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
@@ -217,7 +329,27 @@ public class OrderDao {
         return true;
 
     }
+    /**
+     * 删除一个订单
+     * @param oid
+     * @return
+     */
+    public boolean delDetailOrder(String oid) {
+        try {
+            String delete = "delete from `order` where `oid`=?;";
+            conn = builder.BuildConnection();
+            ps = conn.prepareStatement(delete);
+            ps.setString(1, oid);
+            ps.execute();
+            ps.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
 
+    }
     /**
      * 返回oid所包含的具体订单
      * @param oid
