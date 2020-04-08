@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.jws.WebParam;
@@ -28,8 +29,8 @@ public class ShopController {
      * @param shopId  店铺id
      * @return
      */
-    @GetMapping("/shop")
-    public String shopPage(Model model, String shopId){
+    @GetMapping("/shop/{shopId}")
+    public String shopPage(Model model,@PathVariable String shopId){
         Shop shopInfo = shopService.findShopInfo(shopId);
         List<BookCategory> shopBookCategory = shopService.findShopBookCategory(shopId);
         List<ShopBook> bookByRecommendInShop = bookService.getBookByRecommendInShop(shopId);
@@ -57,19 +58,15 @@ public class ShopController {
 
 
 
-
-
-
-
-
-    @GetMapping("/recommendBooks")
-    public String recommendBooksInShop(String shopId, Model model){
-        ResultBean<List<ShopBook>> re=new ResultBean<>();
-        List<ShopBook> bookByRecommendInShop = bookService.getBookByRecommendInShop(shopId);
-        re.setData(bookByRecommendInShop);
-        model.addAttribute("lists",re);
-        return "first_page";
-    }
+    // 该方法转移到了 HomeController 的mainPage()方法位置;
+    //@GetMapping("/recommendBooks")
+    //public String recommendBooksInShop(String shopId, Model model){
+    //    ResultBean<List<ShopBook>> re=new ResultBean<>();
+    //    List<ShopBook> bookByRecommendInShop = bookService.getBookByRecommendInShop(shopId);
+    //    re.setData(bookByRecommendInShop);
+    //    model.addAttribute("lists",re);
+    //    return "first_page";
+    //}
 
     @GetMapping("/shop/info")
     public ResultBean<Shop> findShopInfo(String shopId){

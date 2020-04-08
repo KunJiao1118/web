@@ -26,8 +26,7 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<ShopBook> getAllShopBooks(String bookId) {
         Book bookById = bookDao.findBookById(bookId);
-        ArrayList<ShopBook> allShopBooks = bookDao.findAllShopBooks(bookById.getName());
-        return allShopBooks;
+        return bookDao.findAllShopBooks(bookById.getName());
     }
 
     @Override

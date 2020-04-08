@@ -42,3 +42,167 @@ a, a:focus, a:hover {
     background: url(/img/shopTitleBackgroud.png);
     background-size: 1280px 80px;
 }
+
+.black {
+    color: #000;
+!important
+}
+.main_content {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.item_info_box {
+    margin-top: 30px;
+    padding-bottom: 15px;
+}
+
+.item_info_box .item_img {
+    width: 300px;
+    height: 300px;
+}
+
+.item_info_box .item_img img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.item_info_box .base-info .title-box .title {
+    font-weight: bolder;
+    color: #333;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.item_info_box .base-info .info_box {
+    overflow: hidden;
+    margin-top: 6px;
+    padding: 6px 0 6px 9px;
+    font-size: 14px;
+    border: 1px solid #e5e5e5;
+}
+
+.item_info_box .base-info .info_box ul {
+    float: left;
+    list-style: none;
+    margin-bottom: 0;
+}
+
+.item_info_box .price-group {
+    padding: 7px 0;
+    background: #f3f0e9;
+    margin-top: 12px;
+}
+
+.item_info_box .price-group div {
+    line-height: 29px;
+}
+
+.item_info_box .price-group div .title {
+    float: left;
+    text-align: left;
+    font-size: 14px;
+    margin: 0 19px 0 10px;
+    color: #999;
+}
+
+.item_info_box .price-group i {
+    font-style: normal;
+    font-size: 18px;
+    color: #632756;
+    font-weight: bolder;
+}
+
+.item_info_box .carry {
+    margin-top: 8px;
+    padding-bottom: 2px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.item_info_box .carry .carry-title {
+    display: table-cell;
+    white-space: nowrap;
+    text-align: left;
+    font-size: 14px;
+    padding: 0 19px 0 10px;
+    color: #999;
+}
+
+.item_info_box .carry .carry-cont {
+    display: table-cell;
+    max-height: 44px;
+    font-size: 14px;
+}
+
+.item_info_box .carry .carry-cont .city-picker {
+    position: relative;
+    display: inline;
+    width: 100px;
+    cursor: pointer;
+}
+
+.item_info_box .carry .carry-cont .city-picker .city-picker-span { /*覆盖掉插件内部设置的display属性*/
+    display: inline;
+}
+
+.item_info_box .count-check {
+    margin-top: 10px;
+}
+
+.item_info_box .count-check div {
+    display: inline;
+    font-size: 14px;
+    color: #999;
+}
+
+.item_info_box .count-check input {
+    width: 40px;
+}
+
+.item_info_box .buy-group {
+    margin-top: 14px;
+    height: 50px;
+}
+
+.item_info_box .buy-group .on-sell .go-buy {
+    overflow: hidden;
+    float: left;
+    width: 152px;
+    height: 40px;
+    text-align: center;
+    line-height: 38px;
+    border-radius: 2px;
+    background-color: #f8f7f3;
+    color: #632756;
+    cursor: pointer;
+    border: 1px solid #632756;
+    margin-right: 18px;
+}
+
+.item_info_box .buy-group .on-sell .add-cart {
+    overflow: hidden;
+    float: left;
+    width: 160px;
+    height: 40px;
+    text-align: center;
+    line-height: 38px;
+    border-radius: 2px;
+    color: #fff;
+    cursor: pointer;
+    background-color: #632756;
+}
+
+.storeIns .storeIns_name {
+    font-weight: bolder;
+    font-size: 16px;
+    color: #333;
+}
+.storeIns hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.storeIns .key {
+    text-align: left;
+    font-size: 14px;
+    color: #999;
+}

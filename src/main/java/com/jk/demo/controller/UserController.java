@@ -21,8 +21,8 @@ import java.util.UUID;
 
 @Controller
 @ResponseBody
-public class LoginController {
-    private final static Logger logger = Logger.getLogger(LoginController.class);
+public class UserController {
+    private final static Logger logger = Logger.getLogger(UserController.class);
 
     @Autowired
     UserService userService;
@@ -34,8 +34,6 @@ public class LoginController {
      * 用户个人订单页面
      * @param userId
      * @param token
-     * @param request
-     * @return
      */
     @PostMapping("/user/order")
     public String order(String userId, String token,
@@ -48,13 +46,8 @@ public class LoginController {
         } else {
             re.setCode(HttpStatus.BAD_REQUEST);
         }
-
         return "order_list";
     }
-
-
-
-
 
     @PostMapping("/user/logout")
     public ResultBean logout(String userId, String token, HttpServletRequest request,
@@ -87,6 +80,11 @@ public class LoginController {
         return re;//返回json串
     }
 
+    /**
+     *   登录， 若成功登录则在session中存入 token 和 userId
+     * @param userId  用户id
+     * @param password  密码
+     */
     @PostMapping("/user/login")
     public ResultBean<Token> login(String userId, String password, HttpServletRequest request,
                                    HttpServletResponse response) {

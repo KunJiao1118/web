@@ -19,27 +19,52 @@ public class OrderController {
     UserService userService;
     @Autowired
     EpayService epayService;
+
+    /**
+     * 加入购物车
+     * @param sid  商店id
+     * @param pid  商品id
+     */
+    @GetMapping("/addToShopCast/{sid}/{pid}")
+    public String addToShopCast(@PathVariable String sid, @PathVariable String pid, Model model, HttpSession session) {
+        String userId = session.getAttribute("userId").toString();
+        epayService.generateOrder(userId, sid, pid);
+        return "redirect:/book/detail/" + pid;//todo 为什么跳转到图书条目页面?
+    }
+
+    /**
+     * 个人订单页面
+     *
+     * @return
+     */
     @GetMapping("/allDetails")
     public String allDetails() {
         return "redirect:/getAllOrders/1";
     }
+
     @GetMapping("/payedDetails")
     public String payedDetails() {
         return "redirect:/getPayedOrders";
     }
+
     @GetMapping("/unpayedDetails")
     public String unpayedDetails() {
         return "redirect:/getUnayedOrders";
     }
+
     @GetMapping("/getAllOrders/{pageId}")
     public String getAllOrders(Model model, @PathVariable int pageId, HttpSession session) {
+        if (session.getAttribute("userId") == null) {
+            model.addAttribute("errorMsg", "用户未登录");
+            return "error";
+        }
         String userId = session.getAttribute("userId").toString();
         List<OrderSTO> orders = userService.getUserOrder(userId);
         List<OrderSTO> userOrders = userService.getUserOrder(userId, String.valueOf((pageId - 1) * 2), "2");
-        model.addAttribute("bookList",userOrders);
+        model.addAttribute("bookList", userOrders);
         model.addAttribute("currentPage", pageId);
         model.addAttribute("totalRecordCnt", orders.size());//总共的结果数
-        int size = orders.size()%2==0?orders.size()/2:(orders.size()/2+1);
+        int size = orders.size() % 2 == 0 ? orders.size() / 2 : (orders.size() / 2 + 1);
         model.addAttribute("pageCnt", size);//总共的页数
         return "all_details";
     }
@@ -47,16 +72,16 @@ public class OrderController {
     @GetMapping("/getPayedOrders")
     public String getPayedAllOrders(Model model, HttpSession session) {
         String userId = session.getAttribute("userId").toString();
-        List<OrderSTO> orders = userService.getUserOrderByState(userId,"已支付");
-        model.addAttribute("bookList",orders);
+        List<OrderSTO> orders = userService.getUserOrderByState(userId, "已支付");
+        model.addAttribute("bookList", orders);
         return "payed_details";
     }
 
     @GetMapping("/getUnayedOrders")
     public String getUnpayedAllOrders(Model model, HttpSession session) {
         String userId = session.getAttribute("userId").toString();
-        List<OrderSTO> orders = userService.getUserOrderByState(userId,"未支付");
-        model.addAttribute("bookList",orders);
+        List<OrderSTO> orders = userService.getUserOrderByState(userId, "未支付");
+        model.addAttribute("bookList", orders);
         return "unpayed_details";
     }
 
@@ -65,20 +90,4 @@ public class OrderController {
         boolean b = epayService.delOrder(oid);
         return "redirect:/getAllOrders/1";
     }
-  /*  @GetMapping("/addToShopCast/{pid}")
-    public String addToShopCast(@PathVariable String pid,Model model,HttpSession session) {
-        String userId = session.getAttribute("userId").toString();
-        epayService.generateOrder(userId,"1",pid);
-        return "redirect:/bookIndex/"+pid;
-    }*/
- /*   @GetMapping("/moreRecommendBooks/{pageId}")
-    public String moreRecommendBooks(Model model, @PathVariable int pageId) {
-        List<Book> allBooks = bookService.getAllBookByRecommend();
-        List<Book> books = bookService.getBookByRecommend(String.valueOf((pageId-1)*20),"20");
-        model.addAttribute("bookList",books);
-        model.addAttribute("currentPage", pageId);
-        model.addAttribute("totalRecordCnt", allBooks.size());//总共的结果数
-        model.addAttribute("pageCnt", allBooks.size()/20+1);//总共的页数
-        return "more_recommendbooks";
-    }*/
 }
