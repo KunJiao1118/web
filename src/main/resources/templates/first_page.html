@@ -91,7 +91,7 @@
                 <div class="row row-cols-1 row-cols-md-6">
                     <div id="ul-list" class="col mb-4"  th:each="data : ${lists}">
                         <div class="card h-100">
-                            <a th:href="@{/book/detail(bookId=${data.pid})}">
+                            <a th:href="@{/book/detail/}+${data.pid}">
                             <img  class="card-img-top img-thumbnail gallery-book-list-img" alt="柏青哥"
                                  th:src="${data}!=null?${data.image}">
                             </a>
