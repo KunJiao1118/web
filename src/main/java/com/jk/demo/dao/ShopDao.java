@@ -1,5 +1,6 @@
 package com.jk.demo.dao;
 
+import com.jk.demo.bean.TypeStr;
 import com.jk.demo.dao.Dao_entities.*;
 import com.jk.demo.dao.dataHelper.jdbc.Builder;
 import com.jk.demo.sto.CommentSTO;
@@ -133,14 +134,14 @@ public class ShopDao {
     /**
      * 返回书籍与店铺的关联信息(by sid)
      */
-    public List<ShopBook> findShopBookBySid(String content) {
+    public List<ShopBook> findShopBookBySid(String sid) {
         try {
             String select = "select * from `shopbook` where `sid`=?;";
             List<ShopBook> resultlist = new ArrayList<ShopBook>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
             //ps.setString(1,"`"+type+"`");
-            ps.setString(1,content);
+            ps.setString(1,sid);
 
             rs = ps.executeQuery();
             while (rs.next()){
@@ -166,9 +167,25 @@ public class ShopDao {
     /**
      * 返回书籍与店铺的关联信息(by 书籍名字)
      */
-    public List<ShopBook> findShopBookByPname(String content){
+    public List<ShopBook> findShopBookByType(String content, String Type){
         try {
-            String select = "select * from `shopbook` where `pname` like ?;";
+            String select;
+            switch (Type){
+                case TypeStr.WRITER:
+                    select = "select `shopbook`.*,`book`.*, `shop`.* from `shopbook`,`book`,`shop`" +
+                            "where `shopbook`.pid = `book`.pid and `shopbook`.sid = `shop`.sid and `writer` like ?";
+                    break;
+                case TypeStr.ITEM:
+                    select = "select `shopbook`.*,`book`.*, `shop`.* from `shopbook`,`book`,`shop`" +
+                            "where `shopbook`.pid = `book`.pid and `shopbook`.sid = `shop`.sid and `pname` like ?";
+                    break;
+                case TypeStr.PRESS:
+                    select = "select `shopbook`.*,`book`.*, `shop`.* from `shopbook`,`book`,`shop`" +
+                            "where `shopbook`.pid = `book`.pid and `shopbook`.sid = `shop`.sid and `press` like ?";
+                    break;
+                default:
+                    throw new IllegalArgumentException("未知搜索类型");
+            }
             List<ShopBook> resultlist = new ArrayList<ShopBook>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
@@ -185,6 +202,23 @@ public class ShopDao {
                 shopBook.setExpress(rs.getFloat(7));
                 shopBook.setQuality(rs.getString(8));
                 shopBook.setRemain(rs.getInt(9));
+                Book book = new Book();
+                book.setPid(rs.getString(10));
+                book.setName(rs.getString(11));
+                book.setImage(rs.getString(12));
+                book.setWriter(rs.getString(13));
+                book.setPress(rs.getString(14));
+                book.setTime(rs.getString(15));
+                book.setISBN(rs.getString(16));
+                book.setPage(rs.getString(17));
+                book.setCategory(rs.getString(18));
+                book.setIntro(rs.getString(19));
+                shopBook.setBookInfo(book);
+                Shop shop = new Shop();
+                shop.setSid(rs.getString(20));
+                shop.setName(rs.getString(21));
+                shop.setAddress(rs.getString(22));
+                shopBook.setShopInfo(shop);
                 resultlist.add(shopBook);
             }
             return resultlist;

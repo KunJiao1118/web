@@ -1,5 +1,8 @@
 package com.jk.demo.dao.Dao_entities;
 
+import lombok.Data;
+
+@Data
 public class ShopBook {
     private String pid;
     private String sid;
@@ -10,6 +13,8 @@ public class ShopBook {
     private float express;
     private String quality;
     private int remain;
+    private Book bookInfo;
+    private Shop shopInfo;
 
     public String getSid() {
         return sid;
@@ -121,6 +126,8 @@ public class ShopBook {
                 ", express=" + express +
                 ", quality='" + quality + '\'' +
                 ", remain=" + remain +
+                ", bookInfo=" + bookInfo +
+                ", shopInfo=" + shopInfo +
                 '}';
     }
 }

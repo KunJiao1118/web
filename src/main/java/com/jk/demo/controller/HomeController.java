@@ -2,19 +2,17 @@ package com.jk.demo.controller;
 
 import com.jk.demo.bean.QualityEnum;
 import com.jk.demo.bean.ResultBean;
-import com.jk.demo.bean.TypeEnum;
+import com.jk.demo.bean.TypeStr;
 import com.jk.demo.dao.Dao_entities.Book;
 import com.jk.demo.dao.Dao_entities.ShopBook;
 import com.jk.demo.service.BookService;
 import com.jk.demo.sto.BookSTO;
-import com.jk.demo.sto.RecommendSTO;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -30,7 +28,7 @@ public class HomeController {
      *
      * @param content 搜索内容
      * @param pageId  搜索结果后端进行分页，根据pageId返回 第pageId页 ; 每页最多50个结果
-     * @param type    搜索种类；可能值参见{@link TypeEnum}
+     * @param type    搜索种类；可能值参见{@link TypeStr}
      * @param quality 品相  （可为空） 参见{@link QualityEnum}
      * @param model   前端使用的数据包
      */
@@ -39,36 +37,32 @@ public class HomeController {
                          Model model) {
         logger.info("[content:" + content + ",pageId:" + pageId + ",type:" + type + ",quality:" + quality + "]");
         if (pageId == null) pageId = 1; //若没有传，默认为1
-        if (type == null) type = TypeEnum.ITEM.getType();//若没有传，默认为"商品"种类；
+        if (type == null) type = TypeStr.ITEM;//若没有传，默认为"商品"种类；
 
         ///////////////////////////////////////  TODO 完成全站搜索逻辑
-        ResultBean<BookSTO> re = new ResultBean<>();
-        List<ShopBook> books = bookService.fuzzySerach(content, type);
-        BookSTO bookSTO = new BookSTO();
-        bookSTO.setRecords(books);
-        re.setData(bookSTO);
+        List<ShopBook> books = bookService.fuzzySearch(content, type, pageId, quality);
 
         ///////////////////////////////////////
         //根据model数据生成网页
-        model.addAttribute("bookList",books);//搜索结果列表
+        model.addAttribute("bookList", books);//搜索结果列表
         logger.info(books);
-        model.addAttribute("content",content);
+        model.addAttribute("content", content);
         model.addAttribute("currentPage", pageId);
-        model.addAttribute("type",type);
+        model.addAttribute("type", type);
         model.addAttribute("totalRecordCnt", books.size());//总共的结果数
-        model.addAttribute("pageCnt", books.size()/20+1);//总共的页数
+        model.addAttribute("pageCnt", books.size() / 50 + 1);//总共的页数，每页50个数据
         return "search";
     }
 
     /**
      * 首页页面
-     *  好书推荐，暂时随便推荐12本书，暂时未确定好书标准
+     * 好书推荐，暂时随便推荐12本书，暂时未确定好书标准
      */
     @GetMapping("")
-    public String mainPage(Model model){
+    public String mainPage(Model model) {
         List<Book> bookByRecommend = bookService.getBookByRecommend();
         logger.info(bookByRecommend.toString());
-        model.addAttribute("lists",bookByRecommend);
+        model.addAttribute("lists", bookByRecommend);
         return "first_page";
     }
 

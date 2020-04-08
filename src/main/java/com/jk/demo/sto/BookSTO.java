@@ -1,6 +1,5 @@
 package com.jk.demo.sto;
 
-import com.jk.demo.dao.Dao_entities.Book;
 import com.jk.demo.dao.Dao_entities.ShopBook;
 import lombok.Data;
 

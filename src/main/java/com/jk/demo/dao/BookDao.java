@@ -2,7 +2,6 @@ package com.jk.demo.dao;
 
 import com.jk.demo.dao.Dao_entities.Book;
 import com.jk.demo.dao.Dao_entities.ShopBook;
-import com.jk.demo.dao.Dao_entities.Userorder;
 import com.jk.demo.dao.dataHelper.jdbc.Builder;
 
 import java.sql.Connection;
@@ -18,6 +17,7 @@ public class BookDao {
     private ResultSet rs = null;
     private static BookDao bookDao = null;
     private Builder builder = new Builder();
+
     public static BookDao getInstance() {
         if (bookDao == null) {
             bookDao = new BookDao();
@@ -30,16 +30,16 @@ public class BookDao {
      * 返回推荐的所有书籍
      * (暂时先随便推荐十本书)
      */
-    public ArrayList<Book> findBookByRecommend(){
+    public ArrayList<Book> findBookByRecommend() {
         try {
             String select = "select * from book group by category limit 1,12 ;";
-            ArrayList<Book> resultlist=new ArrayList<Book>();
+            ArrayList<Book> resultlist = new ArrayList<Book>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
             //ps.setString(1, category);
             rs = ps.executeQuery();
             while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
-                Book book=new Book();
+                Book book = new Book();
                 book.setPid(rs.getString(1));
                 book.setName(rs.getString(2));
                 book.setImage(rs.getString(3));
@@ -61,19 +61,20 @@ public class BookDao {
 
     /**
      * 返回某一类别的所有书籍
+     *
      * @param category
      * @return
      */
-    public ArrayList<Book> findBookByCategory(String category){
+    public ArrayList<Book> findBookByCategory(String category) {
         try {
             String select = "select * from `book` where `category`=?;";
-            ArrayList<Book> resultlist=new ArrayList<Book>();
+            ArrayList<Book> resultlist = new ArrayList<Book>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
             ps.setString(1, category);
             rs = ps.executeQuery();
             while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
-                Book book=new Book();
+                Book book = new Book();
                 book.setPid(rs.getString(1));
                 book.setName(rs.getString(2));
                 book.setImage(rs.getString(3));
@@ -93,9 +94,9 @@ public class BookDao {
         }
     }
 
-
     /**
      * 返回指定sid,pid的书籍信息
+     *
      * @param pid
      * @return
      */
@@ -125,22 +126,24 @@ public class BookDao {
             e.printStackTrace();
             return null;
         }
-        return  null;
+        return null;
     }
 
     /**
      * 返回指定name的书籍信息
+     *
      * @param name
      * @return
      */
-    public Book findBookByName(String name) {
+    public List<Book> findBookByName(String name) {
         try {
-            String select = "select * from `book` where `name`=?;";
+            String select = "select * from `book` where `name` like ?;";
+            List<Book> resultlist = new ArrayList<>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
-            ps.setString(1, name);
+            ps.setString(1, "%" + name + "%");
             rs = ps.executeQuery();
-            while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
+            while (rs.next()) {
                 Book book = new Book();
                 book.setPid(rs.getString(1));
                 book.setName(rs.getString(2));
@@ -152,30 +155,31 @@ public class BookDao {
                 book.setPage(rs.getString(8));
                 book.setCategory(rs.getString(9));
                 book.setIntro(rs.getString(10));
-                return book;
+                resultlist.add(book);
             }
+            return resultlist;
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
-        return  null;
     }
 
     /**
      * 返回指定店铺的书籍信息
+     *
      * @param shopid
      * @return
      */
-    public ArrayList<ShopBook> findBookByShopId(String shopid){
+    public ArrayList<ShopBook> findBookByShopId(String shopid) {
         try {
             String select = "select * from `shopbook` where `sid`=?;";
-            ArrayList<ShopBook> resultlist=new ArrayList<ShopBook>();
+            ArrayList<ShopBook> resultlist = new ArrayList<ShopBook>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
             ps.setString(1, shopid);
             rs = ps.executeQuery();
             while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
-                ShopBook book=new ShopBook();
+                ShopBook book = new ShopBook();
                 book.setPid(rs.getString(1));
                 book.setSid(rs.getString(2));
                 book.setPname(rs.getString(3));
@@ -197,20 +201,20 @@ public class BookDao {
     }
 
 
-
     /**
      * 把某本书籍的购买信息添加到店铺种
-     * @param pid 书籍id
-     * @param sid 店铺id
-     * @param price 店铺设定的价格
+     *
+     * @param pid     书籍id
+     * @param sid     店铺id
+     * @param price   店铺设定的价格
      * @param express 运费
      * @param quality 品相
-     * @param remain 剩余数量
+     * @param remain  剩余数量
      * @return
      */
-    public boolean addBookToShop(String pid,String sid,Float price,Float express,String quality,int remain){
-        Book book=this.findBookById(pid);
-        ShopBook sbook=new ShopBook();
+    public boolean addBookToShop(String pid, String sid, Float price, Float express, String quality, int remain) {
+        Book book = this.findBookById(pid);
+        ShopBook sbook = new ShopBook();
         sbook.setPid(book.getPid());
         sbook.setSid(sid);
         sbook.setPname(book.getName());
@@ -243,29 +247,29 @@ public class BookDao {
         return true;
     }
 
-    public ShopBook findShopBookById(String sid,String pid) {
+    public ShopBook findShopBookById(String sid, String pid) {
         try {
             String select = "select * from `shopbook` where `sid`=? and `pid`=?;";
             //ArrayList<ShopBook> resultlist=new ArrayList<ShopBook>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
             ps.setString(1, sid);
-            ps.setString(2,pid);
+            ps.setString(2, pid);
             rs = ps.executeQuery();
             rs.next();// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
-                ShopBook book=new ShopBook();
-                book.setPid(rs.getString(1));
-                book.setSid(rs.getString(2));
-                book.setPname(rs.getString(3));
-                book.setImage(rs.getString(4));
-                book.setCategory(rs.getString(5));
-                book.setPrice(rs.getFloat(6));
-                book.setExpress(rs.getFloat(7));
-                book.setQuality(rs.getString(8));
-                book.setRemain(rs.getInt(9));
-                return book;
+            ShopBook book = new ShopBook();
+            book.setPid(rs.getString(1));
+            book.setSid(rs.getString(2));
+            book.setPname(rs.getString(3));
+            book.setImage(rs.getString(4));
+            book.setCategory(rs.getString(5));
+            book.setPrice(rs.getFloat(6));
+            book.setExpress(rs.getFloat(7));
+            book.setQuality(rs.getString(8));
+            book.setRemain(rs.getInt(9));
+            return book;
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
@@ -276,14 +280,13 @@ public class BookDao {
     public ArrayList<ShopBook> findAllShopBooks(String bookName) {
         try {
             String select = "select * from `shopbook` where `pname`=? ;";
-            ArrayList<ShopBook> resultlist=new ArrayList<ShopBook>();
+            ArrayList<ShopBook> resultlist = new ArrayList<ShopBook>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
             ps.setString(1, bookName);
-            //ps.setString(2,isbn);
             rs = ps.executeQuery();
             while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
-                ShopBook book=new ShopBook();
+                ShopBook book = new ShopBook();
                 book.setPid(rs.getString(1));
                 book.setSid(rs.getString(2));
                 book.setPname(rs.getString(3));
@@ -300,6 +303,7 @@ public class BookDao {
             e.printStackTrace();
             return null;
         }
-
     }
+
+
 }

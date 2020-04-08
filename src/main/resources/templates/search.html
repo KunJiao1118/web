@@ -37,11 +37,11 @@
                     <div class="form-row align-items-center">
                         <div class="col-auto">
                             <label class="mr-sm-2 sr-only" for="type">Preference</label>
-                            <select class="custom-select mr-sm-2" id="type">
-                                <option selected="">全部项</option>
-                                <option value="author">作者</option>
-                                <option value="title">书名</option>
-                                <option value="press">出版社</option>
+                            <select class="custom-select mr-sm-2" id="type" name="type">
+                                <option value="商品" selected="">全部项</option>
+                                <option value="作者">作者</option>
+                                <option value="商品">书名</option>
+                                <option value="出版社">出版社</option>
                             </select>
                         </div>
                         <div class="col-4 col-md-8">
@@ -86,47 +86,65 @@
                     <li class="list-group-item" th:each="book : ${bookList}">
                         <div class="row">
                             <div class="col-3">
-                                <a href="http://book.kongfz.com/206073/1359643514/"
-                                   target="_blank">   <!-- todo href设置商品详情页面url-->
-                                    <img class="img-thumbnail gallery-book-list-img" th:alt="${book.pname}"
-                                         th:src="${book.image}"
+                                <a th:if="${book.sid}!=null" th:href="@{/book/info/}+${book.sid}+@{/}+${book.pid}"
+                                   target="_blank">
+                                    <img class="img-thumbnail gallery-book-list-img" th:alt="${book.bookInfo.name}"
+                                         th:src="${book.bookInfo.image}"
+                                         style="display: inline-block;">
+                                </a>
+                                <a th:if="${book.sid}==null" th:href="@{/book/detail/}+${book.bookInfo.pid}"
+                                   target="_blank">
+                                    <img class="img-thumbnail gallery-book-list-img" th:alt="${book.bookInfo.name}"
+                                         th:src="${book.bookInfo.image}"
                                          style="display: inline-block;">
                                 </a>
                             </div>
                             <div class="col-5">
-                                <div th:title="${book.pname}">
-                                    <a th:href="@{/book/info(shopId=${book.sid},bookId=${book.pid})}"
+                                <div th:title="${book.bookInfo.name}">
+                                    <a th:if="${book.sid}!=null" th:href="@{/book/info/}+${book.sid}+@{/}+${book.pid}"
                                        target="_blank">
-                                        <span class="title" th:text="${book.pname}">软件工程</span>
+                                        <span class="title" th:text="${book.bookInfo.name}">软件工程</span>
+                                    </a>
+                                    <a th:if="${book.sid}==null" th:href="@{/book/detail/}+${book.bookInfo.pid}"
+                                       target="_blank">
+                                        <span class="title" th:text="${book.bookInfo.name}">软件工程</span>
                                     </a>
                                 </div>
                                 <div> <!--作者 -->
-                                    <p>张林、马雪英、王衍 著</p>
+                                    <p th:text="${book.bookInfo.writer}">张林、马雪英、王衍 著</p>
                                 </div>
                                 <div class="row">
                                     <a th:href="@{/shop(sid=${book.sid})}"
                                        target="_blank">
-                                        <p>皓轩书阁</p>
+                                        <p th:text="${book.shopInfo}!=null?${book.shopInfo.name}">皓轩书阁</p>
                                     </a>
-                                    <p> | </p>
-                                    <p>北京市朝阳区</p>
+                                    <p th:if="${book.sid}!=null"> | </p>
+                                    <p th:text="${book.shopInfo}!=null?${book.shopInfo.address}">北京市朝阳区</p>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div >
                                     <div>
-                                        <div class="quality gray3">九五品</div>
-                                        <div style="font-weight: bold;color: #8c222c;font-size: 16px">
-                                            <span>￥</span>  <span>19.25</span>
+                                        <div class="quality gray3" th:text="${book.quality}">九五品</div>
+                                        <div style="font-weight: bold;color: #8c222c;font-size: 16px"
+                                             th:if="${book.sid}!=null">
+                                            <span>￥</span>  <span th:text="${book.price}">19.25</span>
                                         </div>
                                     </div>
                                     <div class="ship-fee-box"></div>  <!--快递费用-->
                                     <div class="activity"></div>     <!--活动-->
-                                    <div class="add-time-box"><span>2020-03-03</span> <span>上书</span></div>
+                                    <div class="add-time-box"><span th:text="${book.bookInfo.time}">2020-03-03</span>
+                                        <span>上书</span></div>
                                 </div>
                                 <div  buyid="1359643514" shopid="206073" itemid="1359643514">
-                                    <div class="btn-sm btn-danger d-inline">加入购物车</div>
-                                    <div class="btn-sm btn-success d-inline">立即购买</div>
+                                    <a class="btn-sm btn-danger d-inline"
+                                         th:href="@{/addToShopCast/}+${book.sid}+@{/}+${book.pid}"
+                                         th:if="${book.sid}!=null" >加入购物车</a>
+                                    <a class="btn-sm btn-success d-inline"
+                                         th:if="${book.sid}!=null">立即购买</a>
+                                    <a class="btn-sm btn-success d-inline"
+                                         th:href="@{/book/detail/}+${book.bookInfo.pid}"
+                                         th:if="${book.sid}==null">图书详情</a>
                                 </div>
                             </div>
                         </div>

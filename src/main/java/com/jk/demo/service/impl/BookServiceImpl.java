@@ -1,6 +1,6 @@
 package com.jk.demo.service.impl;
 
-import com.jk.demo.bean.TypeEnum;
+import com.jk.demo.bean.TypeStr;
 import com.jk.demo.dao.BookDao;
 import com.jk.demo.dao.Dao_entities.Book;
 import com.jk.demo.dao.Dao_entities.ShopBook;
@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
-    BookDao bookDao =BookDao.getInstance();
+    BookDao bookDao = BookDao.getInstance();
     ShopDao shopDao = ShopDao.getInstance();
 
     @Override
@@ -44,48 +44,53 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<ShopBook> getBooksByShop(String content, String shopId) {
         List<ShopBook> shopBookInShop = shopDao.findShopBookInShop(content, shopId);
-
         return shopBookInShop;
     }
 
-    public List<Type> getTypes(){
-        //List<Type> list=typeMapper.getTypes();
+    public List<Type> getTypes() {
+        //List<TypeStr> list=typeMapper.getTypes();
         //假数据
-        List<Type> list=new ArrayList<>();
-        Type t1=new Type();
+        List<Type> list = new ArrayList<>();
+        Type t1 = new Type();
         t1.setType("小说");
         list.add(t1);
         return list;
     }
 
     public List<Book> getGoodbooks() {
-        //
-        List<Book> list=new ArrayList<>();
+        List<Book> list = new ArrayList<>();
         return list;
     }
 
     @Override
     public List<Book> getBookByRecommend() {
-       // BookDao bookDao =BookDao.getInstance();
+        // BookDao bookDao =BookDao.getInstance();
         ArrayList<Book> bookByRecommend = bookDao.findBookByRecommend();
         return bookByRecommend;
     }
 
-    public List<ShopBook> fuzzySerach(String content, String type){
-        //List<Book> list=bookMapper.fuzzySerach();
-        //BookDao bookDao =BookDao.getInstance();
-
-        List<ShopBook> list=new ArrayList<>();
-        if(type.equals(TypeEnum.SHOP.getType())){//
-            list=shopDao.findShopBookBySid(content);
-        }else if(type.equals(TypeEnum.ITEM.getType())){
-            list=shopDao.findShopBookByPname(content);
-        }else if(type.equals(TypeEnum.BOOK.getType())){
-            list=shopDao.findShopBookByCategory(content);
+    public List<ShopBook> fuzzySearch(String content, String type, Integer pageId, String quality) {
+        List<ShopBook> list = new ArrayList<>();
+        if (quality == null) {
+            switch (type) {
+                case TypeStr.BOOK:
+                    List<Book> books = bookDao.findBookByName(content);
+                    for (Book book:books) {
+                        ShopBook shopBook = new ShopBook();
+                        shopBook.setBookInfo(book);
+                        list.add(shopBook);
+                    }
+                    break;
+                case TypeStr.ITEM:
+                case TypeStr.WRITER:
+                case TypeStr.PRESS:
+                    list = shopDao.findShopBookByType(content,type);
+                    break;
+            }
+        } else {
+            // TODO: 2020/4/8 品相搜索
+            list = shopDao.findShopBookByType(content,TypeStr.ITEM);
         }
-
-        //list=bookDao.findBookByCategory("体育");
-        //
         return list;
     }
 }
