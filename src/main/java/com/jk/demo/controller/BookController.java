@@ -69,17 +69,44 @@ public class BookController {
     }
 
     /**
-     * 加入购物车
+     * 好书推荐的更多内容
+     */
+    @GetMapping("/moreRecommendBooks/{pageId}")
+    public String moreRecommendBooks(Model model, @PathVariable int pageId) {
+        List<Book> allBooks = bookService.getAllBookByRecommend();
+        List<Book> books = bookService.getBookByRecommend(String.valueOf((pageId-1)*20),"20");
+        model.addAttribute("bookList",books);
+        model.addAttribute("currentPage", pageId);
+        int size = allBooks.size()%2==0?allBooks.size()/20:(allBooks.size()/20+1);
+        model.addAttribute("totalRecordCnt", size);//总共的结果数
+        model.addAttribute("pageCnt", size);//总共的页数
+        return "more_recommendbooks";
+    }
+    /**
+     * 书籍详情页面加入购物车
      * @param pid
      * @param model
      * @param session
      * @return
      */
-    @GetMapping("/addToShopCast/{pid}")
-    public String addToShopCast(@PathVariable String pid, Model model, HttpSession session) {
+    @GetMapping("/addToShopCastInBookDetail/{pid}")
+    public String addToShopCastInBookDetail(@PathVariable String pid, Model model, HttpSession session) {
         String userId = session.getAttribute("userId").toString();
         epayService.generateOrder(userId,"1",pid);
         return "redirect:/book/detail/"+pid;
+    }
+    /**
+     * 更多推荐书籍页面加入购物车
+     * @param pid
+     * @param model
+     * @param session
+     * @return
+     */
+    @GetMapping("/addToShopCastInMoreRecommendBooks/{pid}")
+    public String addToShopCastInMoreRecommendBooks(@PathVariable String pid, Model model, HttpSession session) {
+        String userId = session.getAttribute("userId").toString();
+        epayService.generateOrder(userId,"1",pid);
+        return "redirect:/moreRecommendBooks/1";
     }
 
 //    /**

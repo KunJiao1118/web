@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>Signin Template for Bootstrap</title>
+
+	<!--<script type="text/javascript" th:src="@{/js/jquery-3.2.1.slim.min.js}"></script>-->
+	<script type="text/javascript" th:src="@{/js/other/jquery.js}"></script>
+	<script type="text/javascript" th:src="@{/js/bootstrap-4.4.1.js}"></script>
+	<script type="text/javascript" th:src="@{/js/other/h.js}"></script>
+	<script type="text/javascript" th:src="@{/js/holder/holder.js}"></script>
+	<script type="text/javascript" th:src="@{/js/google-code-prettify/prettify.js}"></script>
+	<script type="text/javascript" th:src="@{/js/other/application.js}"></script>
+	<script type="text/javascript" th:src="@{/js/login.js}"></script>
+
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap-4.4.1.css}">
+	<link rel="stylesheet" th:href="@{/js/google-code-prettify/prettify.css}">
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" th:href="@{/css/login.css}">
+	<link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="overlay" id="overlay"></div><!--遮罩层-->
+<iframe class="login-win" id="modalDiv" style="display: none"></iframe>
+<div th:replace="header/header::header"></div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-8 offset-2">
+			<div class="col-10">
+				<!-- 搜索结果list  -->
+				<ul id="resultBox" class="list-group">
+					<li class="list-group-item" th:each="book : ${bookList}">
+						<div class="row">
+							<div class="col-3">
+								<a href="http://book.kongfz.com/206073/1359643514/"
+								   target="_blank">   <!-- todo 设置图书url-->
+									<img class="img-thumbnail gallery-book-list-img" th:alt="${book.name}"
+										 th:src="${book.image}"
+										 style="display: inline-block;">
+								</a>
+							</div>
+							<div class="col-6">
+								<div class="title" title="软件工程"><a class="link"
+																   href="http://book.kongfz.com/206073/1359643514/"
+																   target="_blank"><b th:text="${book.name}">软件工程</b></a></div>
+								<div class="zl-isbn-info"><span class="text" th:text="${book.writer}">张林、马雪英、王衍  著</span> <span
+										class="text" th:text="${book.press}">/ 中国铁道</span> <span class="text"  th:text="${book.time}">/ 2009-12 </span></div>
+								<div class="info-bottom-box">
+									<div class="user-info">
+										<div class="text"><a class="user-info-link" href="http://shop.kongfz.com/206073"
+															 target="_blank"> <span>皓轩书阁</span> </a> <a
+												href="http://xinyu.kongfz.com/seller/6137015/" target="_blank"
+												class="lv8"></a>
+										</div>
+										<div class="text user-place">北京市朝阳区</div>
+										<div class="text"><a class="user-info-link" href="http://user.kongfz.com/6137015"
+															 target="_blank">皓轩书阁</a> <span
+												class="iconfont icon-jiaotanliuyan imNotice-message off-line" type="talk"
+												userid="6137015"></span></div>
+									</div>
+									<div class="holiday-info-box"></div>
+									<div class="warn-info-box"></div>
+								</div>
+							</div>
+							<div class="col-3">
+								<div class="item-other-info">
+									<div class="first-info clearfix">
+
+										<div class="f_right red price"><span>￥</span><span class="bold">19.25</span></div>
+									</div>
+									<div class="ship-fee-box"></div>
+									<div class="activity"></div>
+									<div class="add-time-box" ><span  th:text="${book.time}">2020-03-03</span></div>
+								</div>
+								<div class="btns-group clearfix" buyid="1359643514" shopid="206073" itemid="1359643514">
+									<a class="btn btn-danger" th:href="@{/addToShopCastInMoreRecommendBooks/}+${book.pid}">加入购物车</a>
+									<div class="btn btn-success" style="margin-top: 10px;margin-left: 10px"><span>立即购买</span></div>
+									<div class="suc-tip"><span class="iconfont icon-chenggong1"></span> <span
+											class="suc-text"></span></div>
+									<div class="err-tip"><span class="err-text"></span></div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<!-- 分页 -->
+				<nav class="mt-4">
+					<ul class="pagination justify-content-center">
+						<li class="page-item" th:classappend="${currentPage == 1}? 'disabled' : ''">
+							<a class="page-link" href="#">上一页</a></li>
+
+						<li class="page-item" th:each="page : ${#numbers.sequence(1,pageCnt)}"
+							th:classappend="${currentPage == page}? 'active' : ''">
+							<a class="page-link" th:href="@{/moreRecommendBooks/}+${page}" th:text="${page}">1</a></li>
+						<!-- todo 解决页面过多溢出问题 -->
+
+						<li class="page-item" th:classappend="${currentPage == pageCnt}? 'disabled' : ''">
+							<a class="page-link" href="#">下一页</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+<style>
+	body{
+		margin: 0;
+	}
+	.nav-header{
+		font-size: 15px;
+	}
+	.info-con-box {
+		float: left;
+		width: 50%;
+		overflow: hidden;
+		font-size: 12px;
+	}
+	.detail-con-right-top {
+		padding-top: 3px;
+		overflow: hidden;
+		padding-bottom: 14px;
+		font-size: 12px;
+	}
+	.detail-con-right-bottom {
+		font-size: 12px;
+	}
+	ul{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	hr {
+		margin: 10px 0;
+		border: 0;
+		border-top: 1px solid #ddd8d8;
+		border-bottom: 1px solid #ffffff;
+	}
+	.categary>tbody>tr>td:nth-child(2){
+		padding-left: 30px;
+	}
+	table{
+		font-size: 12px;
+		line-height: 25px;
+	}
+	.breadcrumb>li{
+		padding-left: 20px;
+		font-size: 12px;
+	}
+	.breadcrumb1>tbody>tr>td:not(:nth-child(1)){
+		padding-left: 40px;
+	}
+	.breadcrumb1>tbody>tr>td>h5{
+		width: 200px;
+	}
+	label > input{
+		float: left;
+		margin-top: 50px;
+	}
+</style>
+</html>

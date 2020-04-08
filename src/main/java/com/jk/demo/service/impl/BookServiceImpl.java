@@ -30,6 +30,17 @@ public class BookServiceImpl implements BookService {
         return allShopBooks;
     }
 
+    public List<Book> getAllBookByRecommend() {
+        // BookDao bookDao =BookDao.getInstance();
+        ArrayList<Book> bookByRecommend = bookDao.findAllBookByRecommend();
+        return bookByRecommend;
+    }
+    public List<Book> getBookByRecommend(String start,String count) {
+        // BookDao bookDao =BookDao.getInstance();
+        ArrayList<Book> bookByRecommend = bookDao.findBookByRecommend(start,count);
+        return bookByRecommend;
+    }
+
     @Override
     public Book getBookInfoById(String pid) {
         Book bookById = bookDao.findBookById(pid);

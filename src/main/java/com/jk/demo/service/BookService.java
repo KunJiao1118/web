@@ -16,4 +16,6 @@ public interface BookService {
     Book getBookInfoById(String pid);
     ShopBook getShopBookInfoById(String sid,String pid);
     List<ShopBook> getAllShopBooks(String bookId);
+    List<Book> getAllBookByRecommend();
+    List<Book> getBookByRecommend(String start,String count);
 }
