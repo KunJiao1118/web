@@ -36,38 +36,38 @@
         <div class="row item_info_box">
             <div class="col-3">  <!--图片展示-->
                 <a class="item_img border">
-                    <img src="//www.kfzimg.com/sw/kfzimg/213/26aca316b15f0ffc_n.jpg" style="display: inline-block;">
+                    <img th:src="${book.image}" src="//www.kfzimg.com/sw/kfzimg/213/26aca316b15f0ffc_n.jpg" style="display: inline-block;">
                 </a>
             </div>
             <div class="col-6 ">   <!--商品信息-->
                 <!--基本信息 从图书条目object中获取数据-->
                 <div class="base-info">
                     <div class="title-box">
-                        <h1 class="title">女心理师全集</h1>
+                        <h1 class="title" th:text="${book.name}">女心理师全集</h1>
                     </div>
                     <div class="info_box">
                         <ul>
                             <li>
                                 <span>作者:&nbsp;</span>
-                                <span>&nbsp;毕淑敏</span>
+                                <span th:text="${book.writer}">&nbsp;毕淑敏</span>
                             </li>
                             <li>
                                 <span>出版社:&nbsp;</span>
-                                <span>&nbsp;重庆出版集团</span>
+                                <span th:text="${book.press}">&nbsp;重庆出版集团</span>
                             </li>
                             <li>
                                 <span>ISBN:&nbsp;</span>
-                                <span>&nbsp;9787520710909</span>
+                                <span th:text="${book.ISBN}">&nbsp;9787520710909</span>
                             </li>
                             <li>
                                 <span>出版时间:&nbsp;</span>
-                                <span>&nbsp;2019-10</span>
+                                <span th:text="${book.time}">&nbsp;2019-10</span>
                             </li>
                         </ul>
                         <ul>
                             <li>
                                 <span>版次:&nbsp;</span>
-                                <span>&nbsp;1</span>
+                                <span th:text="${shopBook.remain}">&nbsp;1</span>
                             </li>
                             <li>
                                 <span>装帧:&nbsp;</span>
@@ -79,7 +79,7 @@
                             </li>
                             <li>
                                 <span>页数:&nbsp;</span>
-                                <span>&nbsp;344页</span>
+                                <span th:text="${book.page}">&nbsp;344页</span>
                             </li>
                         </ul>
                     </div>
@@ -89,14 +89,14 @@
                 <div class="price-group">
                     <div class="now-price">
                         <span class="title">售价</span>
-                        <span price="10.00">
+                        <span price="10.00" th:text="${shopBook.price}">
                                     <i>￥</i>
                                     <i>10.00</i>
                         </span>
                     </div>
                     <div class="quality">
                         <span class="title">品相</span>
-                        <span><i>九品</i></span>
+                        <span><i th:text="${shopBook.quality}">九品</i></span>
                     </div>
                 </div>
 
@@ -131,8 +131,8 @@
                 <!-- 购买 , 购物车 , 收藏 -->
                 <div class="buy-group">
                     <div class="on-sell">
-                        <a class="go-buy">立即购买</a>
-                        <a class="add-cart">加入购物车</a>  <!--TODO -->
+                        <a class="go-buy" th:href="@{/epay/generateOrder/}+${book.pid}">立即购买</a>
+                        <a class="add-cart" th:href="@{/addToShopCastInBookInfo/}+${book.pid}">加入购物车</a>  <!--TODO -->
                     </div>
                 </div>
             </div>
@@ -140,7 +140,7 @@
             <div class="col-2 py-2 border storeIns">  <!--书店信息-->
                 <div>
                     <a href="http://shop.kongfz.com/308586/" target="_blank">
-                        <span class="storeIns_name">报文书店</span></a>
+                        <span class="storeIns_name" th:text="${shopInfo.name}">报文书店</span></a>
                     <hr>
                     <div>
                         <div class="key">店铺等级</div>
@@ -236,7 +236,7 @@
                         <dl class="book-quality-desc">
                             <dt>商品分类：</dt>
                             <dd>
-                                <a href="http://book.kongfz.com/Cwenxue/" target="_blank">文学</a>
+                                <a href="http://book.kongfz.com/Cwenxue/" target="_blank" th:text="${shopBook.category}">文学</a>
                             </dd>
                         </dl>
                     </div>
@@ -252,7 +252,7 @@
                         <li>
                             <a href="//www.kfzimg.com/sw/kfzimg/334/418776ca785a58f3_b.jpg" data-loaded="1"
                                onclick="openBigImg(event);return false;" data-index="1">
-                                <img src="//www.kfzimg.com/sw/kfzimg/334/418776ca785a58f3_b.jpg" title="点击查看原图" type=""
+                                <img th:src="${book.image}" src="//www.kfzimg.com/sw/kfzimg/334/418776ca785a58f3_b.jpg" title="点击查看原图" type=""
                                      itemprop="image" error="0" onerror="this.src='/img/pc/error.jpg'" content=""
                                      alt="珍珠.松香.夜莺序列-西方音乐中的德奥">
                             </a>

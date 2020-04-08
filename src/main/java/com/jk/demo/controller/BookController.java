@@ -36,8 +36,8 @@ public class BookController {
      * @param bookId 商品id
      * @return
      */
-    @GetMapping("/book/info")
-    public String findBookInfoById(Model model, String shopId, String bookId){
+    @GetMapping("/book/info/{shopId}/{bookId}")
+    public String findBookInfoById(Model model,@PathVariable String shopId,@PathVariable String bookId){
         Book bookInfoById = bookService.getBookInfoById(bookId);
         Shop shopInfo = shopService.findShopInfo(shopId);
         ShopBook shopBookInfoById = bookService.getShopBookInfoById(shopId, bookId);
@@ -81,6 +81,19 @@ public class BookController {
         model.addAttribute("totalRecordCnt", size);//总共的结果数
         model.addAttribute("pageCnt", size);//总共的页数
         return "more_recommendbooks";
+    }
+    /**
+     * 具体商品页面加入购物车
+     * @param pid
+     * @param model
+     * @param session
+     * @return
+     */
+    @GetMapping("/addToShopCastInBookInfo/{pid}")
+    public String addToShopCastInBookInfo(@PathVariable String pid, Model model, HttpSession session) {
+        String userId = session.getAttribute("userId").toString();
+        epayService.generateOrder(userId,"1",pid);
+        return "redirect:/book/info/1/"+pid;
     }
     /**
      * 书籍详情页面加入购物车
