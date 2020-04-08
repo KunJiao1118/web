@@ -1,10 +1,134 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>店铺名称</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title th:text="${shopInfo.name}">店铺名称</title>
+
+    <script type="text/javascript" th:src="@{/js/other/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap-4.4.1.js}"></script>
+    <script type="text/javascript" th:src="@{/js/other/h.js}"></script>
+    <script type="text/javascript" th:src="@{/js/holder/holder.js}"></script>
+    <script type="text/javascript" th:src="@{/js/google-code-prettify/prettify.js}"></script>
+    <script type="text/javascript" th:src="@{/js/other/application.js}"></script>
+    <script type="text/javascript" th:src="@{/js/login.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap-4.4.1.css}">
+    <link rel="stylesheet" th:href="@{/js/google-code-prettify/prettify.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
-    
+    <div class="overlay" id="overlay"></div><!--遮罩层-->
+    <iframe class="login-win" id="modalDiv" style="display: none"></iframe>
+    <div th:replace="header/header::header"></div>
+
+    <div class="shop_title">
+        <div th:text="${shopInfo.name}">报文书店</div>
+    </div>
+    <!--<div th:replace="header/shopHeader::shopHeader"></div>-->
+
+
+    <div class="main_content">
+        <div class="row item_info_box pl-3">
+            <div class="col-2 py-2 border storeIns">  <!--书店信息-->
+                <div>
+                    <a th:href="@{/shop/}+${shopInfo.sid}" target="_blank">
+                        <span class="storeIns_name">报文书店</span></a>
+                    <hr>
+                    <div>
+                        <div class="key">店铺等级</div>
+                        <a style="display: inline;"
+                           target="_blank"
+                           href="http://xinyu.kongfz.com/seller/9909286/">5</a>
+                    </div>
+                </div>
+                <hr>
+                <div style="display: block;">
+                    <div class="storeIns_content score">
+                        <div>
+                            <div class="key">90天平均</div>
+                        </div>
+                        <div>
+                            <div class="black key">成功完成</div>
+                            <a href="http://xinyu.kongfz.com/seller/9909286/" target="_blank"
+                            > <span
+                                    class="storeIns_content_reputation">94.79%</span> <span
+                                    class="sale-count">(192笔)</span>
+                            </a>
+                        </div>
+                        <div>
+                            <div class="black key">好评率</div>
+                            <a href="http://xinyu.kongfz.com/seller/9909286/" target="_blank"
+                               class="storeIns_content_right"> <span
+                                    class=" storeIns_content_reputation">99.81%</span> </a>
+                        </div>
+                        <div>
+                            <div class="black key">发货时间</div>
+                            <a href="http://xinyu.kongfz.com/seller/9909286/" target="_blank"
+                               class="storeIns_content_right">
+                                <div class="storeIns_content_reputation">13.97小时</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="shop_owner_info storeIns_content">
+                    <div class="clearfix">
+                        <span class="key">店主</span>
+                        <a href="http://user.kongfz.com/9909286/" target="_blank"><span>书友_494090</span>
+                        </a>
+                    </div>
+                    <div class="chat-box">
+                        <span class="key">联系</span>
+                        <span class="storeIns_content_right">
+                            <a type="talk" userid="9909286" sendreferer="1"
+                               infourl="http://book.kongfz.com/308586/1448709932/"
+                               class="imNotice-message chat off-line pull-left">
+                            <span class="on">在线交谈</span> <span class="off">离线留言</span> </a></span>
+                    </div>
+                    <div>
+                        <span class="key">地址</span>
+                        <span> 上海市普陀区</span>
+                    </div>
+                    <div>
+                        <span class="key">电话</span>
+                        <span> 17755662233</span>
+                    </div>
+                </div>
+                <hr>
+                <div class="storeIns_content storeIns_btn_box" style="border: 0">
+                    <a class="storeIns_content_btn" id="store_collect_btn" collectstatus="0">收藏店铺</a>
+                </div>
+            </div>
+
+
+            <div class="col-10 pl-2">
+                <!--好书推荐-->
+                <p><span style="font-size: 25px"><b>好书推荐</b></span> <i> / </i> <a href="#">更多</a></p>
+                <hr>
+                <div class="row row-cols-1 row-cols-md-6">
+                    <div id="ul-list" class="col mb-4"  th:each="data : ${recommendBooks}">
+                        <div class="card h-100">
+                            <a th:href="@{/book/detail/}+${data.pid}">
+                                <img  class="card-img-top img-thumbnail gallery-book-list-img" alt="柏青哥"
+                                      th:src="${data}!=null?${data.image}">
+                            </a>
+                            <div class="card-body">
+                                <h5 class="card-title " th:text="${data}!=null?${data.pname}">
+                                    柏青哥</h5>
+                                <p class="card-text" th:text="${data}!=null?${data.bookInfo.writer}">
+                                    [美]李敏金 著</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 100px"></div>
 </body>
 </html>

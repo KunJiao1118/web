@@ -61,7 +61,8 @@ public class ShopDao {
      */
     public List<ShopBook> findBookByRecommendInShop(String sid){
         try {
-            String select = "select * from `shopbook` where `sid`=? and `quality`='上品' group by category limit 10;";
+            String select = "select `shopbook`.*, writer from `shopbook`,`book`" +
+                    "where `shopbook`.pid=`book`.pid and `sid`=? and `quality`='上品' group by category limit 10;";
             List<ShopBook> resultlist = new ArrayList<ShopBook>();
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
@@ -80,6 +81,9 @@ public class ShopDao {
                 shopBook.setExpress(rs.getFloat(7));
                 shopBook.setQuality(rs.getString(8));
                 shopBook.setRemain(rs.getInt(9));
+                Book book = new Book();
+                book.setWriter(rs.getString(10));
+                shopBook.setBookInfo(book);
                 resultlist.add(shopBook);
             }
             //如果书籍不足10本，则以缺货图片展示。

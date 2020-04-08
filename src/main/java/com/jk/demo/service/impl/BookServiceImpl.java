@@ -48,8 +48,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<ShopBook> getBookByRecommendInShop(String sid) {
-        List<ShopBook> bookByRecommendInShop = shopDao.findBookByRecommendInShop(sid);
-        return bookByRecommendInShop;
+        return shopDao.findBookByRecommendInShop(sid);
     }
 
     @Override
