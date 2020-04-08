@@ -67,7 +67,7 @@
                         <ul>
                             <li>
                                 <span>版次:&nbsp;</span>
-                                <span>&nbsp;1</span>
+                                <span th:text="${shopBook.remain}">&nbsp;1</span>
                             </li>
                             <li>
                                 <span>装帧:&nbsp;</span>
@@ -131,9 +131,10 @@
                 <!-- 购买 , 购物车 , 收藏 -->
                 <div class="buy-group">
                     <div class="on-sell">
-                        <a class="go-buy">立即购买</a> <!--TODO：生成该商品的未支付订单页面 -->
-                        <a class="add-cart" th:href="@{/addToShopCast/}+${shopBook.sid}+@{/}+${shopBook.pid}">
-                            加入购物车</a>
+                        <!--<a class="add-cart" th:href="@{/addToShopCast/}+${shopBook.sid}+@{/}+${shopBook.pid}">
+                            加入购物车</a>-->
+                        <a class="go-buy" th:href="@{/epay/generateOrder/}+${book.pid}">立即购买</a>
+                        <a class="add-cart" th:href="@{/addToShopCastInBookInfo/}+${book.pid}">加入购物车</a>
                     </div>
                 </div>
             </div>
@@ -236,7 +237,7 @@
                         <dl class="book-quality-desc">
                             <dt>商品分类：</dt>
                             <dd>
-                                <a href="http://book.kongfz.com/Cwenxue/" target="_blank">文学</a>
+                                <a href="http://book.kongfz.com/Cwenxue/" target="_blank" th:text="${shopBook.category}">文学</a>
                             </dd>
                         </dl>
                     </div>

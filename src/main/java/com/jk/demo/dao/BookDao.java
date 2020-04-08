@@ -60,6 +60,70 @@ public class BookDao {
     }
 
     /**
+     * 返回推荐的所有书籍,包含分页功能
+     *
+     */
+    public ArrayList<Book> findBookByRecommend(String start,String count){
+        try {
+            String select = "select * from book limit "+start+","+count+" ;";
+            ArrayList<Book> resultlist=new ArrayList<Book>();
+            conn = builder.BuildConnection();
+            ps = conn.prepareStatement(select);
+            //ps.setString(1, category);
+            rs = ps.executeQuery();
+            while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
+                Book book=new Book();
+                book.setPid(rs.getString(1));
+                book.setName(rs.getString(2));
+                book.setImage(rs.getString(3));
+                book.setWriter(rs.getString(4));
+                book.setPress(rs.getString(5));
+                book.setTime(rs.getString(6));
+                book.setISBN(rs.getString(7));
+                book.setPage(rs.getString(8));
+                book.setCategory(rs.getString(9));
+                book.setIntro(rs.getString(10));
+                resultlist.add(book);
+            }
+            return resultlist;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    /**
+     * 返回推荐的所有书籍
+     * (暂时先随便推荐200本书)
+     */
+    public ArrayList<Book> findAllBookByRecommend(){
+        try {
+            String select = "select * from book limit 0,200;";
+            ArrayList<Book> resultlist=new ArrayList<Book>();
+            conn = builder.BuildConnection();
+            ps = conn.prepareStatement(select);
+            //ps.setString(1, category);
+            rs = ps.executeQuery();
+            while (rs.next()) {// next函数 第一次调用先指向第一条，返回bool提示是否有下一条
+                Book book=new Book();
+                book.setPid(rs.getString(1));
+                book.setName(rs.getString(2));
+                book.setImage(rs.getString(3));
+                book.setWriter(rs.getString(4));
+                book.setPress(rs.getString(5));
+                book.setTime(rs.getString(6));
+                book.setISBN(rs.getString(7));
+                book.setPage(rs.getString(8));
+                book.setCategory(rs.getString(9));
+                book.setIntro(rs.getString(10));
+                resultlist.add(book);
+            }
+            return resultlist;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    /**
      * 返回某一类别的所有书籍
      *
      * @param category

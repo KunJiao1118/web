@@ -251,7 +251,7 @@ public class OrderDao {
     public boolean changeOrderState(String oid,String state){
         try {
             String select = "select * from `order` where `oid`=?;";
-            String update = "update order set `state`=? where oid=?;";
+            String update = "update `order` set `state`=? where oid=?;";
             conn = builder.BuildConnection();
             ps = conn.prepareStatement(select);
             ps.setString(1,oid);

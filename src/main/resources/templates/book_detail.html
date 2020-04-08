@@ -56,205 +56,192 @@
                                                                                                                                                                                                                                        href="http://search.kongfz.com/item_result/?status=0&select=2&author=hk82e5k6cfdkb7k8428k62c9k9a6ck6208"
                                                                                                                                                                                                                                        target="_blank">若泽·萨拉马戈</a>
                                                                                                                                                                                                                                                                                                                                                             </span>
-                                </div>
-                                <div class="item">
-                                    <span itemprop=session.lists[session.index]Format
-                                          class="text-key gray6">出版社: </span>
-                                    <span class="text-value gray3" th:text="${book.press}">南海出版公司</span>
-                                </div>
-                                <div class="item">
-                                    <span itemprop=datePublished class="text-key gray6">出版时间: </span>
-                                    <span class="text-value gray3" th:text="${book.time}">2018-01</span>
-                                </div>
-                                <!--<div class="item">
-                                    <span itemprop=session.lists[session.index]Edition class="text-key gray6">版次: </span>
-                                    <span class="text-value gray3">2</span>
-                                </div>-->
-                                <div class="item">
-                                    <span itemprop=isbn class="text-key gray6">ISBN: </span>
-                                    <span class="text-value gray3" th:text="${book.ISBN}">9787544263207</span>
-                                </div>
-                                <div class="item">
-                                    <span itemprop=price class="text-key gray6">定价: </span>
-                                    <span class="text-value gray3">暂无</span>
-                                </div>
-                                <!--<div class="item">
-                                    <span  class="text-key gray6">装帧: </span>
-                                    <span class="text-value gray3">精装</span>
-                                </div>-->
-                            </div>
-                            <div class="info-con-box">
-                                <!--<div class="item">
-                                    <span  class="text-key gray6">开本: </span>
-                                    <span class="text-value gray3">32开</span>
-                                </div>
-                                <div class="item">
-                                    <span  class="text-key gray6">纸张: </span>
-                                    <span class="text-value gray3">胶版纸</span>
-                                </div>-->
-                                <div class="item">
-                                    <span itemprop=numberofpages class="text-key gray6">页数: </span>
-                                    <span class="text-value gray3" th:text="${book.page}">333页</span>
-                                </div>
-                                <!--<div class="item">
-                                    <span  class="text-key gray6">字数: </span>
-                                    <span class="text-value gray3">195千字</span>
-                                </div>-->
-                                <div class="item">
-                                    <span class="text-key gray6">分类: </span>
-                                    <a href=""><span class="text-value" th:text="${book.category}">文学</span></a>
-                                </div>
-                                <div class="item">
-                                    <a href="">
-                                        <span class="iconfont icon-xiangce icon-tupians"></span>
-                                        <span class="atlas-num">2</span>
-                                        <span class="atlas-text">张插图图片</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clearfix detail-con-right-bottom">
-                            <ul class="gray3 text">
-                                <li class="jianjie-top" style="word-wrap:break-word;line-height: 20px;"
-                                    th:text="${book.intro}">
-                                    《失明症漫记》内容简介：繁忙的路口，绿灯亮了，中间车道的头一辆汽车却停止不前，司机在挡风玻璃后面挥舞着手臂，围观的人打开车门之后，才知道他在喊：我瞎了！没有人会相信，他的眼睛清晰明亮，巩膜像瓷器一样洁白致密，然而他却一再绝望地喊着：我瞎了！我瞎了！<br/>&nbsp;&nbsp;一位路人送他回家，却被传染上失明的怪疾。眼科医生成了第三个牺牲品。白色瘟疫使城市人心惶惶，失明者被强制隔离在一家废弃的精神病院里，然而，失明症仍无可遏制地蔓延开来……
-                                    若泽·萨拉马戈（JoséSaramago，1922?C2010）<br/><br/>葡萄牙作家。1922年生，高中时因家境贫困辍学，先后从事技工、文员、记者、编辑等职业。1982年出版的《修道院纪事》为他赢得国际声誉。代表作有《里斯本之围》《失明症漫记》《复明症漫记》等。1998年获诺贝尔文学奖，是葡萄牙语世界第一位获此殊荣的作家。2010年在西班牙兰萨罗特岛去世。
-                                </li>
-                                <li class="jianjie-d" style="height: 0;margin: 0;padding: 0;"></li>
-                                <!--<li class="jianjie">-->
-                                <!--<h5 itemprop="reviewBody">内容简介: </h5>-->
-                                <!--《失明症漫记》内容简介：繁忙的路口，绿灯亮了，中间车道的头一辆汽车却停止不前，司机在挡风玻璃后面挥舞着手臂，围观的人打开车门之后，才知道他在喊：我瞎了！没有人会相信，他的眼睛清晰明亮，巩膜像瓷器一样洁白致密，然而他却一再绝望地喊着：我瞎了！我瞎了！<br />&nbsp;&nbsp;一位路人送他回家，却被传染上失明的怪疾。眼科医生成了第三个牺牲品。白色瘟疫使城市人心惶惶，失明者被强制隔离在一家废弃的精神病院里，然而，失明症仍无可遏制地蔓延开来……                                    </li>-->
-                                <!--<li class="jianjie">-->
-                                <!--<h5>作者简介: </h5>-->
-                                <!--若泽·萨拉马戈（JoséSaramago，1922?C2010）<br /><br />葡萄牙作家。1922年生，高中时因家境贫困辍学，先后从事技工、文员、记者、编辑等职业。1982年出版的《修道院纪事》为他赢得国际声誉。代表作有《里斯本之围》《失明症漫记》《复明症漫记》等。1998年获诺贝尔文学奖，是葡萄牙语世界第一位获此殊荣的作家。2010年在西班牙兰萨罗特岛去世。-->
-                                <!--</li>-->
-                            </ul>
-                            <a href="javascript:;" class="read-more-btn" data-attr="true"><span
-                                    class="iconfont icon-xiangxiazhankai"></span> 查看详情</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-2">
-                <p>相关分类</p>
-                <hr></hr>
-                <table class="categary">
-                    <tbody>
-                    <tr>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">中国现代小说</a></span></td>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">中国现代小说</a></span></td>
-                    </tr>
-                    <tr>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">中国古典小说</a></span></td>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">四大名著</a></span></td>
-                    </tr>
-                    <tr>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">世界名著</a></span></td>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">外国小说</a></span></td>
-                    </tr>
-                    <tr>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">侦探/悬疑/推理</a></span></td>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">科幻</a></span></td>
-                    </tr>
-                    <tr>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">情感/家庭/婚姻</a></span></td>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">穿越/重生</a></span></td>
-                    </tr>
-                    <tr>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">武侠</a></span></td>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">惊悚/恐怖</a></span></td>
-                    </tr>
-                    <tr>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">魔幻/奇幻/玄幻</a></span></td>
-                        <td><span style="display: inline-block;"><a href="#" target="_blank">青春/影视</a></span></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-8 offset-2">
-                <div class="detail-list">
-                    <div class="detail-list-nav">
-                        <ul class="breadcrumb">
-                            <li>7条</li>
-                            <li style="padding: 0 6px;">|</li>
-                            <li><a href="javascript:;">综合排序</a></li>
-                            <li><a href="#">最新上架</a></li>
-                            <li><a href="#">店铺</a></li>
-                            <li><a href="#">含运费从低到高</a></li>
-                            <li><a href="#">品相</a></li>
-                            <li><a href="#"><i>只看全新</i></a></li>
-                        </ul>
-                    </div>
-                    <!--列表开始-->
-                    <ul id="resultBox" class="list-group">
-                        <li class="list-group-item" th:each="book : ${itemList}">
-                            <div class="row">
-                                <div class="col-3">
-                                    <a href="http://book.kongfz.com/206073/1359643514/"
-                                       target="_blank">   <!-- todo 设置图书url-->
-                                        <img class="img-thumbnail gallery-book-list-img" th:alt="${book.pname}"
-                                             th:src="${book.image}"
-                                             style="display: inline-block;">
-                                    </a>
-                                </div>
-                                <div class="col-6">
-                                    <div class="title" title="软件工程"><a class="link"
-                                                                       href="http://book.kongfz.com/206073/1359643514/"
-                                                                       target="_blank"><b
-                                            th:text="${book.pname}">软件工程</b></a></div>
-                                    <div class="zl-isbn-info"><span class="text"
-                                                                    th:text="${book.category}">张林、马雪英、王衍  著</span></div>
-                                    <div class="info-bottom-box">
-                                        <div class="user-info">
-                                            <div class="text"><a class="user-info-link"
-                                                                 href="http://shop.kongfz.com/206073"
-                                                                 target="_blank"> <span
-                                                    th:text="${book.sid}">皓轩书阁</span> </a> <a
-                                                    href="http://xinyu.kongfz.com/seller/6137015/" target="_blank"
-                                                    class="lv8"></a>
-                                            </div>
-                                            <div class="text user-place">北京市朝阳区</div>
-                                            <div class="text"><a class="user-info-link"
-                                                                 href="http://user.kongfz.com/6137015"
-                                                                 target="_blank" th:text="${book.sid}">皓轩书阁</a> <span
-                                                    class="iconfont icon-jiaotanliuyan imNotice-message off-line"
-                                                    type="talk"
-                                                    userid="6137015"></span></div>
-                                        </div>
-                                        <div class="holiday-info-box"></div>
-                                        <div class="warn-info-box"></div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="item-other-info">
-                                        <div class="first-info clearfix">
-                                            <div class="f_right red price"><span>￥</span><span class="bold"
-                                                                   th:text="${book.price}">19.25</span>
-                                            </div>
-                                        </div>
-                                        <div class="ship-fee-box"></div>
-                                        <div class="activity"></div>
-                                        <!--<div class="add-time-box" ><span  th:text="${book.time}">2020-03-03</span></div>-->
-                                    </div>
-                                    <div class="btns-group clearfix" buyid="1359643514" shopid="206073"
-                                         itemid="1359643514">
-                                        <a class="btn btn-danger"
-                                           th:href="@{/addToShopCast/}+${book.sid}+@{/}+${book.pid}">加入购物车</a>
-                                        <div class="btn btn-success"><span>立即购买</span></div>
-                                        <div class="suc-tip"><span class="iconfont icon-chenggong1"></span> <span
-                                                class="suc-text"></span></div>
-                                        <div class="err-tip"><span class="err-text"></span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+							</div>
+							<div class="item">
+								<span itemprop=session.lists[session.index]Format class="text-key gray6">出版社: </span>
+								<span class="text-value gray3" th:text="${book.press}">南海出版公司</span>
+							</div>
+							<div class="item">
+								<span itemprop=datePublished class="text-key gray6">出版时间: </span>
+								<span class="text-value gray3" th:text="${book.time}">2018-01</span>
+							</div>
+							<!--<div class="item">
+								<span itemprop=session.lists[session.index]Edition class="text-key gray6">版次: </span>
+								<span class="text-value gray3">2</span>
+							</div>-->
+							<div class="item">
+								<span itemprop=isbn class="text-key gray6">ISBN: </span>
+								<span class="text-value gray3" th:text="${book.ISBN}">9787544263207</span>
+							</div>
+							<div class="item">
+								<span itemprop=price class="text-key gray6">定价: </span>
+								<span class="text-value gray3">暂无</span>
+							</div>
+							<!--<div class="item">
+								<span  class="text-key gray6">装帧: </span>
+								<span class="text-value gray3">精装</span>
+							</div>-->
+						</div>
+						<div class="info-con-box">
+							<!--<div class="item">
+								<span  class="text-key gray6">开本: </span>
+								<span class="text-value gray3">32开</span>
+							</div>
+							<div class="item">
+								<span  class="text-key gray6">纸张: </span>
+								<span class="text-value gray3">胶版纸</span>
+							</div>-->
+							<div class="item">
+								<span itemprop=numberofpages class="text-key gray6">页数: </span>
+								<span class="text-value gray3" th:text="${book.page}">333页</span>
+							</div>
+							<!--<div class="item">
+								<span  class="text-key gray6">字数: </span>
+								<span class="text-value gray3">195千字</span>
+							</div>-->
+							<div class="item">
+								<span  class="text-key gray6">分类: </span>
+								<a href=""><span class="text-value" th:text="${book.category}">文学</span></a>
+							</div>
+							<div class="item">
+								<a href="">
+									<span class="iconfont icon-xiangce icon-tupians"></span>
+									<span class="atlas-num">2</span>
+									<span class="atlas-text">张插图图片</span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix detail-con-right-bottom">
+						<ul class="gray3 text">
+							<li class="jianjie-top" style="word-wrap:break-word;line-height: 20px;" th:text="${book.intro}">
+								《失明症漫记》内容简介：繁忙的路口，绿灯亮了，中间车道的头一辆汽车却停止不前，司机在挡风玻璃后面挥舞着手臂，围观的人打开车门之后，才知道他在喊：我瞎了！没有人会相信，他的眼睛清晰明亮，巩膜像瓷器一样洁白致密，然而他却一再绝望地喊着：我瞎了！我瞎了！<br />&nbsp;&nbsp;一位路人送他回家，却被传染上失明的怪疾。眼科医生成了第三个牺牲品。白色瘟疫使城市人心惶惶，失明者被强制隔离在一家废弃的精神病院里，然而，失明症仍无可遏制地蔓延开来……                                    若泽·萨拉马戈（JoséSaramago，1922?C2010）<br /><br />葡萄牙作家。1922年生，高中时因家境贫困辍学，先后从事技工、文员、记者、编辑等职业。1982年出版的《修道院纪事》为他赢得国际声誉。代表作有《里斯本之围》《失明症漫记》《复明症漫记》等。1998年获诺贝尔文学奖，是葡萄牙语世界第一位获此殊荣的作家。2010年在西班牙兰萨罗特岛去世。
+							</li>
+							<li class="jianjie-d" style="height: 0;margin: 0;padding: 0;"></li>
+							<!--<li class="jianjie">-->
+							<!--<h5 itemprop="reviewBody">内容简介: </h5>-->
+							<!--《失明症漫记》内容简介：繁忙的路口，绿灯亮了，中间车道的头一辆汽车却停止不前，司机在挡风玻璃后面挥舞着手臂，围观的人打开车门之后，才知道他在喊：我瞎了！没有人会相信，他的眼睛清晰明亮，巩膜像瓷器一样洁白致密，然而他却一再绝望地喊着：我瞎了！我瞎了！<br />&nbsp;&nbsp;一位路人送他回家，却被传染上失明的怪疾。眼科医生成了第三个牺牲品。白色瘟疫使城市人心惶惶，失明者被强制隔离在一家废弃的精神病院里，然而，失明症仍无可遏制地蔓延开来……                                    </li>-->
+							<!--<li class="jianjie">-->
+							<!--<h5>作者简介: </h5>-->
+							<!--若泽·萨拉马戈（JoséSaramago，1922?C2010）<br /><br />葡萄牙作家。1922年生，高中时因家境贫困辍学，先后从事技工、文员、记者、编辑等职业。1982年出版的《修道院纪事》为他赢得国际声誉。代表作有《里斯本之围》《失明症漫记》《复明症漫记》等。1998年获诺贝尔文学奖，是葡萄牙语世界第一位获此殊荣的作家。2010年在西班牙兰萨罗特岛去世。-->
+							<!--</li>-->
+						</ul>
+						<a href="javascript:;" class="read-more-btn" data-attr="true"><span class="iconfont icon-xiangxiazhankai"></span> 查看详情</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-2">
+			<p>相关分类</p>
+			<hr></hr>
+			<table class="categary">
+				<tbody>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">中国现代小说</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">中国现代小说</a></span></td>
+				</tr>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">中国古典小说</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">四大名著</a></span></td>
+				</tr>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">世界名著</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">外国小说</a></span></td>
+				</tr>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">侦探/悬疑/推理</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">科幻</a></span></td>
+				</tr>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">情感/家庭/婚姻</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">穿越/重生</a></span></td>
+				</tr>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">武侠</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">惊悚/恐怖</a></span></td>
+				</tr>
+				<tr>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">魔幻/奇幻/玄幻</a></span></td>
+					<td><span style="display: inline-block;"><a href="#" target="_blank">青春/影视</a></span></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-8 offset-2">
+			<div class="detail-list">
+				<div class="detail-list-nav">
+					<ul class="breadcrumb">
+						<li>7条</li>
+						<li style="padding: 0 6px;">|</li>
+						<li><a href="javascript:;">综合排序</a></li>
+						<li><a href="#">最新上架</a></li>
+						<li><a href="#">店铺</a></li>
+						<li><a href="#">含运费从低到高</a></li>
+						<li><a href="#">品相</a></li>
+						<li><a href="#"><i>只看全新</i></a></li>
+					</ul>
+				</div>
+				<!--列表开始-->
+				<ul id="resultBox" class="list-group">
+					<li class="list-group-item" th:each="book : ${itemList}">
+						<div class="row">
+							<div class="col-3">
+								<a href="http://book.kongfz.com/206073/1359643514/"
+								   target="_blank">   <!-- todo 设置图书url-->
+									<img class="img-thumbnail gallery-book-list-img" th:alt="${book.pname}"
+										 th:src="${book.image}"
+										 style="display: inline-block;">
+								</a>
+							</div>
+							<div class="col-6">
+								<div class="title" title="软件工程"><a class="link"
+																   href="http://book.kongfz.com/206073/1359643514/"
+																   target="_blank"><b th:text="${book.pname}">软件工程</b></a></div>
+								<div class="zl-isbn-info"><span class="text" th:text="${book.category}">张林、马雪英、王衍  著</span></div>
+								<div class="info-bottom-box">
+									<div class="user-info">
+										<div class="text"><a class="user-info-link" href="http://shop.kongfz.com/206073"
+															 target="_blank"> <span th:text="${book.sid}">皓轩书阁</span> </a> <a
+												href="http://xinyu.kongfz.com/seller/6137015/" target="_blank"
+												class="lv8"></a>
+										</div>
+										<div class="text user-place">北京市朝阳区</div>
+										<div class="text"><a class="user-info-link" href="http://user.kongfz.com/6137015"
+															 target="_blank" th:text="${book.sid}">皓轩书阁</a> <span
+												class="iconfont icon-jiaotanliuyan imNotice-message off-line" type="talk"
+												userid="6137015"></span></div>
+									</div>
+									<div class="holiday-info-box"></div>
+									<div class="warn-info-box"></div>
+								</div>
+							</div>
+							<div class="col-3">
+								<div class="item-other-info">
+									<div class="first-info clearfix">
+
+										<div class="f_right red price"><span>￥</span><span class="bold" th:text="${book.price}">19.25</span></div>
+									</div>
+									<div class="ship-fee-box"></div>
+									<div class="activity"></div>
+									<!--<div class="add-time-box" ><span  th:text="${book.time}">2020-03-03</span></div>-->
+								</div>
+								<div class="btns-group clearfix" buyid="1359643514" shopid="206073" itemid="1359643514">
+									<a class="btn btn-danger" th:href="@{/addToShopCastInBookDetail/}+${book.pid}" >加入购物车</a>
+									<a class="btn btn-success" th:href="@{/book/info/1/}+${book.pid}"><span>立即购买</span></a>
+									<div class="suc-tip"><span class="iconfont icon-chenggong1"></span> <span
+											class="suc-text"></span></div>
+									<div class="err-tip"><span class="err-text"></span></div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 
 </body>
 <style>

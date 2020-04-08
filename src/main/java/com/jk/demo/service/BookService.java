@@ -52,4 +52,6 @@ public interface BookService {
      * @param bookId 图书的bookId
      */
     List<ShopBook> getAllShopBooks(String bookId);
+    List<Book> getAllBookByRecommend();
+    List<Book> getBookByRecommend(String start,String count);
 }
