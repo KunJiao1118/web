@@ -30,6 +30,16 @@ public class UserServiceImpl implements UserService {
 
         return allsUserorders;
     }
+    public List<OrderSTO> getUserOrder(String userId,String start,String count) {
+        ArrayList<OrderSTO> allsUserorders = orderDao.findAllsUserorders(userId,start,count);
+
+        return allsUserorders;
+    }
+    public List<OrderSTO> getUserOrderByState(String userId,String state) {
+        ArrayList<OrderSTO> allsUserorders = orderDao.findUserOrdersByState(userId,state);
+
+        return allsUserorders;
+    }
 
     @Override
     public boolean doLogin(String userId, String password) {

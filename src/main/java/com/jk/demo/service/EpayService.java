@@ -7,4 +7,5 @@ import java.util.List;
 public interface EpayService {
     OrderSTO generateOrder(String uid,String sid,String pid);
     boolean paying(String oid);
+    boolean delOrder(String oid);
 }
